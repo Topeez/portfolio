@@ -1,0 +1,195 @@
+@import "tailwindcss";
+
+@plugin 'tailwindcss-animate';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+
+    --radius-lg: var(--radius);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-sm: calc(var(--radius) - 4px);
+
+    --ease-snappy: var(--snappy);
+    --ease-fluid: var(--fluid);
+}
+
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentcolor);
+    }
+    :root {
+        --background: #ffffff;
+        --foreground: #0a0a0a;
+        --card: #ffffff;
+        --card-foreground: #0a0a0a;
+        --popover: #ffffff;
+        --popover-foreground: #0a0a0a;
+        --primary: #1a1625;
+        --primary-foreground: #fafafa;
+        --secondary: #f5f5f5;
+        --secondary-foreground: #1a1625;
+        --muted: #f5f5f5;
+        --muted-foreground: #737373;
+        --accent: #f5f5f5;
+        --accent-foreground: #1a1625;
+        --destructive: #dc2626;
+        --destructive-foreground: #fafafa;
+        --border: #ebebeb;
+        --input: #ebebeb;
+        --ring: #0a0a0a;
+        --chart-1: #f59e0b;
+        --chart-2: #00b8db;
+        --chart-3: #3b82f6;
+        --chart-4: #a3e635;
+        --chart-5: #eab308;
+        --radius: 0.5rem;
+        --cont-max-w: 1440px;
+        --cont-px: 3vw;
+        --fluid: cubic-bezier(0.3, 0, 0, 1);
+        --snappy: cubic-bezier(0.2, 0, 0, 1);
+    }
+    .dark {
+        --background: #0a0a0a;
+        --foreground: #fafafa;
+        --card: #0a0a0a;
+        --card-foreground: #fafafa;
+        --popover: #0a0a0a;
+        --popover-foreground: #fafafa;
+        --primary: #fafafa;
+        --primary-foreground: #1a1625;
+        --secondary: #262626;
+        --secondary-foreground: #fafafa;
+        --muted: #262626;
+        --muted-foreground: #a0a0a0;
+        --accent: #262626;
+        --accent-foreground: #fafafa;
+        --destructive: #b91c1c;
+        --destructive-foreground: #ef4444;
+        --border: #262626;
+        --input: #262626;
+        --ring: #525252;
+        --chart-1: #8b5cf6;
+        --chart-2: #00b8db;
+        --chart-3: #a3e635;
+        --chart-4: #ec4899;
+        --chart-5: #f97316;
+    }
+}
+
+@utility cs-container {
+    @apply mx-auto px-[var(--cont-px)] max-w-[var(--cont-max-w)];
+}
+
+@utility slide-in {
+    animation: slide-in 1s ease 200ms backwards;
+}
+
+@utility slide-up {
+    animation: slide-up 1s ease 200ms backwards;
+}
+
+@keyframes slide-up {
+    from {
+        opcaity: 0;
+        transform: translateY(200px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slide-in {
+    from {
+        opcaity: 0;
+        transform: translateX(-200px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+    }
+
+    .footer-socials svg {
+        @apply size-6 md:size-8 transition-all ease-fluid hover:scale-105;
+    }
+
+    .divider-bottom,
+    .divider-top {
+        width: 100%;
+        overflow: hidden;
+        line-height: 0;
+        z-index: 1500;
+        pointer-events: none;
+    }
+
+    .divider-bottom {
+        transform: rotate(180deg);
+    }
+
+    .divider-bottom svg,
+    .divider-top svg {
+        display: block;
+        width: calc(123% + 1.3px);
+        height: 120px;
+    }
+
+    .shape-fill {
+        @apply fill-blue-600;
+
+        @variant dark {
+            @apply fill-foreground;
+        }
+    }
+}

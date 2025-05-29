@@ -28,19 +28,27 @@
             "text": "Tady jsou projekty, na kterých jsem pracoval.",
             "project1": {
                 "title": "Víceúčelový rozvrh hodin pro mou školu",
-                "description": "Víceúčelový rozvrh hodin pro mou školu, umožňující studentům vidět, jaké dnes mají hodiny a v jaké učebně, kolik hodin mají a který učitel je učí. Zahrnuje také odjezdy autobusů a oznámení různých akcí školy."
+                "description": "Víceúčelový rozvrh hodin pro mou školu, umožňující studentům vidět, jaké dnes mají hodiny a v jaké učebně, kolik hodin mají a který učitel je učí. Zahrnuje také odjezdy autobusů a oznámení různých akcí školy.",
+                "btncode": "Zobrazit kód",
+                "btnlink": "Zobrazit ukázku"
             },
             "project2": {
                 "title": "Platforma pro piškvorky",
-                "description": "Platforma pro piškvorky"
+                "description": "Platforma pro piškvorky",
+                "btncode": "Zobrazit kód",
+                "btnlink": "Zobrazit ukázku"
             },
             "project3": {
                 "title": "Hudební platforma pro začínající umělce",
-                "description": "Hudební platforma pro začínající umělce"
+                "description": "Hudební platforma pro začínající umělce",
+                "btncode": "Zobrazit kód",
+                "btnlink": "Zobrazit ukázku"
             },
             "project4": {
                 "title": "Hudební platforma pro začínající umělce",
-                "description": "Hudební platforma pro začínající umělce"
+                "description": "Hudební platforma pro začínající umělce",
+                "btncode": "Zobrazit kód",
+                "btnlink": "Zobrazit ukázku"
             }
         },
 

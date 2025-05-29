@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink, GitBranch } from "lucide-react";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { Spacer } from "@/components/spacer";
@@ -13,7 +13,6 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel";
-
 
 export function Projects() {
     const t = useTranslations("HomePage.Projects");
@@ -49,7 +48,6 @@ export function Projects() {
         }
     ]
 
-
     return (
         <section id="projects" className="grid grid-cols-12 cs-container">
             <div className="col-span-12 space-y-4">
@@ -61,8 +59,8 @@ export function Projects() {
                     <Carousel className="w-full">
                         <CarouselContent className="-ml-4">
                             {projectData.map((project, index) => {
-                                const projectIndex = index + 1;  // Fixed variable declaration
-                                return (  // Explicit return statement
+                                const projectIndex = index + 1;
+                                return (
                                     <CarouselItem key={project.id} className="pl-4 md:basis-1/2">
                                         <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300 group pb-6 pt-0 h-full">
                                             <div className="relative overflow-hidden h-[240px]">
@@ -79,13 +77,13 @@ export function Projects() {
                                                         <div className="flex justify-between items-center">
                                                             <Button
                                                                 variant="outline"
-                                                                className="bg-white/20 backdrop-blur-sm text-white border-white/30 hover:bg-white/30 !rounded-button whitespace-nowrap cursor-pointer"
+                                                                className={`bg-white/20 backdrop-blur-sm text-white border-white/30 hover:bg-white/30 !rounded-button whitespace-nowrap cursor-pointer ${project.github === "#" ? "cursor-not-allowed" : ""}`}
                                                             >
-                                                                <GitBranch className="mr-2" /> View Code
+                                                                <GitBranch className="mr-2" /> {t(`project${projectIndex}.btncode`)}
                                                             </Button>
                                                             <Link href={project.demo}>
-                                                                <Button className="bg-gradient-to-r from-blue-600 to-sky-400 hover:from-blue-700 hover:to-sky-500 text-white !rounded-button whitespace-nowrap cursor-pointer">
-                                                                    <ExternalLink className="mr-2" />Live Demo
+                                                                <Button className={`bg-gradient-to-r from-blue-600 to-sky-400 hover:from-blue-700 hover:to-sky-500 text-white !rounded-button whitespace-nowrap cursor-pointer ${project.demo === "#" ? "cursor-not-allowed" : ""}`}>
+                                                                    <ExternalLink className="mr-2" />{t(`project${projectIndex}.btnlink`)}
                                                                 </Button>
                                                             </Link>
                                                         </div>
@@ -124,5 +122,5 @@ export function Projects() {
                 </div>
             </div>
         </section>
-    )
+    );
 }

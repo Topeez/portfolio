@@ -28,19 +28,27 @@
             "text": "I'm working on a few projects.",
             "project1": {
                 "title":"Multi-use hours scheduler for my school",
-                "description": "A multi-use hours scheduler for my school, allowing students to see what classes they have today, how many hours and which teacher is teaching them. Also include bus departures and announcements."
+                "description": "A multi-use hours scheduler for my school, allowing students to see what classes they have today, how many hours and which teacher is teaching them. Also include bus departures and announcements.",
+                "btncode": "View code",
+                "btnlink": "View demo"
             },
             "project2": {
                 "title":"Tic tac toe platform",
-                "description": "Tic tac toe platform"
+                "description": "Tic tac toe platform",
+                "btncode": "View code",
+                "btnlink": "View demo"
             },
             "project3": {
                 "title":"Music platform for starting artists",
-                "description": "Music platform for starting artists"
+                "description": "Music platform for starting artists",
+                "btncode": "View code",
+                "btnlink": "View demo"
             },
             "project4": {
                 "title":"Music platform for starting artists",
-                "description": "Music platform for starting artists"
+                "description": "Music platform for starting artists",
+                "btncode": "View code",
+                "btnlink": "View demo"
             }
         },
         

@@ -13,7 +13,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Links } from "@/components/links";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { useTranslations } from "next-intl";

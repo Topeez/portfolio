@@ -1,6 +1,6 @@
 import { Braces, CodeXml } from "lucide-react";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { Button } from "@/components/ui/button";
 
 export default function Hero() {
@@ -8,7 +8,7 @@ export default function Hero() {
 
     return (
         <>
-            <section id="home" className="md:grid grid-cols-12 content-center flex flex-col relative cs-container mt-20">
+            <section id="home" className="md:grid grid-cols-12 content-center flex flex-col relative cs-container mt-20 h-full">
                 <div className="col-span-6 flex flex-col justify-center space-y-3 h-full">
                     <h1 className="text-[65px] font-bold slide-in">{t('title')}<span className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 font-bold text-transparent">{t('name')}</span></h1>
                     <h2 className="text-3xl slide-in">{t('subtitle')}</h2>
@@ -22,6 +22,7 @@ export default function Hero() {
                     <div className="absolute inset-0 bg-gradient-to-t from-background from-10% to-transparent to-30%" />
                     <Image src="/assets/img/me_transparent.png"
                         alt="me"
+                        layout="fixed"
                         width={1500}
                         height={1200}
                         className="size-full select-none"

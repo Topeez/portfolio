@@ -1,6 +1,6 @@
-import Image from "next/legacy/image"
+import Image from "next/image"
 import { useTranslations } from "next-intl";
-import { Spacer } from "@/components/spacer";
+import Link from "next/link";
 
 export function TechStack() {
     const t = useTranslations('HomePage');
@@ -47,7 +47,19 @@ export function TechStack() {
             text: "Docker",
             image: "/assets/icons/docker.svg",
             link: "https://www.w3.org/Style/CSS/",
-        }
+        },
+        {
+            id: 8,
+            text: "CSS3",
+            image: "/assets/icons/css3.svg",
+            link: "https://www.w3.org/Style/CSS/",
+        },
+        {
+            id: 9,
+            text: "Python Django",
+            image: "/assets/icons/django.svg",
+            link: "https://www.djangoproject.com/",
+        },
     ];
 
     return (
@@ -58,13 +70,24 @@ export function TechStack() {
                 <div className="flex flex-col justify-center items-center place-items-center gap-12 lg:grid grid-cols-3">
                     {logos.map((logo, index) => (
                         <div key={index} className="!z-50 flex justify-center bg-light dark:bg-dark-grey-2 shadow-sm p-8 border border-muted rounded-xl w-full max-w-80 hover:scale-[1.03] transition-all duration-300 ease-in-out">
-                            <a href={logo.link} aria-label={logo.text} target="_blank" rel="noopener noreferrer">
-                                <Image src={logo.image} alt={logo.text} width={100} height={100} className="size-32 lg:size-52 object-contain select-none" draggable="false" data-title={logo.text} />
-                            </a>
+                            <Link href={logo.link} aria-label={logo.text} target="_blank" rel="noopener noreferrer">
+                                <Image
+                                    src={logo.image}
+                                    alt={logo.text}
+                                    width={100}
+                                    height={100}
+                                    className="size-32 lg:size-52 object-contain select-none first:next"
+                                    draggable="false"
+                                    data-title={logo.text}
+                                    style={{
+                                        maxWidth: "100%",
+                                        height: "auto"
+                                    }} />
+                            </Link>
                         </div>
                     ))}
                 </div>
             </div>
         </section>
-    )
+    );
 }

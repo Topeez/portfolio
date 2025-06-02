@@ -1,10 +1,13 @@
 import { Braces, CodeXml } from "lucide-react";
 import { useTranslations } from "next-intl";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Hero() {
     const t = useTranslations("HomePage");
+
+
 
     return (
         <>
@@ -15,18 +18,17 @@ export default function Hero() {
                     <div className="text-xl text-muted-foreground slide-in">{t('description')}</div>
 
                     <div className="flex items-center justify-start mt-32 md:mx-0 mx-auto slide-up">
-                        <Button className="text-3xl p-8 rounded-2xl hover:bg-gradient-to-r from-blue-600 to-sky-400 hover:text-foreground transition-all ease-in-out cursor-pointer">{t("ctabutton")}</Button>
+                        <Link href={"/#about"}><Button className="text-3xl p-8 rounded-2xl hover:bg-gradient-to-r from-blue-600 to-sky-400 hover:text-foreground transition-all ease-in-out cursor-pointer">{t("ctabutton")}</Button></Link>
                     </div>
                 </div>
                 <div className="col-span-6 flex justify-end items-center relative">
                     <div className="absolute inset-0 bg-gradient-to-t from-background from-10% to-transparent to-30%" />
-                    <Image src="/assets/img/me_transparent.png"
+                    <Image
+                        src="/assets/img/me_transparent.png"
                         alt="me"
-                        layout="fixed"
                         width={1500}
                         height={1200}
-                        className="size-full select-none"
-                    >
+                        className="size-full select-none fade-in">
                     </Image>
                     <div className="absolute top-52 left-32 z-10 animate-pulse duration-4000">
                         <CodeXml className="text-sky-400/50 size-12 blur-[1px]" />
@@ -40,5 +42,5 @@ export default function Hero() {
                 </div>
             </section>
         </>
-    )
+    );
 }

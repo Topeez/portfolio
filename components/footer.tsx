@@ -13,7 +13,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Links } from "@/components/links";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
@@ -28,7 +28,16 @@ export function Footer() {
                 <div className="flex flex-col gap-10">
                     <div className="flex items-center gap-4">
                         <div className="rounded-full overflow-hidden">
-                            <Image src="/assets/img/me.jpg" width={80} height={80} alt="logo" className="object-cover aspect-square"></Image>
+                            <Image
+                                src="/assets/img/me.jpg"
+                                width={80}
+                                height={80}
+                                alt="logo"
+                                className="object-cover aspect-square"
+                                style={{
+                                    maxWidth: "100%",
+                                    height: "auto"
+                                }}></Image>
                         </div>
                         <div>
                             <div className="font-bold text-2xl">{t("name")}</div>
@@ -92,5 +101,5 @@ export function Footer() {
                 </div>
             </div>
         </footer>
-    )
+    );
 }

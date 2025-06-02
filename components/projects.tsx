@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink, GitBranch } from "lucide-react";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { Spacer } from "@/components/spacer";
@@ -36,7 +36,7 @@ export function Projects() {
             id: 3,
             image: "/assets/img/projects/zenith.png",
             technologies: ["React", "Next.js", "Tailwind CSS", "API Integration", "Node.js"],
-            github: "#",
+            github: "https://github.com/galfar-coder/zenith",
             demo: "#"
         },
         {
@@ -67,22 +67,24 @@ export function Projects() {
                                                 <Image
                                                     src={project.image}
                                                     alt={t(`project${projectIndex}.title`)}
-                                                    layout="fill"
-                                                    objectFit="cover"
-                                                    objectPosition="top"
                                                     className="transition-transform duration-500 group-hover:scale-105"
-                                                />
+                                                    fill
+                                                    sizes="100vw"
+                                                    style={{
+                                                        objectFit: "cover",
+                                                        objectPosition: "top"
+                                                    }} />
                                                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                                                     <div className="p-4 w-full">
                                                         <div className="flex justify-between items-center">
                                                             <Button
                                                                 variant="outline"
-                                                                className={`bg-white/20 backdrop-blur-sm text-white border-white/30 hover:bg-white/30 !rounded-button whitespace-nowrap cursor-pointer ${project.github === "#" ? "cursor-not-allowed" : ""}`}
+                                                                className={`bg-white/20 backdrop-blur-sm text-white border-white/30 hover:bg-white/30 !rounded-button whitespace-nowrap cursor-pointer ${project.github === "#" || project.github === "" ? "cursor-not-allowed" : ""}`}
                                                             >
                                                                 <GitBranch className="mr-2" /> {t(`project${projectIndex}.btncode`)}
                                                             </Button>
                                                             <Link href={project.demo}>
-                                                                <Button className={`bg-gradient-to-r from-blue-600 to-sky-400 hover:from-blue-700 hover:to-sky-500 text-white !rounded-button whitespace-nowrap cursor-pointer ${project.demo === "#" ? "cursor-not-allowed" : ""}`}>
+                                                                <Button className={`bg-gradient-to-r from-blue-600 to-sky-400 hover:from-blue-700 hover:to-sky-500 text-white !rounded-button whitespace-nowrap cursor-pointer ${project.demo === "#" || project.demo === "" ? "cursor-not-allowed" : ""}`}>
                                                                     <ExternalLink className="mr-2" />{t(`project${projectIndex}.btnlink`)}
                                                                 </Button>
                                                             </Link>

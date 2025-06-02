@@ -126,6 +126,10 @@
     animation: slide-up 1s ease 200ms backwards;
 }
 
+@utility fade-in {
+    animation: fade-in 1s ease 300ms backwards;
+}
+
 @keyframes slide-up {
     from {
         opcaity: 0;
@@ -145,6 +149,15 @@
     to {
         opacity: 1;
         transform: translateX(0);
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 100;
     }
 }
 
@@ -191,5 +204,9 @@
         @variant dark {
             @apply fill-foreground;
         }
+    }
+
+    .next svg {
+        @apply fill-foreground;
     }
 }

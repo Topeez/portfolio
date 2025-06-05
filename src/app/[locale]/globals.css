@@ -45,6 +45,12 @@
 
     --ease-snappy: var(--snappy);
     --ease-fluid: var(--fluid);
+
+    --animate-slide-in: slide-in 1s ease 200ms backwards;
+    --animate-slide-in-ambient-1: slide-in-ambient-1 1s ease 200ms backwards;
+    --animate-slide-in-ambient-2: slide-in-ambient-2 1s ease 200ms backwards;
+    --animate-slide-in-ambient-3: slide-in-ambient-3 1s ease 200ms backwards;
+    --animate-fade-in: fade-in 1s ease 300ms backwards;
 }
 
 @layer base {
@@ -118,8 +124,9 @@
     @apply mx-auto px-[var(--cont-px)] max-w-[var(--cont-max-w)];
 }
 
-@utility slide-in {
+@utility slide-in-2 {
     animation: slide-in 1s ease 200ms backwards;
+    animation-delay: 300ms;
 }
 
 @utility slide-up {
@@ -148,6 +155,39 @@
     }
     to {
         opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-in-ambient-1 {
+    from {
+        opcaity: 0;
+        transform: translateX(-200px);
+    }
+    to {
+        opacity: 45%;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-in-ambient-2 {
+    from {
+        opcaity: 0;
+        transform: translateX(-400px);
+    }
+    to {
+        opacity: 75%;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-in-ambient-3 {
+    from {
+        opcaity: 0;
+        transform: translateX(-600px);
+    }
+    to {
+        opacity: 15%;
         transform: translateX(0);
     }
 }

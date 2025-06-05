@@ -13,6 +13,10 @@ export default function Hero() {
         <>
             <section id="home" className="md:grid grid-cols-12 content-center flex flex-col relative cs-container mt-20 h-full">
                 <div className="col-span-6 flex flex-col justify-center space-y-3 h-full">
+                    <div className="flex items-center border border-muted rounded-4xl p-1 max-w-fit gap-2">
+                        <Button variant="ghost" className="p-1.5 rounded-4xl bg-gradient-to-r from-blue-600 to-sky-400 text-xs text-white hover:text-white"><span className="bg-green-500 p-1 rounded-full"></span>{t("available")}</Button>
+                        <Button variant="ghost" className="p-1.5 rounded-4xl text-xs text-muted-foreground">{t("getintouch")}</Button>
+                    </div>
                     <h1 className="text-[65px] font-bold slide-in">{t('title')}<span className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 font-bold text-transparent">{t('name')}</span></h1>
                     <h2 className="text-3xl slide-in">{t('subtitle')}</h2>
                     <div className="text-xl text-muted-foreground slide-in">{t('description')}</div>

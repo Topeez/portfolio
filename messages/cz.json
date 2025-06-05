@@ -3,9 +3,17 @@
         "home": "Domů",
         "about": "O mně",
         "projects": "Projekty",
-        "contact": "Kontakt"
+        "contact": "Kontakt",
+        "Mode": {
+            "dark": "Tmavý",
+            "light": "Světlý",
+            "system": "Systém"
+        }
+
     },
     "HomePage": {
+        "available": "Otevřen pro práci",
+        "getintouch": "Napište mi",
         "title": "Ahoj, já jsem ",
         "name": "Ondřej",
         "subtitle": "Frontend vývojář webů",
@@ -20,7 +28,14 @@
             "text3": "Od té doby jsem se zúčastnil 3. ročníku soutěže webového vývoje s mými přáteli, kde jsme měli za úkol vytvořit rezervační systém pro lektory z České republiky. Použili jsme PHP, základní HTML5 a CSS3 a všechnu logiku jsme nakódovali ručně bez použití jakýchkoli frameworků... Prošli jsme prvním kolem, ale nedostali jsme se mezi posledních 20 týmů.",
             "text4": "Další rok jsem se pokusil zúčastnit znovu s jinými kluky ze školy a tentokrát jsme měli vytvořit platformu pro piškvorky. Použili jsme Python Django, Typescript, Tailwind CSS a API integraci. Prošli jsme prvním kolem, ale znovu jsme se nedostali mezi posledních 20 týmů, protože jsme neměli dostatek času na dokončení projektu. Poté jsem se začal soustředit na React a Next.js, ale také jsem se musel připravovat na své maturitní zkoušky na střední škole. Nyní pracuji na několika projektech s mým přítelem ",
             "cz": "České republiky",
-            "galfar": "Galfarem."
+            "galfar": "Galfarem.",
+            "Timeline": {
+                "text1": "Začal jsem s HTML & CSS, později JavaScript.",
+                "text2": "Soutěž Tour de App: ručně kódovaný rezervační systém v PHP.",
+                "text3": "Soutěž Tour de App: Piškvorky s Django, TS a Tailwind.",
+                "text4": "Začal jsem se zaměřovat na React & Next.js.",
+                "text5": "Spolupráce s Galfarem na několika projektech."
+            }
         },
 
         "Projects": {

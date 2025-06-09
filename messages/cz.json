@@ -9,7 +9,11 @@
             "light": "Světlý",
             "system": "Systém"
         }
-
+    },
+    "404": {
+        "title": "404",
+        "text": "Nemohli jsme najít stránku, kterou jsi hledal...",
+        "btn": "Jít zpět"
     },
     "HomePage": {
         "available": "Otevřen pro práci",

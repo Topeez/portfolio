@@ -11,6 +11,11 @@
         }
 
     },
+    "404": {
+        "title": "404",
+        "text": "We couldn't find the page you're looking for.",
+        "btn": "Go back"
+    },
     "HomePage": {
         "available": "Available for work",
         "getintouch": "Get in touch now",

@@ -7,7 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({
     subsets: ["latin"],
-    variable: "--font-inter", // Add CSS variable for better usage
+    variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -15,13 +15,22 @@ export const metadata: Metadata = {
     description: "Professional portfolio of a frontend developer",
 };
 
-export default async function RootLayout({
-    children,
-    params: { locale },
-}: {
-    children: ReactNode;
-    params: { locale: string };
-}) {
+export default async function RootLayout(
+    props: {
+        children: ReactNode;
+        params: Promise<{ locale: string }>;
+    }
+) {
+    const params = await props.params;
+
+    const {
+        locale
+    } = params;
+
+    const {
+        children
+    } = props;
+
     let messages = {};
 
     try {
@@ -36,9 +45,8 @@ export default async function RootLayout({
                 <LocaleProvider locale={locale} messages={messages}>
                     <ThemeProvider
                         attribute="class"
-                        defaultTheme="system"
+                        defaultTheme="light"
                         enableSystem
-                        disableTransitionOnChange
                     >
                         {children}
                     </ThemeProvider>

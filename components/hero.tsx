@@ -1,3 +1,5 @@
+"use client"
+
 import { Braces, CodeXml } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
@@ -22,7 +24,12 @@ export default function Hero() {
                     <div className="text-xl text-muted-foreground slide-in">{t('description')}</div>
 
                     <div className="flex items-center justify-start mt-32 md:mx-0 mx-auto slide-up">
-                        <Link href={"/#about"}><Button className="text-3xl p-8 rounded-2xl hover:bg-gradient-to-r from-blue-600 to-sky-400 hover:text-foreground transition-all ease-in-out cursor-pointer">{t("ctabutton")}</Button></Link>
+                        <Link href={"/#about"}><Button onClick={() => {
+                            const allElements = document.getElementsByTagName("*");
+                            const allElementsArray = Array.from(allElements);
+                            const allZIndexes = allElementsArray.map(element => `#${element.id} ${element.tagName} z-index: ${window.getComputedStyle(element).zIndex}`);
+                            console.log(allZIndexes.join("\n"));
+                        }} className="text-3xl p-8 rounded-2xl hover:bg-gradient-to-r from-blue-600 to-sky-400 hover:text-foreground transition-all ease-in-out cursor-pointer">{t("ctabutton")}</Button></Link>
                     </div>
                 </div>
                 <div className="col-span-6 flex justify-end items-center relative">

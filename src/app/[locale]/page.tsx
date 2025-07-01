@@ -7,6 +7,7 @@ import { Spacer } from "@/components/spacer";
 import { TechStack } from "@/components/tech-stack";
 import { HeroDivider } from "@/components/hero-divider";
 import { Ambient } from "@/components/hero-ambient";
+import { Contact } from "@/components/contact";
 
 export default function Home() {
 
@@ -22,6 +23,7 @@ export default function Home() {
             <Spacer />
             <TechStack />
             <Spacer />
+            <Contact />
             <Footer />
         </>
     );

@@ -66,17 +66,43 @@
                 "btnlink": "Zobrazit ukázku"
             },
             "project4": {
-                "title": "Hudební platforma pro začínající umělce",
-                "description": "Hudební platforma pro začínající umělce",
+                "title": "Webová stránka školy, kterou jsem úspěšně vystudoval",
+                "description": "Stránka vytvořena pomocí bloků ve WordPress",
                 "btncode": "Zobrazit kód",
                 "btnlink": "Zobrazit ukázku"
-            }
+            },
+            "inProgress": "Projekt je ve vývoji",
+            "finished": "Projekt je hotov"
         },
 
         "TechStack": {
             "title": "Technologie",
             "text": "Zde je přehled technologií, které jsem použil ve svých projektech."
         }
+    },
+    "Contact": {
+        "title": "Máte zájem o spolupráci?",
+        "subtitle": "Neváhejte mě kontaktovat",
+        "send": "Odeslat zprávu",
+        "name": "Jméno",
+        "name-placeholder": "Zadejte své jméno",
+        "email": "Email",
+        "email-placeholder": "Zadejte svůj email",
+        "message": "Zpráva",
+        "message-placeholder": "Zadejte svou zprávu",
+        "errors": {
+            "name": {
+                "tooShort": "Jméno musí mít alespoň 2 znaky"
+            },
+            "email": {
+                "invalid": "Zadejte platnou emailovou adresu"
+            },
+            "message": {
+                "tooShort": "Zpráva musí mít alespoň 10 znaků"
+            }
+        },
+        "submitSuccess": "Vyčkejte na odpověď ve Vaší emailové schránce.",
+        "submitError": "Odeslání se nezdařilo."
     },
     "Footer": {
         "name": "Ondřej Topínka",

@@ -45,7 +45,7 @@ export function AboutMe() {
                                         </p>
                                     </div>
                                 </AccordionContent>
-                                <AccordionTrigger className="group flex items-center gap-2 bg-transparent hover:bg-clip-text hover:bg-gradient-to-r from-blue-600 to-sky-400 pt-0 font-normal hover:text-transparent hover:no-underline">
+                                <AccordionTrigger className="group flex items-center gap-2 bg-transparent hover:bg-clip-text hover:bg-gradient-to-r from-blue-600 to-sky-400 pt-0 font-normal hover:text-transparent hover:no-underline cursor-pointer">
                                     {t("AboutMe.btn")}
                                 </AccordionTrigger>
                             </AccordionItem>

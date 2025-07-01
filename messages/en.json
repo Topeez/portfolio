@@ -67,17 +67,43 @@
                 "btnlink": "View demo"
             },
             "project4": {
-                "title":"Music platform for starting artists",
-                "description": "Music platform for starting artists",
+                "title":"Webpage for high school I graduated for",
+                "description": "Created using template blocks in WordPress",
                 "btncode": "View code",
                 "btnlink": "View demo"
-            }
+            },
+            "inProgress": "Project is in progress",
+            "finished": "Project is finished"
         },
         
         "TechStack": {
             "title": "Tech stack",
             "text": "Here is my overview of tech stack."
         }
+    },
+    "Contact": {
+        "title": "Interested in collaboration?",
+        "subtitle": "Feel free to contact me",
+        "send": "Send message",
+        "name": "Name",
+        "name-placeholder": "Enter your name",
+        "email": "Email",
+        "email-placeholder": "Enter your email",
+        "message": "Message",
+        "message-placeholder": "Enter your message",
+        "errors": {
+            "name": {
+                "tooShort": "Name must be at least 2 characters"
+            },
+            "email": {
+                "invalid": "Enter a valid email address"
+            },
+            "message": {
+                "tooShort": "Message must be at least 10 characters"
+            }
+        },
+        "submitSuccess": "Wait for a reply in your email inbox.",
+        "submitError": "Submission failed."
     },
     "Footer": {
         "name": "Ondřej Topínka",

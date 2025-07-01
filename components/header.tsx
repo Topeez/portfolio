@@ -43,7 +43,7 @@ export function Header() {
 
             setIsVisible(!scrollDown || currentScrollY === 0);
 
-            if (pathname === "/") {
+            if (pathname === "/en" || pathname === "/cz") {
                 highlightCurrentSection();
             }
 
@@ -151,10 +151,10 @@ export function Header() {
                     {links.map((link) => (
                         <li
                             key={link.href}
-                            className={`${isActive(link.href) ? 'bg-foreground text-card' : ''} ${liClasses}`}
+                            className={`${isActive(link.href) ? 'bg-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 text-transparent transition-all ease-fluid duration-500' : ''} ${liClasses}`}
                         >
                             <Link
-                                href={`/${link.href}`}
+                                href={`${"/en" + link.href} || ${"/cz" + link.href}`}
                                 className="block"
                                 onClick={(e) => handleLinkClick(e, link.href)}
                             >
@@ -198,30 +198,30 @@ export function Header() {
 
                     <div
                         ref={mobileMenuRef}
-                        className={`fixed inset-0 z-[900] bg-background transition-all duration-650 ease-in-out h-screen ${isMobileMenuOpen
-                            ? "-translate-y-20 -translate-x-0 opacity-100 pointer-events-auto"
-                            : "translate-y-0 translate-x-44 opacity-0 pointer-events-none"
+                        className={`fixed inset-0 z-[900] bg-background transition-all duration-650 ease-in-out h-screen -translate-y-22 ${isMobileMenuOpen
+                            ? "-translate-x-0 opacity-100 pointer-events-auto"
+                            : "translate-x-44 opacity-0 pointer-events-none"
                             }`}
                         style={{ top: "5rem" }}
                     >
                         <Button
                             onClick={toggleMobileMenu}
-                            className="group top-10 right-4 z-[1000] absolute bg-transparent shadow-none size-10 aspect-square font-bold text-foreground hover:text-white cursor-pointer mobile-menu-button"
+                            className="group top-8 right-4 z-[1000] absolute bg-transparent shadow-none size-10 aspect-square font-bold text-foreground hover:text-white cursor-pointer mobile-menu-button"
                             aria-label="Close menu"
                         >
                             <HamburgerIcon isOpen={isMobileMenuOpen} />
                         </Button>
 
-                        <div className="flex flex-col justify-between pt-24 pb-16 h-full">
+                        <div className="flex flex-col gap-4 pt-24 pb-16 h-full">
                             <ul className="flex flex-col items-center gap-8 overflow-hidden font-bold text-foreground text-4xl text-center">
                                 {links.map((link) => (
                                     <li
                                         key={link.href}
-                                        className={`${isActive(link.href) ? 'bg-foreground text-destructive' : ''} ${liClasses} w-full text-center`}
+                                        className={`${isActive(link.href) ? 'bg-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 text-transparent transition-all ease-fluid duration-500' : ''} ${liClasses}`}
                                     >
                                         <Link
-                                            href={`/${link.href}`}
-                                            className="block w-full"
+                                            href={`${"/en" + link.href} || ${"/cz" + link.href}`}
+                                            className="block"
                                             onClick={(e) => handleLinkClick(e, link.href)}
                                         >
                                             {link.label}

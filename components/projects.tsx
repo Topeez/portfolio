@@ -23,36 +23,40 @@ export function Projects() {
             image: "/assets/img/projects/tv_rozvrh_1.png",
             technologies: ["PHP", "JavaScript", "CSS3", "Python"],
             github: "#",
-            demo: "https://tv.mesosdev.cz"
+            demo: "https://tv.mesosdev.cz",
+            inProggress: false
         },
         {
             id: 2,
             image: "/assets/img/projects/tda_homepage_1.png",
             technologies: ["Python", "Typescript", "Tailwind CSS", "API Integration", "Docker", "Node.js"],
             github: "#",
-            demo: "#"
+            demo: "#",
+            inProggress: false
         },
         {
             id: 3,
             image: "/assets/img/projects/zenith.png",
             technologies: ["React", "Next.js", "Tailwind CSS", "API Integration", "Node.js"],
             github: "https://github.com/galfar-coder/zenith",
-            demo: "#"
+            demo: "#",
+            inProggress: true
         },
         {
             id: 4,
-            image: "/assets/img/projects/zenith.png",
-            technologies: ["React", "Next.js", "Tailwind CSS", "Framer Motion"],
+            image: "/assets/img/projects/web_skoly.png",
+            technologies: ["PHP", "WordPress", "Templates"],
             github: "#",
-            demo: "#"
+            demo: "https://sos.mesosdev.cz/",
+            inProggress: true
         }
     ]
 
     return (
         <section id="projects" className="grid grid-cols-12 cs-container">
-            <div className="col-span-12 space-y-4">
-                <h2 className="text-5xl font-bold"><span className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 font-bold text-transparent mx-3">/</span>{t("title")}</h2>
-                <div className="text-left text-xl space-y-2">
+            <div className="space-y-4 col-span-12">
+                <h2 className="font-bold text-5xl"><span className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 mx-3 font-bold text-transparent">/</span>{t("title")}</h2>
+                <div className="space-y-2 text-xl text-left">
                     <div>{t("text")}</div>
                     <Spacer />
 
@@ -62,19 +66,19 @@ export function Projects() {
                                 const projectIndex = index + 1;
                                 return (
                                     <CarouselItem key={project.id} className="pl-4 md:basis-1/2">
-                                        <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300 group pb-6 pt-0 h-full">
-                                            <div className="relative overflow-hidden h-[240px]">
+                                        <Card className="group relative hover:shadow-xl pt-0 pb-6 h-full overflow-hidden transition-shadow duration-300">
+                                            <div className="relative h-[240px] overflow-hidden">
                                                 <Image
                                                     src={project.image}
                                                     alt={t(`project${projectIndex}.title`)}
-                                                    className="transition-transform duration-500 group-hover:scale-105"
+                                                    className="group-hover:scale-105 transition-transform duration-500"
                                                     fill
                                                     sizes="100vw"
                                                     style={{
                                                         objectFit: "cover",
                                                         objectPosition: "top"
                                                     }} />
-                                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                                                <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                                     <div className="p-4 w-full">
                                                         <div className="flex justify-between items-center">
                                                             <Button
@@ -110,13 +114,22 @@ export function Projects() {
                                                         </Badge>
                                                     ))}
                                                 </div>
+                                                {project.inProggress ? (
+                                                    <Badge variant="outline" className="right-5 bottom-5 absolute not-only-of-type:border-yellow-400 text-yellow-400 cursor-default">
+                                                        {t("inProgress")}
+                                                    </Badge>
+                                                ) : (
+                                                    <Badge variant="outline" className="right-5 bottom-5 absolute border-green-400 text-green-400 cursor-default">
+                                                        {t("finished")}
+                                                    </Badge>
+                                                )}
                                             </CardFooter>
                                         </Card>
                                     </CarouselItem>
                                 );
                             })}
                         </CarouselContent>
-                        <div className="mt-4 flex gap-4 justify-center">
+                        <div className="flex justify-center gap-4 mt-4">
                             <CarouselPrevious className="static translate-x-0 translate-y-0 cursor-pointer" />
                             <CarouselNext className="static translate-x-0 translate-y-0 cursor-pointer" />
                         </div>
@@ -126,3 +139,4 @@ export function Projects() {
         </section>
     );
 }
+

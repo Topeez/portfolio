@@ -54,7 +54,8 @@ export default function Hero() {
                         width={1500}
                         height={1200}
                         className={`size-full select-none ${imageLoaded ? "opacity-100" : "opacity-0"}`}
-                        onLoadingComplete={() => setImageLoaded(true)}
+                        onLoad={() => setImageLoaded(true)}
+                        onError={() => setImageLoaded(true)}
                     />
                     <div className="top-52 left-32 z-10 absolute animate-pulse duration-4000">
                         <CodeXml className="blur-[1px] size-12 text-sky-400/50" />

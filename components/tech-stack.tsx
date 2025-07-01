@@ -64,7 +64,7 @@ export function TechStack() {
 
     return (
         <section id="techstack" className="grid grid-cols-12 cs-container">
-            <div className="space-y-12 col-span-12">
+            <div className="space-y-12 col-span-12 md:text-left text-center">
                 <h2 className="font-bold text-5xl"><span className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 mx-3 font-bold text-transparent">/</span>Tech stack</h2>
                 <div className="text-xl text-left">{t("TechStack.text")}</div>
                 <div className="flex flex-col justify-center items-center place-items-center gap-12 lg:grid grid-cols-3">

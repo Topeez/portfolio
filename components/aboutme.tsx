@@ -19,7 +19,7 @@ export function AboutMe() {
     return (
         <section id="about" className="grid grid-cols-12 py-20 cs-container">
             <div className="space-y-12 col-span-12">
-                <h2 className="font-bold text-5xl">
+                <h2 className="font-bold text-5xl md:text-left text-center">
                     <span className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 mx-3 text-transparent">/</span>
                     {t("AboutMe.title")}
                 </h2>

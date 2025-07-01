@@ -54,7 +54,7 @@ export function Projects() {
 
     return (
         <section id="projects" className="grid grid-cols-12 cs-container">
-            <div className="space-y-4 col-span-12">
+            <div className="space-y-4 col-span-12 md:text-left text-center">
                 <h2 className="font-bold text-5xl"><span className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 mx-3 font-bold text-transparent">/</span>{t("title")}</h2>
                 <div className="space-y-2 text-xl text-left">
                     <div>{t("text")}</div>

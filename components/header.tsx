@@ -121,7 +121,7 @@ export function Header() {
             closeMobileMenu();
         }
 
-        if (pathname === "/") {
+        if (pathname === "/en" || pathname === "/cz") {
             e.preventDefault();
             const target = document.getElementById(sectionId);
             if (target) {

@@ -6,7 +6,7 @@ export function Links() {
     const liClasses = "hover:bg-foreground hover:text-card p-3 rounded-md transition-all ease-fluid cursor-pointer";
 
     return (
-        <ul className="hidden md:flex items-center gap-4 uppercase font-semibold">
+        <ul className="hidden lg:flex items-center gap-4 font-semibold uppercase">
             {[
                 { name: t("home"), href: "/#home" },
                 { name: t("about"), href: "/#about" },

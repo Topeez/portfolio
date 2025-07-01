@@ -3,6 +3,7 @@
         "home": "Home",
         "about": "About Me",
         "projects": "Projects",
+        "techstack": "Tech Stack",
         "contact": "Contact",
         "Mode": {
             "dark": "Dark",
@@ -34,6 +35,7 @@
             "text4": "The next year, I tried to participate again with different guys from my school and this time we had to create Tic Tac Toe platform. We use Python Django, Typescript, Tailwind CSS and API Integration. We went through 1st round and but we didn't get to the final 20 teams again because we didn't have enough time to finish the project. After that I've started to focus on React and Next.js but also I had to prepare for my finals at high school. Now I work on a few projects with my friend ",
             "cz": "Czech Republic",
             "galfar": "Galfar.",
+            "btn": "See more",
             "Timeline": {
                 "text1": "I started with HTML & CSS, later JavaScript.",
                 "text2": "Tour de App competition: Handcoded reservation system in PHP.",
@@ -81,7 +83,7 @@
         "name": "Ondřej Topínka",
         "job": "Frontend web developer",
         "ctabutton": "Contact me",
-        "copyright1": "Copyright© Ondřej Topínka ",
+        "copyright1": "© Ondřej Topínka ",
         "copyright2": ", All rights reserved."
     }
 }

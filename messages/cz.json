@@ -3,6 +3,7 @@
         "home": "Domů",
         "about": "O mně",
         "projects": "Projekty",
+        "techstack": "Technologie",
         "contact": "Kontakt",
         "Mode": {
             "dark": "Tmavý",
@@ -33,6 +34,7 @@
             "text4": "Další rok jsem se pokusil zúčastnit znovu s jinými kluky ze školy a tentokrát jsme měli vytvořit platformu pro piškvorky. Použili jsme Python Django, Typescript, Tailwind CSS a API integraci. Prošli jsme prvním kolem, ale znovu jsme se nedostali mezi posledních 20 týmů, protože jsme neměli dostatek času na dokončení projektu. Poté jsem se začal soustředit na React a Next.js, ale také jsem se musel připravovat na své maturitní zkoušky na střední škole. Nyní pracuji na několika projektech s mým přítelem ",
             "cz": "České republiky",
             "galfar": "Galfarem.",
+            "btn": "Zjistit více",
             "Timeline": {
                 "text1": "Začal jsem s HTML & CSS, později JavaScript.",
                 "text2": "Soutěž Tour de App: ručně kódovaný rezervační systém v PHP.",
@@ -72,15 +74,15 @@
         },
 
         "TechStack": {
-            "title": "Tech stack",
-            "text": "Zde je můj tech stack."
+            "title": "Technologie",
+            "text": "Zde je přehled technologií, které jsem použil ve svých projektech."
         }
     },
     "Footer": {
         "name": "Ondřej Topínka",
         "job": "Frontend vývojář webů",
         "ctabutton": "Kontaktuj mě",
-        "copyright1": "Copyright© Ondřej Topínka ",
+        "copyright1": "© Ondřej Topínka ",
         "copyright2": ", Všeschna práva vyhrazena."
     }
 }

@@ -63,10 +63,10 @@ export function TechStack() {
     ];
 
     return (
-        <section className="grid grid-cols-12 cs-container">
-            <div className="col-span-12 space-y-12">
-                <h2 className="text-5xl font-bold"><span className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 font-bold text-transparent mx-3">/</span>Tech stack</h2>
-                <div className="text-left text-xl">{t("TechStack.text")}</div>
+        <section id="techstack" className="grid grid-cols-12 cs-container">
+            <div className="space-y-12 col-span-12">
+                <h2 className="font-bold text-5xl"><span className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 mx-3 font-bold text-transparent">/</span>Tech stack</h2>
+                <div className="text-xl text-left">{t("TechStack.text")}</div>
                 <div className="flex flex-col justify-center items-center place-items-center gap-12 lg:grid grid-cols-3">
                     {logos.map((logo, index) => (
                         <div key={index} className="!z-50 flex justify-center bg-light dark:bg-dark-grey-2 shadow-sm p-8 border border-muted rounded-xl w-full max-w-80 hover:scale-[1.03] transition-all duration-300 ease-in-out">

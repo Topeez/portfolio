@@ -14,17 +14,14 @@ export default function Home() {
         <>
             <Ambient />
             <Header />
-            <main className="">
-                <Hero />
-                <HeroDivider />
-                <AboutMe />
-                <Spacer />
-                <Projects />
-                <Spacer />
-                <TechStack />
-                <Spacer />
-            </main>
-
+            <Hero />
+            <HeroDivider />
+            <AboutMe />
+            <Spacer />
+            <Projects />
+            <Spacer />
+            <TechStack />
+            <Spacer />
             <Footer />
         </>
     );

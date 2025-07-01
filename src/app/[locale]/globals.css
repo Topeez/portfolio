@@ -51,6 +51,9 @@
     --animate-slide-in-ambient-2: slide-in-ambient-2 1s ease 200ms backwards;
     --animate-slide-in-ambient-3: slide-in-ambient-3 1s ease 200ms backwards;
     --animate-fade-in: fade-in 1s ease 300ms backwards;
+    --animate-fade-in-ambient4: fade-in-ambient4 1s ease 300ms backwards;
+    --animate-accordion-down: accordion-down 300ms ease-out;
+    --animate-accordion-up: accordion-up 300ms ease-out;
 }
 
 @layer base {
@@ -198,6 +201,33 @@
     }
     to {
         opacity: 100;
+    }
+}
+
+@keyframes fade-in-ambient4 {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 50%;
+    }
+}
+
+@keyframes accordion-down {
+    from {
+        height: 0;
+    }
+    to {
+        height: var(--radix-accordion-content-height);
+    }
+}
+
+@keyframes accordion-up {
+    from {
+        height: var(--radix-accordion-content-height);
+    }
+    to {
+        height: 0;
     }
 }
 

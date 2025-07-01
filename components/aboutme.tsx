@@ -1,36 +1,59 @@
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { FaReact, FaGraduationCap, FaTrophy, FaCodeBranch } from "react-icons/fa";
+import {
+    FaReact,
+    FaGraduationCap,
+    FaTrophy,
+    FaCodeBranch,
+} from "react-icons/fa";
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export function AboutMe() {
     const t = useTranslations("HomePage");
 
     return (
-        <section id="about" className="grid grid-cols-12 cs-container py-20">
-            <div className="col-span-12 space-y-12">
-                <h2 className="text-5xl font-bold">
-                    <span className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 text-transparent mx-3">/</span>
+        <section id="about" className="grid grid-cols-12 py-20 cs-container">
+            <div className="space-y-12 col-span-12">
+                <h2 className="font-bold text-5xl">
+                    <span className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 mx-3 text-transparent">/</span>
                     {t("AboutMe.title")}
                 </h2>
 
-                <div className="grid md:grid-cols-2 gap-10 items-start">
-                    {/* Left: Text Summary */}
-                    <div className="space-y-4 text-xl text-muted-foreground">
+                <div className="items-start gap-10 grid md:grid-cols-2">
+                    {/* Left: Text Summary with Accordion */}
+                    <div className="space-y-4 text-muted-foreground text-xl">
                         <p className="text-foreground">
                             {t("AboutMe.text1-part1")} <span className="font-bold">{t("AboutMe.cz")}</span>{t("AboutMe.text1-part2")}
                         </p>
                         <p>{t("AboutMe.text2")}</p>
-                        <p>{t("AboutMe.text3")}</p>
-                        <p>
-                            {t("AboutMe.text4")}
-                            <Link href="https://github.com/galfar-coder" className="font-bold bg-transparent hover:bg-clip-text hover:bg-gradient-to-r from-blue-600 to-sky-400 hover:text-transparent transition-all ease-in-out"> {t("AboutMe.galfar")}</Link>
-                        </p>
+
+                        <Accordion type="single" collapsible>
+                            <AccordionItem value="more-content" className="">
+                                <AccordionContent className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
+                                    <div className="space-y-4">
+                                        <p>{t("AboutMe.text3")}</p>
+                                        <p>
+                                            {t("AboutMe.text4")}
+                                            <Link href="https://github.com/galfar-coder" className="bg-transparent hover:bg-clip-text hover:bg-gradient-to-r from-blue-600 to-sky-400 font-bold hover:text-transparent transition-all ease-in-out">
+                                                {t("AboutMe.galfar")}
+                                            </Link>
+                                        </p>
+                                    </div>
+                                </AccordionContent>
+                                <AccordionTrigger className="group flex items-center gap-2 bg-transparent hover:bg-clip-text hover:bg-gradient-to-r from-blue-600 to-sky-400 pt-0 font-normal hover:text-transparent hover:no-underline">
+                                    {t("AboutMe.btn")}
+                                </AccordionTrigger>
+                            </AccordionItem>
+                        </Accordion>
                     </div>
 
                     {/* Right: Timeline */}
-                    <div className="space-y-6 border-l border-border pl-6 relative">
-                        {/* <div className="absolute top-0 left-[-3px] h-full w-1 bg-gradient-to-b from-blue-500 via-sky-400 to-transparent rounded"></div> */}
-
+                    <div className="relative space-y-6 pl-6 border-border border-l">
                         <TimelineItem icon={<FaGraduationCap />} year="2022" text={t("AboutMe.Timeline.text1")} />
                         <TimelineItem icon={<FaTrophy />} year="2023" text={t("AboutMe.Timeline.text2")} />
                         <TimelineItem icon={<FaTrophy />} year="2024" text={t("AboutMe.Timeline.text3")} />
@@ -43,12 +66,13 @@ export function AboutMe() {
     );
 }
 
+// TimelineItem remains the same
 function TimelineItem({ icon, year, text }: { icon: React.ReactNode; year: string; text: string }) {
     return (
         <div className="relative pl-8">
-            <div className="absolute left-[-34px] top-3 text-xl text-blue-600">{icon}</div>
-            <p className="text-sm text-muted-foreground font-mono">{year}</p>
-            <p className="text-base text-foreground">{text}</p>
+            <div className="top-3 left-[-34px] absolute text-blue-600 text-xl">{icon}</div>
+            <p className="font-mono text-muted-foreground text-sm">{year}</p>
+            <p className="text-foreground text-base">{text}</p>
         </div>
     );
 }

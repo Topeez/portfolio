@@ -5,8 +5,11 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Skeleton } from "./ui/skeleton";
+import { useState } from "react";
 
 export default function Hero() {
+    const [imageLoaded, setImageLoaded] = useState(false);
     const t = useTranslations("HomePage");
 
     return (
@@ -28,7 +31,7 @@ export default function Hero() {
                     <h2 className="text-3xl slide-in">{t('subtitle')}</h2>
                     <div className="text-muted-foreground text-lg md:text-xl md:text-left text-center slide-in">{t('description')}</div>
 
-                    <div className="flex justify-start items-center mx-auto md:mx-0 mt-32 slide-up">
+                    <div className="flex justify-start items-center mx-auto md:mx-0 mt-32 animate-slide-up">
                         <Link href={"/#about"}>
                             <Button onClick={() => {
                                 const allElements = document.getElementsByTagName("*");
@@ -40,14 +43,19 @@ export default function Hero() {
                     </div>
                 </div>
                 <div className="relative flex justify-end items-center col-span-6 fade-in">
+                    {/* Skeleton shown only while image is loading */}
+                    {!imageLoaded && (
+                        <Skeleton className="absolute inset-0 w-full h-full" />
+                    )}
                     <div className="z-auto absolute inset-0 bg-gradient-to-t from-10% from-background to-30% to-transparent" />
                     <Image
                         src="/assets/img/me_transparent.png"
                         alt="me"
                         width={1500}
                         height={1200}
-                        className="size-full select-none">
-                    </Image>
+                        className={`size-full select-none ${imageLoaded ? "opacity-100" : "opacity-0"}`}
+                        onLoadingComplete={() => setImageLoaded(true)}
+                    />
                     <div className="top-52 left-32 z-10 absolute animate-pulse duration-4000">
                         <CodeXml className="blur-[1px] size-12 text-sky-400/50" />
                     </div>

@@ -46,10 +46,11 @@
     --ease-snappy: var(--snappy);
     --ease-fluid: var(--fluid);
 
-    --animate-slide-in: slide-in 1s ease 200ms backwards;
+    --animate-slide-in: slide-in 1s ease 300ms backwards;
     --animate-slide-in-ambient-1: slide-in-ambient-1 1s ease 200ms backwards;
     --animate-slide-in-ambient-2: slide-in-ambient-2 1s ease 200ms backwards;
     --animate-slide-in-ambient-3: slide-in-ambient-3 1s ease 200ms backwards;
+    --animate-slide-up: slide-up 1s ease 200ms backwards;
     --animate-fade-in: fade-in 1s ease 300ms backwards;
     --animate-fade-in-ambient4: fade-in-ambient4 1s ease 300ms backwards;
     --animate-accordion-down: accordion-down 300ms ease-out;
@@ -130,10 +131,6 @@
 @utility slide-in-2 {
     animation: slide-in 1s ease 200ms backwards;
     animation-delay: 300ms;
-}
-
-@utility slide-up {
-    animation: slide-up 1s ease 200ms backwards;
 }
 
 @utility fade-in {

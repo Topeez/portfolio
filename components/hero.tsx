@@ -57,13 +57,13 @@ export default function Hero() {
                         onLoad={() => setImageLoaded(true)}
                         onError={() => setImageLoaded(true)}
                     />
-                    <div className="top-52 left-32 z-10 absolute animate-pulse duration-4000">
+                    <div className="hidden lg:block top-52 left-32 z-10 absolute animate-pulse duration-4000">
                         <CodeXml className="blur-[1px] size-12 text-sky-400/50" />
                     </div>
-                    <div className="bottom-28 left-14 z-10 absolute animate-blink duration-1000">
+                    <div className="hidden lg:block bottom-28 left-14 z-10 absolute animate-blink duration-1000">
                         <CodeXml className="blur-[1px] size-10 text-blue-600/70" />
                     </div>
-                    <div className="top-44 right-14 z-10 absolute animate-pulse duration-2456">
+                    <div className="hidden lg:block top-44 right-14 z-10 absolute animate-pulse duration-2456">
                         <Braces className="blur-[1px] size-12 text-sky-400/50" />
                     </div>
                 </div>

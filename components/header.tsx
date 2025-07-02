@@ -10,7 +10,7 @@ import { useLocale, useTranslations } from "next-intl";
 const HamburgerIcon = ({ isOpen }: { isOpen: boolean }) => (
     <div className="space-y-1">
         <span className={`block h-1 w-6 origin-center bg-foreground rounded-full transition-all duration-300 ease-in-out ${isOpen ? 'rotate-45 translate-y-1' : ''}`}></span>
-        <span className={`block h-1 w-4 origin-center bg-foreground rounded-full transition-all duration-300 ease-in-out mt-1.5 ${isOpen ? '-rotate-45 -translate-y-1.5 w-6' : ''}`}></span>
+        <span className={`block h-1 ml-auto w-4 origin-center bg-foreground rounded-full transition-all duration-300 ease-in-out mt-1.5 ${isOpen ? '-rotate-45 -translate-y-1.5 w-6' : ''}`}></span>
     </div>
 );
 
@@ -189,7 +189,7 @@ export function Header() {
                         onClick={toggleMobileMenu}
                         variant="ghost"
                         size="icon"
-                        className="group size-10 mobile-menu-button"
+                        className="group size-10 cursor-pointer mobile-menu-button"
                         aria-expanded={isMobileMenuOpen}
                         aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
                     >
@@ -217,7 +217,7 @@ export function Header() {
                                 {links.map((link) => (
                                     <li
                                         key={link.href}
-                                        className={`${isActive(link.href) ? 'bg-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 text-transparent transition-all ease-fluid duration-500' : ''} ${liClasses}`}
+                                        className={`${isActive(link.href) ? 'bg-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 text-transparent transition-all ease-fluid duration-500' : ''} ${liClasses} hover:bg-transparent hover:text-foreground`}
                                     >
                                         <Link
                                             href={`${"/en" + link.href} || ${"/cz" + link.href}`}

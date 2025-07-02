@@ -72,8 +72,8 @@
                 "btncode": "View code",
                 "btnlink": "View demo"
             },
-            "inProgress": "Project is in progress",
-            "finished": "Project is finished"
+            "inProgress": "In progress",
+            "finished": "Finished"
         },
         
         "TechStack": {

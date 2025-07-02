@@ -115,7 +115,7 @@ export function Projects() {
                                                     ))}
                                                 </div>
                                                 {project.inProggress ? (
-                                                    <Badge variant="outline" className="right-5 bottom-5 absolute not-only-of-type:border-yellow-400 text-yellow-400 cursor-default">
+                                                    <Badge variant="outline" className="right-5 bottom-5 absolute border-yellow-400 text-yellow-400 cursor-default">
                                                         {t("inProgress")}
                                                     </Badge>
                                                 ) : (

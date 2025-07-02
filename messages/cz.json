@@ -71,8 +71,8 @@
                 "btncode": "Zobrazit kód",
                 "btnlink": "Zobrazit ukázku"
             },
-            "inProgress": "Projekt je ve vývoji",
-            "finished": "Projekt je hotov"
+            "inProgress": "Ve vývoji",
+            "finished": "Hotovo"
         },
 
         "TechStack": {

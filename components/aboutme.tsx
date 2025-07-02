@@ -53,7 +53,7 @@ export function AboutMe() {
                     </div>
 
                     {/* Right: Timeline */}
-                    <div className="relative space-y-6 pl-6 border-border border-l">
+                    <div className="relative space-y-6 ml-8 pl-6 border-border border-l">
                         <TimelineItem icon={<FaGraduationCap />} year="2022" text={t("AboutMe.Timeline.text1")} />
                         <TimelineItem icon={<FaTrophy />} year="2023" text={t("AboutMe.Timeline.text2")} />
                         <TimelineItem icon={<FaTrophy />} year="2024" text={t("AboutMe.Timeline.text3")} />

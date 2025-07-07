@@ -143,7 +143,7 @@ export function Header() {
     };
 
     return (
-        <header className={`fixed top-2 right-0 left-0 z-[1501] transition-all ease-fluid duration-500 ${!isVisible ? "-translate-y-28" : "translate-y-0"}`}>
+        <header className={`fixed top-2 right-0 left-0 z-[1501] transition-all ease-fluid duration-500 ${!isVisible ? "-translate-y-28" : "-translate-y-2"}`}>
             <nav className="flex justify-between items-center backdrop-blur-lg p-5 lg:border border-muted rounded-2xl cs-container">
                 <Link href={"/"} className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 font-bold text-transparent uppercase"><span className="capitalize">by</span> Topeeez</Link>
 

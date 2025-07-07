@@ -35,7 +35,8 @@
             "text4": "The next year, I tried to participate again with different guys from my school and this time we had to create Tic Tac Toe platform. We use Python Django, Typescript, Tailwind CSS and API Integration. We went through 1st round and but we didn't get to the final 20 teams again because we didn't have enough time to finish the project. After that I've started to focus on React and Next.js but also I had to prepare for my finals at high school. Now I work on a few projects with my friend ",
             "cz": "Czech Republic",
             "galfar": "Galfar.",
-            "btn": "See more",
+            "showLess": "Show less",
+            "showMore": "Show more",
             "Timeline": {
                 "text1": "I started with HTML & CSS, later JavaScript.",
                 "text2": "Tour de App competition: Handcoded reservation system in PHP.",
@@ -67,7 +68,7 @@
                 "btnlink": "View demo"
             },
             "project4": {
-                "title":"Webpage for high school I graduated for",
+                "title":"A website for the high school I graduated from",
                 "description": "Created using template blocks in WordPress",
                 "btncode": "View code",
                 "btnlink": "View demo"

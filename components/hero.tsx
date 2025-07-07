@@ -14,7 +14,7 @@ export default function Hero() {
 
     return (
         <>
-            <section id="home" className="relative flex flex-col content-center md:grid grid-cols-12 mt-32 h-full cs-container">
+            <section id="home" className="relative flex flex-col content-center md:grid grid-cols-12 pt-32 h-full cs-container">
                 <div className="flex flex-col justify-center items-center md:items-start space-y-6 md:space-y-3 col-span-6 h-full">
                     <div className="flex items-center gap-2 p-1 border border-muted rounded-4xl max-w-fit">
                         <Button variant="ghost" className="flex items-center gap-4 bg-gradient-to-r from-blue-600 to-sky-400 p-2 rounded-4xl text-white hover:text-white text-xs">

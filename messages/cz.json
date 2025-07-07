@@ -34,7 +34,8 @@
             "text4": "Další rok jsem se pokusil zúčastnit znovu s jinými kluky ze školy a tentokrát jsme měli vytvořit platformu pro piškvorky. Použili jsme Python Django, Typescript, Tailwind CSS a API integraci. Prošli jsme prvním kolem, ale znovu jsme se nedostali mezi posledních 20 týmů, protože jsme neměli dostatek času na dokončení projektu. Poté jsem se začal soustředit na React a Next.js, ale také jsem se musel připravovat na své maturitní zkoušky na střední škole. Nyní pracuji na několika projektech s mým přítelem ",
             "cz": "České republiky",
             "galfar": "Galfarem.",
-            "btn": "Zjistit více",
+            "showLess": "Zjistit méně",
+            "showMore": "Zjistit více",
             "Timeline": {
                 "text1": "Začal jsem s HTML & CSS, později JavaScript.",
                 "text2": "Soutěž Tour de App: ručně kódovaný rezervační systém v PHP.",

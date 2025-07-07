@@ -1,5 +1,8 @@
+"use client"
+
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { useState } from "react";
 import {
     FaReact,
     FaGraduationCap,
@@ -15,6 +18,7 @@ import {
 
 export function AboutMe() {
     const t = useTranslations("HomePage");
+    const [isExpanded, setIsExpanded] = useState(false);
 
     return (
         <section id="about" className="grid grid-cols-12 py-20 cs-container">
@@ -32,7 +36,11 @@ export function AboutMe() {
                         </p>
                         <p>{t("AboutMe.text2")}</p>
 
-                        <Accordion type="single" collapsible>
+                        <Accordion
+                            type="single"
+                            collapsible
+                            onValueChange={(value) => setIsExpanded(value === "more-content")}
+                        >
                             <AccordionItem value="more-content" className="">
                                 <AccordionContent className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
                                     <div className="space-y-4">
@@ -45,8 +53,8 @@ export function AboutMe() {
                                         </p>
                                     </div>
                                 </AccordionContent>
-                                <AccordionTrigger className="group flex items-center gap-2 bg-transparent hover:bg-clip-text hover:bg-gradient-to-r from-blue-600 to-sky-400 pt-0 font-normal hover:text-transparent hover:no-underline cursor-pointer">
-                                    {t("AboutMe.btn")}
+                                <AccordionTrigger className="group flex items-center gap-2 bg-transparent hover:bg-clip-text hover:bg-gradient-to-r from-blue-600 to-sky-400 pt-0 font-normal text-foreground hover:text-transparent text-lg hover:no-underline cursor-pointer">
+                                    {isExpanded ? t("AboutMe.showLess") : t("AboutMe.showMore")}
                                 </AccordionTrigger>
                             </AccordionItem>
                         </Accordion>

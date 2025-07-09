@@ -7,7 +7,6 @@ const contactFormSchema = z.object({
     name: z.string().min(2),
     email: z.string().email(),
     message: z.string().min(10),
-    locale: z.string().min(2),
 });
 
 export async function POST(req: Request) {
@@ -22,36 +21,18 @@ export async function POST(req: Request) {
             );
         }
 
-        const { name, email, message, locale } = parsed.data;
+        const { name, email, message } = parsed.data;
 
-        const emailTemplates = {
-            en: {
-                subject: "New website message",
-                html: `
-                    <h2>New message</h2>
-                    <p><strong>Name:</strong> ${name}</p>
-                    <p><strong>Email:</strong> ${email}</p>
-                    <p><strong>Message:</strong><br />${message}</p>
-                `,
-            },
-            cz: {
-                subject: "Nová zpráva z webu",
+        await resend.emails.send({
+            from: "info@topeeez.cz",
+            to: "topetopinka7@seznam.cz",
+            subject: "Nová zpráva z webu",
                 html: `
                     <h2>Nová zpráva</h2>
                     <p><strong>Jméno:</strong> ${name}</p>
                     <p><strong>Email:</strong> ${email}</p>
                     <p><strong>Zpráva:</strong><br />${message}</p>
                 `,
-            },
-        };
-
-        const template = emailTemplates[locale as keyof typeof emailTemplates] || emailTemplates.cz;
-
-        await resend.emails.send({
-            from: "onboarding@resend.dev",
-            to: "topetopinka7@seznam.cz",
-            subject: template.subject,
-            html: template.html,
         });
 
         return new Response(JSON.stringify({ success: true }), { status: 200 });

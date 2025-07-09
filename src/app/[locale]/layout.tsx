@@ -5,7 +5,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "sonner";
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -17,21 +17,15 @@ export const metadata: Metadata = {
     description: "Professional portfolio of a frontend developer",
 };
 
-export default async function RootLayout(
-    props: {
-        children: ReactNode;
-        params: Promise<{ locale: string }>;
-    }
-) {
+export default async function RootLayout(props: {
+    children: ReactNode;
+    params: Promise<{ locale: string }>;
+}) {
     const params = await props.params;
 
-    const {
-        locale
-    } = params;
+    const { locale } = params;
 
-    const {
-        children
-    } = props;
+    const { children } = props;
 
     let messages = {};
 
@@ -41,10 +35,21 @@ export default async function RootLayout(
         console.error(`Failed to load messages for locale: ${locale}`, error);
     }
 
+    const defaultTimeZones: Record<string, string> = {
+        en: "Europe/London",
+        cz: "Europe/Prague",
+    };
+
+    const timeZone = defaultTimeZones[locale] || "UTC";
+
     return (
         <html lang={locale} suppressHydrationWarning>
             <body className={`${inter.className} antialiased relative`}>
-                <LocaleProvider locale={locale} messages={messages}>
+                <LocaleProvider
+                    locale={locale}
+                    messages={messages}
+                    timeZone={timeZone}
+                >
                     <ThemeProvider
                         attribute="class"
                         defaultTheme="light"

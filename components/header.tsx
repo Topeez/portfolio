@@ -6,11 +6,16 @@ import { Button } from "@/components/ui/button";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
+import { ArrowBigUp } from "lucide-react";
 
 const HamburgerIcon = ({ isOpen }: { isOpen: boolean }) => (
     <div className="space-y-1">
-        <span className={`block h-1 w-6 origin-center bg-foreground rounded-full transition-all duration-300 ease-in-out ${isOpen ? 'rotate-45 translate-y-1' : ''}`}></span>
-        <span className={`block h-1 ml-auto w-4 origin-center bg-foreground rounded-full transition-all duration-300 ease-in-out mt-1.5 ${isOpen ? '-rotate-45 -translate-y-1.5 w-6' : ''}`}></span>
+        <span
+            className={`block h-1 w-6 origin-center bg-foreground rounded-full transition-all duration-300 ease-in-out ${isOpen ? "rotate-45 translate-y-1" : ""}`}
+        ></span>
+        <span
+            className={`block h-1 ml-auto w-4 origin-center bg-foreground rounded-full transition-all duration-300 ease-in-out mt-1.5 ${isOpen ? "-rotate-45 -translate-y-1.5 w-6" : ""}`}
+        ></span>
     </div>
 );
 
@@ -24,7 +29,8 @@ export function Header() {
     const pathname = usePathname();
     const currentLocale = useLocale();
     const sectionIds = ["home", "about", "projects", "techstack", "contact"];
-    const liClasses = "hover:bg-foreground hover:text-background p-3 rounded-md transition-all ease-fluid cursor-pointer";
+    const liClasses =
+        "hover:bg-foreground hover:text-background p-3 rounded-md transition-all ease-fluid cursor-pointer";
 
     const t = useTranslations("Header");
 
@@ -39,7 +45,8 @@ export function Header() {
     useEffect(() => {
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
-            const scrollDown = currentScrollY > lastScrollY.current && currentScrollY > 100;
+            const scrollDown =
+                currentScrollY > lastScrollY.current && currentScrollY > 100;
 
             setIsVisible(!scrollDown || currentScrollY === 0);
 
@@ -51,9 +58,9 @@ export function Header() {
         };
 
         const highlightCurrentSection = () => {
-            let current = '';
+            let current = "";
 
-            sectionIds.forEach(id => {
+            sectionIds.forEach((id) => {
                 const section = document.getElementById(id);
                 if (!section) return;
 
@@ -61,7 +68,10 @@ export function Header() {
                 const sectionTop = rect.top + window.scrollY - 110;
                 const sectionHeight = rect.height;
 
-                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                if (
+                    window.scrollY >= sectionTop &&
+                    window.scrollY < sectionTop + sectionHeight
+                ) {
                     current = id;
                 }
             });
@@ -69,17 +79,19 @@ export function Header() {
             setActiveSection(current);
         };
 
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener("scroll", handleScroll);
         handleScroll();
 
         return () => {
-            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener("scroll", handleScroll);
         };
     }, [pathname]);
 
     useEffect(() => {
         document.body.style.overflow = isMobileMenuOpen ? "hidden" : "auto";
-        return () => { document.body.style.overflow = "auto" };
+        return () => {
+            document.body.style.overflow = "auto";
+        };
     }, [isMobileMenuOpen]);
 
     const closeMobileMenu = useCallback(() => {
@@ -87,7 +99,7 @@ export function Header() {
     }, []);
 
     const toggleMobileMenu = useCallback(() => {
-        setIsMobileMenuOpen(prev => !prev);
+        setIsMobileMenuOpen((prev) => !prev);
     }, []);
 
     useEffect(() => {
@@ -105,34 +117,37 @@ export function Header() {
             if (e.key === "Escape") closeMobileMenu();
         };
 
-        document.addEventListener('mousedown', handleClickOutside);
-        document.addEventListener('keydown', handleEscape);
+        document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener("keydown", handleEscape);
 
         return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-            document.removeEventListener('keydown', handleEscape);
+            document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener("keydown", handleEscape);
         };
     }, [closeMobileMenu]);
 
-    const handleLinkClick = useCallback((e: React.MouseEvent, hash: string) => {
-        const sectionId = hash.replace('#', '');
+    const handleLinkClick = useCallback(
+        (e: React.MouseEvent, hash: string) => {
+            const sectionId = hash.replace("#", "");
 
-        if (isMobileMenuOpen) {
-            closeMobileMenu();
-        }
-
-        if (pathname === "/en" || pathname === "/cz") {
-            e.preventDefault();
-            const target = document.getElementById(sectionId);
-            if (target) {
-                target.scrollIntoView({ behavior: "smooth" });
-                setActiveSection(sectionId);
+            if (isMobileMenuOpen) {
+                closeMobileMenu();
             }
-        }
-    }, [isMobileMenuOpen, pathname, closeMobileMenu]);
+
+            if (pathname === "/en" || pathname === "/cz") {
+                e.preventDefault();
+                const target = document.getElementById(sectionId);
+                if (target) {
+                    target.scrollIntoView({ behavior: "smooth" });
+                    setActiveSection(sectionId);
+                }
+            }
+        },
+        [isMobileMenuOpen, pathname, closeMobileMenu]
+    );
 
     const isActive = (href: string) => {
-        const sectionId = href.replace('#', '');
+        const sectionId = href.replace("#", "");
         return activeSection === sectionId;
     };
 
@@ -143,15 +158,22 @@ export function Header() {
     };
 
     return (
-        <header className={`fixed top-2 right-0 left-0 z-[1501] transition-all ease-fluid duration-500 ${!isVisible ? "-translate-y-28" : "-translate-y-2"}`}>
-            <nav className="flex justify-between items-center backdrop-blur-lg p-5 lg:border border-muted rounded-2xl cs-container">
-                <Link href={"/"} className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 font-bold text-transparent uppercase"><span className="capitalize">by</span> Topeeez</Link>
+        <header
+            className={`fixed top-2 right-0 left-0 z-[1501] transition-all ease-fluid duration-500 ${!isVisible ? "-translate-y-28" : "-translate-y-2"}`}
+        >
+            <nav className="flex justify-between items-center backdrop-blur-lg p-5 lg:border border-muted rounded-2xl w-full cs-container">
+                <Link
+                    href={"/"}
+                    className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 font-bold text-transparent uppercase"
+                >
+                    <span className="capitalize">by</span> Topeeez
+                </Link>
 
                 <ul className="hidden lg:flex items-center gap-4 font-semibold uppercase">
                     {links.map((link) => (
                         <li
                             key={link.href}
-                            className={`${isActive(link.href) ? 'bg-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 text-transparent transition-all ease-fluid duration-500' : ''} ${liClasses}`}
+                            className={`${isActive(link.href) ? "bg-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 text-transparent transition-all ease-fluid duration-500" : ""} ${liClasses}`}
                         >
                             <Link
                                 href={`${"/en" + link.href} || ${"/cz" + link.href}`}
@@ -166,20 +188,30 @@ export function Header() {
 
                 {/* Desktop Controls (hidden on mobile) */}
                 <div className="hidden lg:flex items-center gap-4">
+                    <span className="flex items-center font-semibold text-blue-600 dark:text-muted text-xs">
+                        <ArrowBigUp className="size-4" />
+                        <span>+D</span>
+                    </span>
                     <ModeToggle />
                     <Button
                         onClick={toggleLanguage}
                         variant="ghost"
                         size="icon"
                         className="rounded-full cursor-pointer"
-                        aria-label={currentLocale === "en"
-                            ? "Switch to Czech"
-                            : "Přepnout na angličtinu"}
+                        aria-label={
+                            currentLocale === "en"
+                                ? "Switch to Czech"
+                                : "Přepnout na angličtinu"
+                        }
                     >
                         {currentLocale === "en" ? (
-                            <span role="img" aria-label="Czech flag">🇬🇧</span>
+                            <span role="img" aria-label="Czech flag">
+                                🇬🇧
+                            </span>
                         ) : (
-                            <span role="img" aria-label="US flag">🇨🇿</span>
+                            <span role="img" aria-label="US flag">
+                                🇨🇿
+                            </span>
                         )}
                     </Button>
                 </div>
@@ -191,17 +223,20 @@ export function Header() {
                         size="icon"
                         className="group size-10 cursor-pointer mobile-menu-button"
                         aria-expanded={isMobileMenuOpen}
-                        aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+                        aria-label={
+                            isMobileMenuOpen ? "Close menu" : "Open menu"
+                        }
                     >
                         <HamburgerIcon isOpen={isMobileMenuOpen} />
                     </Button>
 
                     <div
                         ref={mobileMenuRef}
-                        className={`fixed inset-0 z-[900] bg-background transition-all duration-650 ease-in-out h-screen -translate-y-22 ${isMobileMenuOpen
-                            ? "-translate-x-0 opacity-100 pointer-events-auto"
-                            : "translate-x-44 opacity-0 pointer-events-none"
-                            }`}
+                        className={`fixed inset-0 z-[900] bg-background transition-all duration-650 ease-in-out h-screen -translate-y-22 ${
+                            isMobileMenuOpen
+                                ? "-translate-x-0 opacity-100 pointer-events-auto"
+                                : "translate-x-44 opacity-0 pointer-events-none"
+                        }`}
                         style={{ top: "5rem" }}
                     >
                         <Button
@@ -217,12 +252,14 @@ export function Header() {
                                 {links.map((link) => (
                                     <li
                                         key={link.href}
-                                        className={`${isActive(link.href) ? 'bg-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 text-transparent transition-all ease-fluid duration-500' : ''} ${liClasses} hover:bg-transparent hover:text-foreground`}
+                                        className={`${isActive(link.href) ? "bg-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 text-transparent transition-all ease-fluid duration-500" : ""} ${liClasses} hover:bg-transparent hover:text-foreground`}
                                     >
                                         <Link
                                             href={`${"/en" + link.href} || ${"/cz" + link.href}`}
                                             className="block"
-                                            onClick={(e) => handleLinkClick(e, link.href)}
+                                            onClick={(e) =>
+                                                handleLinkClick(e, link.href)
+                                            }
                                         >
                                             {link.label}
                                         </Link>
@@ -238,14 +275,28 @@ export function Header() {
                                     variant="ghost"
                                     size="icon"
                                     className="rounded-full w-12 h-12 cursor-pointer"
-                                    aria-label={currentLocale === "en"
-                                        ? "Switch to Czech"
-                                        : "Přepnout na angličtinu"}
+                                    aria-label={
+                                        currentLocale === "en"
+                                            ? "Switch to Czech"
+                                            : "Přepnout na angličtinu"
+                                    }
                                 >
                                     {currentLocale === "en" ? (
-                                        <span role="img" aria-label="Czech flag" className="text-2xl">🇬🇧</span>
+                                        <span
+                                            role="img"
+                                            aria-label="Czech flag"
+                                            className="text-2xl"
+                                        >
+                                            🇬🇧
+                                        </span>
                                     ) : (
-                                        <span role="img" aria-label="US flag" className="text-2xl">🇨🇿</span>
+                                        <span
+                                            role="img"
+                                            aria-label="US flag"
+                                            className="text-2xl"
+                                        >
+                                            🇨🇿
+                                        </span>
                                     )}
                                 </Button>
                             </div>
@@ -254,5 +305,5 @@ export function Header() {
                 </div>
             </nav>
         </header>
-    )
+    );
 }

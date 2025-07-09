@@ -21,9 +21,9 @@
         "getintouch": "Napište mi",
         "title": "Ahoj, já jsem ",
         "name": "Ondřej",
-        "subtitle": "Frontend vývojář webů",
+        "subtitle": "Frontend vývojář",
         "description": "Vytvářím webové stránky a webové aplikace. Specializuji se na React, Typescript, Tailwind CSS a Next.js. Také pracuji s Node.js, MongoDB, Prisma a dalšími. Mám také vášeň pro responzivní webový design.",
-        "ctabutton": "Zjistit více",
+        "ctabutton": "Více o mně",
 
         "AboutMe" : {
             "title": "O mně",
@@ -91,6 +91,7 @@
         "email-placeholder": "Zadejte svůj email",
         "message": "Zpráva",
         "message-placeholder": "Zadejte svou zprávu",
+        "contact": "Nebo mě kontaktujte na mých sociálních sítích",
         "errors": {
             "name": {
                 "tooShort": "Jméno musí mít alespoň 2 znaky"

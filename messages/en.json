@@ -22,9 +22,9 @@
         "getintouch": "Get in touch now",
         "title": "Hello, I'm ",
         "name": "Andrew",
-        "subtitle": "Frontend web developer",
+        "subtitle": "Frontend developer",
         "description": "I build websites and web apps. Specializing in React, Typescript, Tailwind CSS and Next.js. I also work with Node.js, MongoDB, Prisma and more. I also have passion for responsive web design.",
-        "ctabutton": "See more",
+        "ctabutton": "More about me",
         
         "AboutMe": {
             "title": "About me",
@@ -92,6 +92,7 @@
         "email-placeholder": "Enter your email",
         "message": "Message",
         "message-placeholder": "Enter your message",
+        "contact": "Or contact me on my social media",
         "errors": {
             "name": {
                 "tooShort": "Name must be at least 2 characters"

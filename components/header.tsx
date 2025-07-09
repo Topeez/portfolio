@@ -7,6 +7,11 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { ArrowBigUp } from "lucide-react";
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const HamburgerIcon = ({ isOpen }: { isOpen: boolean }) => (
     <div className="space-y-1">
@@ -157,6 +162,17 @@ export function Header() {
         router.replace(newPath);
     };
 
+    useEffect(() => {
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.shiftKey && event.key === "C") {
+                toggleLanguage();
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    });
+
     return (
         <header
             className={`fixed top-2 right-0 left-0 z-[1501] transition-all ease-fluid duration-500 ${!isVisible ? "-translate-y-28" : "-translate-y-2"}`}
@@ -188,32 +204,43 @@ export function Header() {
 
                 {/* Desktop Controls (hidden on mobile) */}
                 <div className="hidden lg:flex items-center gap-4">
-                    <span className="flex items-center font-semibold text-blue-600 dark:text-muted text-xs">
-                        <ArrowBigUp className="size-4" />
-                        <span>+D</span>
-                    </span>
                     <ModeToggle />
-                    <Button
-                        onClick={toggleLanguage}
-                        variant="ghost"
-                        size="icon"
-                        className="rounded-full cursor-pointer"
-                        aria-label={
-                            currentLocale === "en"
-                                ? "Switch to Czech"
-                                : "Přepnout na angličtinu"
-                        }
-                    >
-                        {currentLocale === "en" ? (
-                            <span role="img" aria-label="Czech flag">
-                                🇬🇧
-                            </span>
-                        ) : (
-                            <span role="img" aria-label="US flag">
-                                🇨🇿
-                            </span>
-                        )}
-                    </Button>
+                    <Tooltip>
+                        <TooltipTrigger>
+                            <Button
+                                onClick={toggleLanguage}
+                                variant="ghost"
+                                size="icon"
+                                className="relative rounded-full cursor-pointer"
+                                aria-label={
+                                    currentLocale === "en"
+                                        ? "Switch to Czech"
+                                        : "Přepnout na angličtinu"
+                                }
+                            >
+                                {currentLocale === "en" ? (
+                                    <span role="img" aria-label="Czech flag">
+                                        🇬🇧
+                                    </span>
+                                ) : (
+                                    <span role="img" aria-label="US flag">
+                                        🇨🇿
+                                    </span>
+                                )}
+                            </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                            <p className="flex items-cente gap-1">
+                                {t("Lang.change")}
+                                <span>
+                                    <span className="flex items-center font-semibold text-blue-600 dark:text-muted text-xs">
+                                        <ArrowBigUp className="size-4" />
+                                        <span>+C</span>
+                                    </span>
+                                </span>
+                            </p>
+                        </TooltipContent>
+                    </Tooltip>
                 </div>
 
                 <div className="lg:hidden">

@@ -31,12 +31,14 @@ export default function Hero() {
                             </div>
                             <p>{t("available")}</p>
                         </Button>
-                        <Button
-                            variant="ghost"
-                            className="p-1.5 rounded-4xl text-muted-foreground text-xs cursor-pointer"
-                        >
-                            {t("getintouch")}
-                        </Button>
+                        <Link href={"/#contact"}>
+                            <Button
+                                variant="ghost"
+                                className="p-1.5 rounded-4xl text-muted-foreground text-xs cursor-pointer"
+                            >
+                                {t("getintouch")}
+                            </Button>
+                        </Link>
                     </div>
                     <h1 className="font-bold md:text-[65px] text-6xl md:text-left text-center slide-in">
                         {t("title")}

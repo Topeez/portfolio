@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, ArrowBigUp } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
@@ -48,6 +48,10 @@ export function ModeToggle() {
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="center" className="z-[1501] rounded-lg">
+                <span className="top-1 right-2 absolute flex items-center font-semibold text-blue-600 dark:text-muted text-xs">
+                    <ArrowBigUp className="size-4" />
+                    <span>+D</span>
+                </span>
                 <DropdownMenuItem onClick={() => setTheme("light")}>
                     {t("Mode.light")}
                 </DropdownMenuItem>

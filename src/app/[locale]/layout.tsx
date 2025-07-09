@@ -6,6 +6,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "sonner";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { BackToTop } from "@/components/back-to-top";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -56,6 +57,7 @@ export default async function RootLayout(props: {
                         enableSystem
                     >
                         {children}
+                        <BackToTop />
                         <SpeedInsights />
                         <Toaster />
                     </ThemeProvider>

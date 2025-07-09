@@ -9,6 +9,9 @@
             "dark": "Tmavý",
             "light": "Světlý",
             "system": "Systém"
+        },
+        "Lang": {
+            "change": "Změnit jazyk"
         }
     },
     "404": {

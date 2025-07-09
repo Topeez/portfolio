@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { Links } from "@/components/links";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";

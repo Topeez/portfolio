@@ -19,6 +19,8 @@ import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 import { Send } from "lucide-react";
 import Link from "next/link";
+import { motion, useInView } from "motion/react";
+import { useRef } from "react";
 
 export function ContactForm() {
     const t = useTranslations("Contact");
@@ -81,9 +83,20 @@ export function ContactForm() {
         });
     }
 
+    const formRef = useRef(null);
+    const isFormInView = useInView(formRef, { once: true });
+
     return (
         <Form {...form}>
-            <form
+            <motion.form
+                ref={formRef}
+                initial={{ opacity: 0, y: 40, filter: "blur(6px)" }}
+                animate={
+                    isFormInView
+                        ? { opacity: 1, y: 0, filter: "blur(0px)" }
+                        : {}
+                }
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
                 onSubmit={form.handleSubmit(onSubmit)}
                 className="space-y-8 mx-auto p-12 border rounded-2xl w-full md:w-1/2"
             >
@@ -156,13 +169,13 @@ export function ContactForm() {
                     {socialMedia.map((item, index) => {
                         const Icon = item.icon;
                         return (
-                            <Link key={index} href={item.link}>
+                            <Link key={index} href={item.link} target="_blank">
                                 <Icon className="fill-foreground hover:fill-blue-600 size-10 hover:scale-[1.02] transition-all duration-300 will-change-transform" />
                             </Link>
                         );
                     })}
                 </div>
-            </form>
+            </motion.form>
         </Form>
     );
 }

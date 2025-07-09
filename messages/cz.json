@@ -50,7 +50,7 @@
 
         "Projects": {
             "title": "Projekty",
-            "text": "Tady jsou projekty, na kterých jsem pracoval.",
+            "text": "Podívejte se na projekty, na kterých jsem v minulosti pracoval nebo ještě teď pracuji.",
             "project1": {
                 "title": "Víceúčelový rozvrh hodin pro mou školu",
                 "description": "Víceúčelový rozvrh hodin pro mou školu, umožňující studentům vidět, jaké dnes mají hodiny a v jaké učebně, kolik hodin mají a který učitel je učí. Zahrnuje také odjezdy autobusů a oznámení různých akcí školy.",

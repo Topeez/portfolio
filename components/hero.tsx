@@ -51,7 +51,7 @@ export default function Hero() {
                         {t("description")}
                     </div>
 
-                    <div className="flex justify-start items-center mx-auto md:mx-0 mt-32 animate-slide-up">
+                    <div className="flex justify-start items-center mx-auto md:mx-0 mt-16 md:mt-32 animate-slide-up">
                         <Link href={"/#about"}>
                             <Button
                                 onClick={() => {

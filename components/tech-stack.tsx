@@ -1,9 +1,13 @@
-import Image from "next/image"
+"use client";
+
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { motion, useInView } from "motion/react";
+import { useRef } from "react";
 
 export function TechStack() {
-    const t = useTranslations('HomePage');
+    const t = useTranslations("HomePage");
 
     const logos = [
         {
@@ -46,7 +50,7 @@ export function TechStack() {
             id: 7,
             text: "Docker",
             image: "/assets/icons/docker.svg",
-            link: "https://www.w3.org/Style/CSS/",
+            link: "https://www.docker.com/",
         },
         {
             id: 8,
@@ -62,30 +66,66 @@ export function TechStack() {
         },
     ];
 
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true });
+
     return (
         <section id="techstack" className="grid grid-cols-12 cs-container">
             <div className="space-y-12 col-span-12 md:text-left text-center">
-                <h2 className="font-bold text-5xl"><span className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 mx-3 font-bold text-transparent">/</span>Tech stack</h2>
+                <h2 className="font-bold text-5xl">
+                    <span className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 mx-3 font-bold text-transparent">
+                        /
+                    </span>
+                    Tech stack
+                </h2>
                 <div className="text-xl text-left">{t("TechStack.text")}</div>
                 <div className="flex flex-col justify-center items-center place-items-center gap-12 lg:grid grid-cols-3">
-                    {logos.map((logo, index) => (
-                        <div key={index} className="!z-50 flex justify-center bg-light dark:bg-dark-grey-2 shadow-sm p-8 border border-muted rounded-xl w-full max-w-80 hover:scale-[1.03] transition-all duration-300 ease-in-out">
-                            <Link href={logo.link} aria-label={logo.text} target="_blank" rel="noopener noreferrer">
-                                <Image
-                                    src={logo.image}
-                                    alt={logo.text}
-                                    width={100}
-                                    height={100}
-                                    className="size-32 lg:size-52 object-contain select-none first:next"
-                                    draggable="false"
-                                    data-title={logo.text}
-                                    style={{
-                                        maxWidth: "100%",
-                                        height: "auto"
-                                    }} />
-                            </Link>
-                        </div>
-                    ))}
+                    {logos.map((logo, index) => {
+                        return (
+                            <motion.div
+                                key={index}
+                                ref={ref}
+                                initial={{
+                                    opacity: 0,
+                                    filter: "blur(8px)",
+                                }}
+                                animate={
+                                    isInView
+                                        ? {
+                                              opacity: 1,
+                                              filter: "blur(0px)",
+                                          }
+                                        : {}
+                                }
+                                transition={{
+                                    duration: 0.6,
+                                    delay: index * 0.15,
+                                }}
+                                className="!z-50 flex justify-center bg-light dark:bg-dark-grey-2 shadow-sm p-8 border border-muted rounded-xl w-full max-w-80 hover:scale-[1.03] transition-all duration-300 ease-in-out"
+                            >
+                                <Link
+                                    href={logo.link}
+                                    aria-label={logo.text}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <Image
+                                        src={logo.image}
+                                        alt={logo.text}
+                                        width={100}
+                                        height={100}
+                                        className="size-32 lg:size-52 object-contain select-none"
+                                        draggable="false"
+                                        data-title={logo.text}
+                                        style={{
+                                            maxWidth: "100%",
+                                            height: "auto",
+                                        }}
+                                    />
+                                </Link>
+                            </motion.div>
+                        );
+                    })}
                 </div>
             </div>
         </section>

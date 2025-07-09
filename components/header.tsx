@@ -35,7 +35,7 @@ export function Header() {
     const currentLocale = useLocale();
     const sectionIds = ["home", "about", "projects", "techstack", "contact"];
     const liClasses =
-        "hover:bg-foreground hover:text-background p-3 rounded-md transition-all ease-fluid cursor-pointer";
+        "hover:bg-foreground hover:text-background p-3 rounded-md transition-all ease-fluid cursor-pointer uppercase";
 
     const t = useTranslations("Header");
 
@@ -208,6 +208,7 @@ export function Header() {
                     <Tooltip>
                         <TooltipTrigger>
                             <Button
+                                suppressHydrationWarning
                                 onClick={toggleLanguage}
                                 variant="ghost"
                                 size="icon"
@@ -274,7 +275,7 @@ export function Header() {
                             <HamburgerIcon isOpen={isMobileMenuOpen} />
                         </Button>
 
-                        <div className="flex flex-col gap-4 pt-24 pb-16 h-full">
+                        <div className="flex flex-col justify-center gap-4 pt-24 pb-8 h-screen">
                             <ul className="flex flex-col items-center gap-8 overflow-hidden font-bold text-foreground text-4xl text-center">
                                 {links.map((link) => (
                                     <li

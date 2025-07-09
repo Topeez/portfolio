@@ -51,7 +51,7 @@
         
         "Projects": {
             "title": "Featured projects",
-            "text": "I'm working on a few projects.",
+            "text": "Have a look on some projects I've worked on so far.",
             "project1": {
                 "title":"Multi-use hours scheduler for my school",
                 "description": "A multi-use hours scheduler for my school, allowing students to see what classes they have today, how many hours and which teacher is teaching them. Also include bus departures and announcements.",
@@ -60,7 +60,7 @@
             },
             "project2": {
                 "title":"Tic tac toe platform",
-                "description": "Tic tac toe platform",
+                "description": "Tic tac toe platform for web developing contest Tour de App, where I learnt a lot about web development.",
                 "btncode": "View code",
                 "btnlink": "View demo"
             },

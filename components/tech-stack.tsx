@@ -1,9 +1,6 @@
 "use client";
 
-import Image from "next/image";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
-import { motion, useInView } from "motion/react";
 import { TechCard } from "@/components/tech-card";
 
 export function TechStack() {

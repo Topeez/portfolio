@@ -87,12 +87,14 @@ export function TechStack() {
                                 ref={ref}
                                 initial={{
                                     opacity: 0,
+                                    pointerEvents: "none",
                                     filter: "blur(8px)",
                                 }}
                                 animate={
                                     isInView
                                         ? {
                                               opacity: 1,
+                                              pointerEvents: "all",
                                               filter: "blur(0px)",
                                           }
                                         : {}

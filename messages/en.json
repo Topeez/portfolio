@@ -31,7 +31,7 @@
         
         "AboutMe": {
             "title": "About me",
-            "text1-part1": "I'm passionate 19 year old frontend developer from ",
+            "text1-part1": "I'm passionate 19 year old junior frontend developer from ",
             "text1-part2": " with expertise in creating responsive, user-friendly web applications. With strong foundation in HTML and CSS, I specialize in modern frameworks like React on Next.js and styling solutions like Tailwind CSS.",
             "text2": "My carrer started in 2022 when I've learned HTML and CSS. Then, because of my interest in programming, I started learning basic JavaScript. Now I work on a few projects.",
             "text3": "Since then, I've participated in 3rd year of web development competition with my friends and we had to create reservation system for lecturers from Czech Republic. We used PHP, basic HTML5 and CSS3 and hardcoded all logic without using any frameworks... We went through 1st round and but we didn't get to the final 20 teams.",
@@ -75,9 +75,7 @@
                 "description": "Created using template blocks in WordPress",
                 "btncode": "View code",
                 "btnlink": "View demo"
-            },
-            "inProgress": "In progress",
-            "finished": "Finished"
+            }
         },
         
         "TechStack": {
@@ -112,8 +110,7 @@
     },
     "Footer": {
         "name": "Ondřej Topínka",
-        "job": "Frontend web developer",
-        "ctabutton": "Contact me",
+        "job": "Frontend developer",
         "copyright1": "© Ondřej Topínka ",
         "copyright2": ", All rights reserved."
     }

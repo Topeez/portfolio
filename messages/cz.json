@@ -30,9 +30,9 @@
 
         "AboutMe" : {
             "title": "O mně",
-            "text1-part1": "Jsem vášnivý 19letý frontend vývojář z ",
-            "text1-part2": " se specializací na vytváření responzivních, uživatelsky přívětivých webových aplikací. Mám silný základ v HTML a CSS, specializuji se na moderní frameworky jako React na Next.js a stylingové řešení jako Tailwind CSS.",
-            "text2": "Moje kariéra začala v roce 2022, kdy jsem se naučil HTML a CSS. Kvůli mému zájmu o programování jsem začal studovat základní JavaScript. Nyní pracuji na několika projektech.",
+            "text1-part1": "Jsem 19letý junior frontend vývojář z ",
+            "text1-part2": " se specializací na vytváření responzivních, uživatelsky přívětivých webových aplikací. Mám velmi dobrý základ v HTML a CSS, specializuji se na moderní frameworky jako React na Next.js a stylingové řešení jako Tailwind CSS.",
+            "text2": "Moje kariéra začala v roce 2022, kdy jsem se naučil HTML a CSS. Díky mému zájmu o programování jsem se začal učit JavaScript na základní úrovni. Nyní pracuji na několika projektech.",
             "text3": "Od té doby jsem se zúčastnil 3. ročníku soutěže webového vývoje s mými přáteli, kde jsme měli za úkol vytvořit rezervační systém pro lektory z České republiky. Použili jsme PHP, základní HTML5 a CSS3 a všechnu logiku jsme nakódovali ručně bez použití jakýchkoli frameworků... Prošli jsme prvním kolem, ale nedostali jsme se mezi posledních 20 týmů.",
             "text4": "Další rok jsem se pokusil zúčastnit znovu s jinými kluky ze školy a tentokrát jsme měli vytvořit platformu pro piškvorky. Použili jsme Python Django, Typescript, Tailwind CSS a API integraci. Prošli jsme prvním kolem, ale znovu jsme se nedostali mezi posledních 20 týmů, protože jsme neměli dostatek času na dokončení projektu. Poté jsem se začal soustředit na React a Next.js, ale také jsem se musel připravovat na své maturitní zkoušky na střední škole. Nyní pracuji na několika projektech s mým přítelem ",
             "cz": "České republiky",
@@ -74,9 +74,7 @@
                 "description": "Stránka vytvořena pomocí bloků ve WordPress",
                 "btncode": "Zobrazit kód",
                 "btnlink": "Zobrazit ukázku"
-            },
-            "inProgress": "Ve vývoji",
-            "finished": "Hotovo"
+            }
         },
 
         "TechStack": {
@@ -111,8 +109,7 @@
     },
     "Footer": {
         "name": "Ondřej Topínka",
-        "job": "Frontend vývojář webů",
-        "ctabutton": "Kontaktuj mě",
+        "job": "Frontend vývojář",
         "copyright1": "© Ondřej Topínka ",
         "copyright2": ", Všeschna práva vyhrazena."
     }

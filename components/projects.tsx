@@ -1,7 +1,12 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { ExternalLink, GitBranch } from "lucide-react";
+import {
+    BadgeCheck,
+    Construction,
+    ExternalLink,
+    GitBranch,
+} from "lucide-react";
 import {
     Card,
     CardDescription,
@@ -169,17 +174,23 @@ function AnimatedCard({
                             <div className="flex justify-between items-center">
                                 <Button
                                     variant="outline"
-                                    className={`bg-white/20 backdrop-blur-sm text-white border-white/30 hover:bg-white/30 !rounded-button whitespace-nowrap ${github === "#" || github === "" ? "cursor-not-allowed" : ""}`}
+                                    className={`cursor-pointer bg-white/20 backdrop-blur-sm text-white border-white/30 hover:bg-white/30 !rounded-button whitespace-nowrap ${github === "#" || github === "" ? "cursor-not-allowed" : ""}`}
                                 >
-                                    <GitBranch className="mr-2" />{" "}
-                                    {t(`project${projectIndex}.btncode`)}
+                                    <GitBranch className="md:mr-2" />
+                                    <span className="hidden md:inline">
+                                        {t(`project${projectIndex}.btncode`)}
+                                    </span>
                                 </Button>
                                 <Link href={demo}>
                                     <Button
-                                        className={`bg-gradient-to-r from-blue-600 to-sky-400 hover:from-blue-700 hover:to-sky-500 text-white !rounded-button whitespace-nowrap ${demo === "#" || demo === "" ? "cursor-not-allowed" : ""}`}
+                                        className={`cursor-pointer bg-gradient-to-r from-blue-600 to-sky-400 hover:from-blue-700 hover:to-sky-500 text-white !rounded-button whitespace-nowrap ${demo === "#" || demo === "" ? "cursor-not-allowed" : ""}`}
                                     >
-                                        <ExternalLink className="mr-2" />
-                                        {t(`project${projectIndex}.btnlink`)}
+                                        <ExternalLink className="md:mr-2" />
+                                        <span className="hidden md:inline">
+                                            {t(
+                                                `project${projectIndex}.btnlink`
+                                            )}
+                                        </span>
                                     </Button>
                                 </Link>
                             </div>
@@ -205,19 +216,9 @@ function AnimatedCard({
                         ))}
                     </div>
                     {inProgress ? (
-                        <Badge
-                            variant="outline"
-                            className="right-5 bottom-5 absolute border-yellow-400 text-yellow-400 cursor-default"
-                        >
-                            {t("inProgress")}
-                        </Badge>
+                        <Construction className="right-4 bottom-4 absolute text-yellow-400" />
                     ) : (
-                        <Badge
-                            variant="outline"
-                            className="right-5 bottom-5 absolute border-green-400 text-green-400 cursor-default"
-                        >
-                            {t("finished")}
-                        </Badge>
+                        <BadgeCheck className="right-4 bottom-4 absolute text-green-400" />
                     )}
                 </CardFooter>
             </Card>

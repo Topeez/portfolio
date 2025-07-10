@@ -94,7 +94,7 @@
         "email-placeholder": "Enter your email",
         "message": "Message",
         "message-placeholder": "Enter your message",
-        "contact": "Or contact me on my social media",
+        "contact": "Or contact me here",
         "errors": {
             "name": {
                 "tooShort": "Name must be at least 2 characters"

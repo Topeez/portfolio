@@ -79,7 +79,8 @@
 
         "TechStack": {
             "title": "Technologie",
-            "text": "Zde je přehled technologií, které jsem použil ve svých projektech."
+            "text": "Zde je přehled technologií, které jsem použil ve svých projektech.",
+            "skill": "Úroveň dovednosti"
         }
     },
     "Contact": {
@@ -92,7 +93,7 @@
         "email-placeholder": "Zadejte svůj email",
         "message": "Zpráva",
         "message-placeholder": "Zadejte svou zprávu",
-        "contact": "Nebo mě kontaktujte na mých sociálních sítích",
+        "contact": "Nebo mě kontaktujte zde",
         "errors": {
             "name": {
                 "tooShort": "Jméno musí mít alespoň 2 znaky"

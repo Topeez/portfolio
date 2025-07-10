@@ -80,7 +80,8 @@
         
         "TechStack": {
             "title": "Tech stack",
-            "text": "Here is my overview of tech stack."
+            "text": "Here is my overview of tech stack.",
+            "skill": "Skill level"
         }
     },
     "Contact": {

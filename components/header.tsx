@@ -247,9 +247,8 @@ export function Header() {
                 <div className="lg:hidden">
                     <Button
                         onClick={toggleMobileMenu}
-                        variant="ghost"
                         size="icon"
-                        className="group size-10 cursor-pointer mobile-menu-button"
+                        className="group bg-transparent hover:bg-transparent shadow-none size-10 cursor-pointer mobile-menu-button"
                         aria-expanded={isMobileMenuOpen}
                         aria-label={
                             isMobileMenuOpen ? "Close menu" : "Open menu"
@@ -269,7 +268,7 @@ export function Header() {
                     >
                         <Button
                             onClick={toggleMobileMenu}
-                            className="group top-8 right-4 z-[1000] absolute bg-transparent shadow-none size-10 aspect-square font-bold text-foreground hover:text-white cursor-pointer mobile-menu-button"
+                            className="group top-8 right-4 z-[1000] absolute bg-transparent hover:bg-transparent shadow-none size-10 aspect-square font-bold text-foreground hover:text-white cursor-pointer mobile-menu-button"
                             aria-label="Close menu"
                         >
                             <HamburgerIcon isOpen={isMobileMenuOpen} />

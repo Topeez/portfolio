@@ -10,7 +10,15 @@ import {
 import { ArrowBigUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export function LanguageToggleWithTooltip({ currentLocale, toggleLanguage }) {
+interface LanguageToggleWithTooltipProps {
+    currentLocale: string;
+    toggleLanguage: () => void;
+}
+
+export function LanguageToggleWithTooltip({
+    currentLocale,
+    toggleLanguage,
+}: LanguageToggleWithTooltipProps) {
     const t = useTranslations("Header");
 
     return (

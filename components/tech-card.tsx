@@ -64,8 +64,8 @@ export function TechCard({
                         key={i}
                         className={
                             i < level
-                                ? "bg-gradient-to-r from-blue-600 to-sky-400 h-1 w-5 -rotate-60"
-                                : "h-1 w-5 -rotate-60 bg-muted-foreground"
+                                ? "bg-gradient-to-r from-blue-600 to-sky-400 h-1 w-5 -rotate-70"
+                                : "h-1 w-5 -rotate-70 bg-muted-foreground"
                         }
                     />
                 ))}

@@ -17,9 +17,9 @@ export default function Hero() {
         <>
             <section
                 id="home"
-                className="relative flex flex-col content-center md:grid grid-cols-12 pt-32 h-full cs-container"
+                className="relative flex flex-col content-center lg:grid grid-cols-12 pt-32 h-full cs-container"
             >
-                <div className="flex flex-col justify-center items-center md:items-start space-y-6 md:space-y-3 col-span-6 h-full">
+                <div className="flex flex-col justify-center items-center lg:items-start space-y-6 lg:space-y-3 col-span-6 h-full">
                     <div className="flex items-center gap-2 p-1 border border-muted rounded-4xl max-w-fit">
                         <Button
                             variant="ghost"
@@ -41,18 +41,18 @@ export default function Hero() {
                             </Button>
                         </Link>
                     </div>
-                    <h1 className="font-bold md:text-[65px] text-6xl md:text-left text-center slide-in">
+                    <h1 className="font-bold md:text-[65px] text-6xl lg:text-left text-center slide-in">
                         {t("title")}
                         <span className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 font-bold text-transparent">
                             {t("name")}
                         </span>
                     </h1>
                     <h2 className="text-3xl slide-in">{t("subtitle")}</h2>
-                    <div className="text-muted-foreground text-lg md:text-xl md:text-left text-center slide-in">
+                    <div className="text-muted-foreground text-lg md:text-xl lg:text-left text-center slide-in">
                         {t("description")}
                     </div>
 
-                    <div className="relative flex justify-start items-center mx-auto md:mx-0 mt-16 md:mt-32 animate-slide-up">
+                    <div className="relative flex justify-start items-center mx-auto lg:mx-0 mt-16 lg:mt-20 animate-slide-up">
                         <GlareHover
                             glareColor="#ffffff"
                             glareOpacity={0.5}
@@ -94,8 +94,8 @@ export default function Hero() {
                     <Image
                         src="/assets/img/me_transparent.png"
                         alt="me"
-                        width={1500}
-                        height={1200}
+                        width={1800}
+                        height={2400}
                         className={`size-full select-none ${imageLoaded ? "opacity-100" : "opacity-0"}`}
                         onLoad={() => setImageLoaded(true)}
                         onError={() => setImageLoaded(true)}

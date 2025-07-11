@@ -82,7 +82,7 @@ export function TechStack() {
                     {t("title")}
                 </h2>
                 <div className="text-xl text-left">{t("text")}</div>
-                <div className="flex flex-col justify-center items-center place-items-center gap-12 lg:grid grid-cols-3">
+                <div className="place-items-center gap-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
                     {logos.map((logo) => (
                         <TechCard
                             key={logo.id}

@@ -2,7 +2,7 @@
 
 import { ContactForm } from "./contact-form";
 import { useTranslations } from "next-intl";
-import { motion, useInView } from "motion/react";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 export function Contact() {

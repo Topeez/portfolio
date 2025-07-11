@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Skeleton } from "./ui/skeleton";
 import { useState } from "react";
+import GlareHover from "@/src/blocks/Animations/GlareHover/GlareHover";
 
 export default function Hero() {
     const [imageLoaded, setImageLoaded] = useState(false);
@@ -51,26 +52,37 @@ export default function Hero() {
                         {t("description")}
                     </div>
 
-                    <div className="flex justify-start items-center mx-auto md:mx-0 mt-16 md:mt-32 animate-slide-up">
-                        <Link href={"/#about"}>
-                            <Button
-                                onClick={() => {
-                                    const allElements =
-                                        document.getElementsByTagName("*");
-                                    const allElementsArray =
-                                        Array.from(allElements);
-                                    const allZIndexes = allElementsArray.map(
-                                        (element) =>
-                                            `#${element.id} ${element.tagName} z-index: ${window.getComputedStyle(element).zIndex}`
-                                    );
-                                    console.log(allZIndexes.join("\n"));
-                                }}
-                                className="hover:bg-gradient-to-r from-blue-600 to-sky-400 px-12 py-8 rounded-2xl hover:text-white text-2xl transition-all ease-in-out cursor-pointer"
-                            >
-                                <UserRound className="mr-1" />
-                                {t("ctabutton")}
-                            </Button>
-                        </Link>
+                    <div className="relative flex justify-start items-center mx-auto md:mx-0 mt-16 md:mt-32 animate-slide-up">
+                        <GlareHover
+                            glareColor="#ffffff"
+                            glareOpacity={0.5}
+                            glareAngle={-45}
+                            glareSize={300}
+                            transitionDuration={600}
+                            playOnce={false}
+                            className="rounded-2xl"
+                        >
+                            <Link href="/#about">
+                                <Button
+                                    onClick={() => {
+                                        const allElements =
+                                            document.getElementsByTagName("*");
+                                        const allElementsArray =
+                                            Array.from(allElements);
+                                        const allZIndexes =
+                                            allElementsArray.map(
+                                                (element) =>
+                                                    `#${element.id} ${element.tagName} z-index: ${window.getComputedStyle(element).zIndex}`
+                                            );
+                                        console.log(allZIndexes.join("\n"));
+                                    }}
+                                    className="hover:bg-gradient-to-r from-blue-600 to-sky-400 px-12 py-8 rounded-2xl hover:text-white text-2xl transition-all ease-in-out cursor-pointer"
+                                >
+                                    <UserRound className="mr-1" />
+                                    {t("ctabutton")}
+                                </Button>
+                            </Link>
+                        </GlareHover>
                     </div>
                 </div>
                 <div className="relative flex justify-end items-center col-span-6 fade-in">

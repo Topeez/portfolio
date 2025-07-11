@@ -6,23 +6,9 @@ import { Button } from "@/components/ui/button";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { ArrowBigUp } from "lucide-react";
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipTrigger,
-} from "@/components/ui/tooltip";
-
-const HamburgerIcon = ({ isOpen }: { isOpen: boolean }) => (
-    <div className="space-y-1">
-        <span
-            className={`block h-1 w-6 origin-center bg-foreground rounded-full transition-all duration-300 ease-in-out ${isOpen ? "rotate-45 translate-y-1" : ""}`}
-        ></span>
-        <span
-            className={`block h-1 ml-auto w-4 origin-center bg-foreground rounded-full transition-all duration-300 ease-in-out mt-1.5 ${isOpen ? "-rotate-45 -translate-y-1.5 w-6" : ""}`}
-        ></span>
-    </div>
-);
+import { LanguageToggleWithTooltip } from "@/components/lang-switcher";
+import { MobileMenu } from "./mobile-menu";
+import HamburgerIcon from "@/components/hamburger-icon";
 
 export function Header() {
     const [isVisible, setIsVisible] = useState(true);
@@ -35,7 +21,7 @@ export function Header() {
     const currentLocale = useLocale();
     const sectionIds = ["home", "about", "projects", "techstack", "contact"];
     const liClasses =
-        "hover:bg-foreground hover:text-background p-3 rounded-md transition-all ease-fluid cursor-pointer uppercase";
+        "hover:bg-foreground hover:text-background p-3 rounded-md transition-all ease-fluid cursor-pointer uppercase will-change-transform";
 
     const t = useTranslations("Header");
 
@@ -205,43 +191,10 @@ export function Header() {
                 {/* Desktop Controls (hidden on mobile) */}
                 <div className="hidden lg:flex items-center gap-4">
                     <ModeToggle />
-                    <Tooltip>
-                        <TooltipTrigger>
-                            <Button
-                                suppressHydrationWarning
-                                onClick={toggleLanguage}
-                                variant="ghost"
-                                size="icon"
-                                className="relative rounded-full cursor-pointer"
-                                aria-label={
-                                    currentLocale === "en"
-                                        ? "Switch to Czech"
-                                        : "Přepnout na angličtinu"
-                                }
-                            >
-                                {currentLocale === "en" ? (
-                                    <span role="img" aria-label="Czech flag">
-                                        🇬🇧
-                                    </span>
-                                ) : (
-                                    <span role="img" aria-label="US flag">
-                                        🇨🇿
-                                    </span>
-                                )}
-                            </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                            <p className="flex items-cente gap-1">
-                                {t("Lang.change")}
-                                <span>
-                                    <span className="flex items-center font-semibold text-blue-600 dark:text-muted text-xs">
-                                        <ArrowBigUp className="size-4" />
-                                        <span>+C</span>
-                                    </span>
-                                </span>
-                            </p>
-                        </TooltipContent>
-                    </Tooltip>
+                    <LanguageToggleWithTooltip
+                        currentLocale={currentLocale}
+                        toggleLanguage={toggleLanguage}
+                    />
                 </div>
 
                 <div className="lg:hidden">
@@ -257,78 +210,14 @@ export function Header() {
                         <HamburgerIcon isOpen={isMobileMenuOpen} />
                     </Button>
 
-                    <div
-                        ref={mobileMenuRef}
-                        className={`fixed inset-0 z-[900] bg-background transition-all duration-650 ease-in-out h-screen -translate-y-22 ${
-                            isMobileMenuOpen
-                                ? "-translate-x-0 opacity-100 pointer-events-auto"
-                                : "translate-x-44 opacity-0 pointer-events-none"
-                        }`}
-                        style={{ top: "5rem" }}
-                    >
-                        <Button
-                            onClick={toggleMobileMenu}
-                            className="group top-8 right-4 z-[1000] absolute bg-transparent hover:bg-transparent shadow-none size-10 aspect-square font-bold text-foreground hover:text-white cursor-pointer mobile-menu-button"
-                            aria-label="Close menu"
-                        >
-                            <HamburgerIcon isOpen={isMobileMenuOpen} />
-                        </Button>
-
-                        <div className="flex flex-col justify-center gap-4 pt-24 pb-8 h-screen">
-                            <ul className="flex flex-col items-center gap-8 overflow-hidden font-bold text-foreground text-4xl text-center">
-                                {links.map((link) => (
-                                    <li
-                                        key={link.href}
-                                        className={`${isActive(link.href) ? "bg-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 text-transparent transition-all ease-fluid duration-500" : ""} ${liClasses} hover:bg-transparent hover:text-foreground`}
-                                    >
-                                        <Link
-                                            href={`${"/en" + link.href} || ${"/cz" + link.href}`}
-                                            className="block"
-                                            onClick={(e) =>
-                                                handleLinkClick(e, link.href)
-                                            }
-                                        >
-                                            {link.label}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-
-                            {/* Mobile Controls (only visible in mobile menu) */}
-                            <div className="flex justify-center items-center gap-6">
-                                <ModeToggle />
-                                <Button
-                                    onClick={toggleLanguage}
-                                    variant="ghost"
-                                    size="icon"
-                                    className="rounded-full w-12 h-12 cursor-pointer"
-                                    aria-label={
-                                        currentLocale === "en"
-                                            ? "Switch to Czech"
-                                            : "Přepnout na angličtinu"
-                                    }
-                                >
-                                    {currentLocale === "en" ? (
-                                        <span
-                                            role="img"
-                                            aria-label="Czech flag"
-                                            className="text-2xl"
-                                        >
-                                            🇬🇧
-                                        </span>
-                                    ) : (
-                                        <span
-                                            role="img"
-                                            aria-label="US flag"
-                                            className="text-2xl"
-                                        >
-                                            🇨🇿
-                                        </span>
-                                    )}
-                                </Button>
-                            </div>
-                        </div>
-                    </div>
+                    <MobileMenu
+                        isOpen={isMobileMenuOpen}
+                        closeMenu={closeMobileMenu}
+                        toggleLanguage={toggleLanguage}
+                        links={links}
+                        isActive={isActive}
+                        handleLinkClick={handleLinkClick}
+                    />
                 </div>
             </nav>
         </header>

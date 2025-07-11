@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView } from "motion/react";
+import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
@@ -57,19 +57,19 @@ export function TechCard({
                 />
             </Link>
             <div className="mt-2 text-muted-foreground">{t("skill")}</div>
-            <div className="flex justify-center gap-1 mt-2">
+            <div className="flex justify-center items-center gap-1 mt-2">
+                <span className="font-bold text-muted-foreground">&lt;</span>
                 {[...Array(5)].map((_, i) => (
                     <span
                         key={i}
                         className={
                             i < level
-                                ? "text-yellow-400"
-                                : "text-muted-foreground"
+                                ? "bg-gradient-to-r from-blue-600 to-sky-400 h-1 w-5 -rotate-60"
+                                : "h-1 w-5 -rotate-60 bg-muted-foreground"
                         }
-                    >
-                        ★
-                    </span>
+                    />
                 ))}
+                <span className="font-bold text-muted-foreground">&gt;</span>
             </div>
         </motion.div>
     );

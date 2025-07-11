@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 export function Ambient() {
     const stars = Array.from({ length: 100 }).map((_, i) => ({

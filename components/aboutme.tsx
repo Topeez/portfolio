@@ -15,7 +15,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
-import { motion, useInView } from "motion/react";
+import { motion, useInView } from "framer-motion";
 
 export function AboutMe() {
     const t = useTranslations("HomePage");

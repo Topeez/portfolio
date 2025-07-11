@@ -55,6 +55,11 @@
     --animate-fade-in-ambient4: fade-in-ambient4 1s ease 300ms backwards;
     --animate-accordion-down: accordion-down 300ms ease-out;
     --animate-accordion-up: accordion-up 300ms ease-out;
+    --animate-shine: shine 5s linear infinite;
+    --animate-star-movement-bottom: star-movement-bottom linear infinite
+        alternate;
+    --animate-star-movement-top: star-movement-top linear infinite alternate;
+    --animate-border-spin: border-spin 10s linear infinite;
 }
 
 @layer base {
@@ -124,17 +129,38 @@
     }
 }
 
-@utility cs-container {
-    @apply mx-auto px-[var(--cont-px)] max-w-[var(--cont-max-w)];
-}
+@layer utilities {
+    .cs-container {
+        @apply mx-auto px-[var(--cont-px)] max-w-[var(--cont-max-w)];
+    }
 
-@utility slide-in-2 {
-    animation: slide-in 1s ease 200ms backwards;
-    animation-delay: 300ms;
-}
+    .slide-in-2 {
+        animation: slide-in 1s ease 200ms backwards;
+        animation-delay: 300ms;
+    }
 
-@utility fade-in {
-    animation: fade-in 1s ease 300ms backwards;
+    .fade-in {
+        animation: fade-in 1s ease 300ms backwards;
+    }
+
+    .form-wrapper {
+        @apply relative p-px rounded-2xl overflow-hidden border;
+    }
+
+    .form-wrapper::before {
+        background: conic-gradient(
+            from 0deg,
+            #2563eb,
+            #38bdf8,
+            transparent 80deg
+        );
+
+        @apply absolute left-[-50%] top-[-50%] size-[200%] animate-border-spin content-[''];
+    }
+
+    .form-content {
+        @apply relative rounded-2xl bg-background;
+    }
 }
 
 @keyframes slide-up {
@@ -225,6 +251,43 @@
     }
     to {
         height: 0;
+    }
+}
+
+@keyframes shine {
+    from {
+        background-position: 100%;
+    }
+    to {
+        background-position: -100%;
+    }
+}
+
+@keyframes star-movement-bottom {
+    from {
+        transform: translate(0%, 0%);
+        opacity: 100;
+    }
+    to {
+        transform: translate(-100%, 0%);
+        opacity: 0;
+    }
+}
+
+@keyframes star-movement-top {
+    from {
+        transform: translate(0%, 0%);
+        opacity: 100;
+    }
+    to {
+        transform: translate(100%, 0%);
+        opacity: 0;
+    }
+}
+
+@keyframes border-spin {
+    100% {
+        transform: rotate(-360deg);
     }
 }
 

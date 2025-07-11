@@ -19,7 +19,7 @@ import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 import { Send } from "lucide-react";
 import Link from "next/link";
-import { motion, useInView } from "motion/react";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 export function ContactForm() {
@@ -88,7 +88,7 @@ export function ContactForm() {
 
     return (
         <Form {...form}>
-            <motion.form
+            <motion.div
                 ref={formRef}
                 initial={{ opacity: 0, y: 40, filter: "blur(6px)" }}
                 animate={
@@ -97,85 +97,99 @@ export function ContactForm() {
                         : {}
                 }
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-8 mx-auto p-12 border rounded-2xl w-full md:w-1/2"
+                className="mx-auto w-full md:w-1/2 form-wrapper"
             >
-                <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>{t("name")}</FormLabel>
-                            <FormControl>
-                                <Input
-                                    className="focus-visible:border-blue-500 outline-none focus-visible:outline-none focus-visible:ring-0 active:ring-0 transition-colors"
-                                    placeholder={t("name-placeholder")}
-                                    {...field}
-                                />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>{t("email")}</FormLabel>
-                            <FormControl>
-                                <Input
-                                    className="focus-visible:border-blue-600 outline-none focus-visible:outline-none focus-visible:ring-0 active:ring-0 transition-colors"
-                                    placeholder={t("email-placeholder")}
-                                    {...field}
-                                />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="message"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>{t("message")}</FormLabel>
-                            <FormControl>
-                                <Textarea
-                                    className="focus-visible:border-blue-500 outline-none focus-visible:outline-none focus-visible:ring-0 active:ring-0 transition-colors"
-                                    placeholder={t("message-placeholder")}
-                                    {...field}
-                                />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <Button
-                    className="group hover:bg-gradient-to-br from-blue-500 to-sky-400 rounded-lg w-full hover:text-foreground hover:scale-[1.01] transition-all duration-300 cursor-pointer will-change-transform"
-                    type="submit"
+                <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="space-y-8 bg-background p-12 rounded-2xl form-content"
                 >
-                    {t("send")}
-                    <Send className="group-hover:scale-105" />
-                </Button>
+                    {/* Name */}
+                    <FormField
+                        control={form.control}
+                        name="name"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>{t("name")}</FormLabel>
+                                <FormControl>
+                                    <Input
+                                        className="focus-visible:border-blue-500 outline-none focus-visible:outline-none focus-visible:ring-0 active:ring-0 transition-colors"
+                                        placeholder={t("name-placeholder")}
+                                        {...field}
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
 
-                <div className="after:top-1/2 after:z-0 after:absolute relative after:inset-0 after:flex after:items-center after:border-t after:border-border text-sm text-center">
-                    <span className="z-10 relative bg-background px-2 text-muted-foreground">
-                        {t("contact")}
-                    </span>
-                </div>
+                    {/* Email */}
+                    <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>{t("email")}</FormLabel>
+                                <FormControl>
+                                    <Input
+                                        className="focus-visible:border-blue-600 outline-none focus-visible:outline-none focus-visible:ring-0 active:ring-0 transition-colors"
+                                        placeholder={t("email-placeholder")}
+                                        {...field}
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
 
-                <div className="flex justify-between items-center w-full">
-                    {socialMedia.map((item, index) => {
-                        const Icon = item.icon;
-                        return (
-                            <Link key={index} href={item.link} target="_blank">
-                                <Icon className="fill-foreground hover:fill-blue-600 size-10 hover:scale-[1.02] transition-all duration-300 will-change-transform" />
-                            </Link>
-                        );
-                    })}
-                </div>
-            </motion.form>
+                    {/* Message */}
+                    <FormField
+                        control={form.control}
+                        name="message"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>{t("message")}</FormLabel>
+                                <FormControl>
+                                    <Textarea
+                                        className="focus-visible:border-blue-500 outline-none focus-visible:outline-none focus-visible:ring-0 active:ring-0 transition-colors"
+                                        placeholder={t("message-placeholder")}
+                                        {...field}
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+
+                    <Button
+                        className="group hover:bg-gradient-to-br from-blue-500 to-sky-400 rounded-lg w-full hover:text-foreground hover:scale-[1.01] transition-all duration-300 cursor-pointer will-change-transform"
+                        type="submit"
+                    >
+                        {t("send")}
+                        <Send className="group-hover:scale-105" />
+                    </Button>
+
+                    <div className="after:top-1/2 after:z-0 after:absolute relative after:inset-0 after:flex after:items-center after:border-t after:border-border text-sm text-center">
+                        <span className="z-10 relative bg-background px-2 text-muted-foreground">
+                            {t("contact")}
+                        </span>
+                    </div>
+
+                    <div className="flex justify-center items-center gap-8 w-full">
+                        {socialMedia.map((item, index) => {
+                            const Icon = item.icon;
+                            return (
+                                <Link
+                                    key={index}
+                                    href={item.link}
+                                    target="_blank"
+                                >
+                                    <Icon className="fill-foreground hover:fill-blue-600 size-10 hover:scale-[1.02] transition-all duration-300 will-change-transform" />
+                                </Link>
+                            );
+                        })}
+                    </div>
+                </form>
+            </motion.div>
         </Form>
     );
 }

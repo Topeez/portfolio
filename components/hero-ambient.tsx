@@ -15,7 +15,7 @@ export function Ambient() {
         duration: 1.5 + Math.random() * 2,
     }));
 
-    const bokeh = Array.from({ length: 25 }).map((_, i) => ({
+    const bokeh = Array.from({ length: 50 }).map((_, i) => ({
         id: i,
         x: Math.random() * 100,
         y: Math.random() * 100,

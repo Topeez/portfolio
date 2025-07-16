@@ -43,6 +43,35 @@ function checkRateLimit(ip: string, limit: number = 5, windowMs: number = 60000)
     return true;
 }
 
+// Function to get client IP
+function getClientIP(req: NextRequest): string {
+    // Check various headers for the real IP
+    const xForwardedFor = req.headers.get('x-forwarded-for');
+    const xRealIp = req.headers.get('x-real-ip');
+    const xClientIp = req.headers.get('x-client-ip');
+    const cfConnectingIp = req.headers.get('cf-connecting-ip'); // Cloudflare
+    
+    if (xForwardedFor) {
+        // x-forwarded-for can contain multiple IPs, take the first one
+        return xForwardedFor.split(',')[0].trim();
+    }
+    
+    if (xRealIp) {
+        return xRealIp;
+    }
+    
+    if (xClientIp) {
+        return xClientIp;
+    }
+    
+    if (cfConnectingIp) {
+        return cfConnectingIp;
+    }
+    
+    // Fallback to a default value
+    return 'unknown';
+}
+
 // Input sanitization
 function sanitizeInput(input: string): string {
     return input
@@ -70,7 +99,7 @@ export async function OPTIONS() {
 export async function POST(req: NextRequest) {
     try {
         // Get client IP for rate limiting
-        const ip = req.ip || req.headers.get('x-forwarded-for')?.split(',')[0] || 'unknown';
+        const ip = getClientIP(req);
         
         // Rate limiting check
         if (!checkRateLimit(ip)) {
@@ -93,6 +122,7 @@ export async function POST(req: NextRequest) {
         let body;
         try {
             body = await req.json();
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (error) {
             return NextResponse.json(
                 { error: "Neplatný JSON formát." },

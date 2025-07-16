@@ -139,6 +139,7 @@ const Projects = memo(function Projects() {
 });
 
 // Memoize AnimatedCard to prevent unnecessary re-renders
+// Memoize AnimatedCard to prevent unnecessary re-renders
 const AnimatedCard = memo(function AnimatedCard({
     index,
     image,
@@ -216,22 +217,16 @@ const AnimatedCard = memo(function AnimatedCard({
         [inProgress]
     );
 
-    // Memoize image props
-    const imageProps = useMemo(
-        () => ({
-            src: image,
-            alt: t(`project${projectIndex}.title`),
-            className:
-                "group-hover:scale-105 transition-transform duration-500",
-            fill: true,
-            sizes: "100vw",
-            style: {
-                objectFit: "cover" as const,
-                objectPosition: "top" as const,
-            },
-        }),
-        [image, t, projectIndex]
-    );
+    // Get the alt text with fallback
+    const altText = useMemo(() => {
+        try {
+            return (
+                t(`project${projectIndex}.title`) || `Project ${projectIndex}`
+            );
+        } catch (error) {
+            return `Project ${projectIndex}`;
+        }
+    }, [t, projectIndex]);
 
     return (
         <motion.div
@@ -242,7 +237,17 @@ const AnimatedCard = memo(function AnimatedCard({
         >
             <Card className="group relative hover:shadow-xl pt-0 pb-6 h-full overflow-hidden transition-shadow duration-300">
                 <div className="relative h-[240px] overflow-hidden">
-                    <Image {...imageProps} />
+                    <Image
+                        src={image}
+                        alt={altText}
+                        className="group-hover:scale-105 transition-transform duration-500"
+                        fill
+                        sizes="100vw"
+                        style={{
+                            objectFit: "cover",
+                            objectPosition: "top",
+                        }}
+                    />
                     <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <div className="p-4 w-full">
                             <div className="flex justify-between items-center">

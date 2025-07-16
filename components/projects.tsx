@@ -223,6 +223,7 @@ const AnimatedCard = memo(function AnimatedCard({
             return (
                 t(`project${projectIndex}.title`) || `Project ${projectIndex}`
             );
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (error) {
             return `Project ${projectIndex}`;
         }

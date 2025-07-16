@@ -18,7 +18,7 @@ export function Footer() {
                     <div className="flex sm:flex-row flex-col items-center gap-4 sm:text-left text-center">
                         <div className="rounded-full w-16 md:w-20 h-16 md:h-20 overflow-hidden">
                             <Image
-                                src="/assets/img/me.jpg"
+                                src="/assets/img/me_transparent.png"
                                 width={80}
                                 height={80}
                                 alt={t("name")}

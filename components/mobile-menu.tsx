@@ -4,7 +4,7 @@ import Flag from "react-world-flags";
 import Link from "next/link";
 import { ModeToggle } from "@/components/theme-switcher";
 import { Button } from "@/components/ui/button";
-import { useEffect, useRef, useState } from "react"; // Přidáno useState
+import { useEffect, useRef, useState, useMemo, useCallback } from "react"; // Přidáno useState
 import { useLocale } from "next-intl";
 import HamburgerIcon from "@/components/hamburger-icon";
 import { motion, AnimatePresence } from "framer-motion";
@@ -31,19 +31,93 @@ export function MobileMenu({
     const mobileMenuRef = useRef<HTMLDivElement>(null);
     const [showItems, setShowItems] = useState(false); // Nový stav pro řízení animace položek
 
+    const listVariants: Variants = useMemo(
+        () => ({
+            hidden: { opacity: 0 },
+            visible: {
+                opacity: 1,
+                transition: {
+                    staggerChildren: 0.2,
+                    delayChildren: 0.3,
+                },
+            },
+            exit: {
+                opacity: 0,
+                transition: {
+                    staggerChildren: 0.05,
+                    staggerDirection: -1,
+                },
+            },
+        }),
+        []
+    );
+
+    const itemVariants: Variants = useMemo(
+        () => ({
+            hidden: {
+                opacity: 0,
+                x: 200,
+                filter: "blur(8px)",
+            },
+            visible: {
+                opacity: 1,
+                x: 0,
+                filter: "blur(0px)",
+                transition: {
+                    duration: 0.4,
+                    ease: [0.25, 0.1, 0.25, 1],
+                },
+            },
+            exit: {
+                opacity: 0,
+                x: 200,
+                filter: "blur(8px)",
+                transition: {
+                    duration: 0.2,
+                },
+            },
+        }),
+        []
+    );
+
+    const flagCode = useMemo(
+        () => (currentLocale === "en" ? "GB" : "CZ"),
+        [currentLocale]
+    );
+
+    const flagAlt = useMemo(
+        () => (currentLocale === "en" ? "British flag" : "Czech flag"),
+        [currentLocale]
+    );
+
+    const languageToggleLabel = useMemo(
+        () =>
+            currentLocale === "en"
+                ? "Switch to Czech"
+                : "Přepnout na angličtinu",
+        [currentLocale]
+    );
+
+    const flagStyle = useMemo(
+        () => ({
+            width: "1.5rem",
+            height: "1rem",
+            borderRadius: "2px",
+        }),
+        []
+    );
+
     useEffect(() => {
         if (isOpen) {
-            // Po otevření menu nastavíme zpoždění pro zobrazení položek
             const timer = setTimeout(() => setShowItems(true), 400);
             return () => clearTimeout(timer);
         } else {
-            // Při zavření menu okamžitě skryjeme položky
             setShowItems(false);
         }
     }, [isOpen]);
 
-    useEffect(() => {
-        const handleClickOutside = (e: MouseEvent) => {
+    const handleClickOutside = useCallback(
+        (e: MouseEvent) => {
             if (
                 mobileMenuRef.current &&
                 !mobileMenuRef.current.contains(e.target as Node) &&
@@ -51,12 +125,18 @@ export function MobileMenu({
             ) {
                 closeMenu();
             }
-        };
+        },
+        [closeMenu]
+    );
 
-        const handleEscape = (e: KeyboardEvent) => {
+    const handleEscape = useCallback(
+        (e: KeyboardEvent) => {
             if (e.key === "Escape") closeMenu();
-        };
+        },
+        [closeMenu]
+    );
 
+    useEffect(() => {
         document.addEventListener("mousedown", handleClickOutside);
         document.addEventListener("keydown", handleEscape);
 
@@ -64,50 +144,33 @@ export function MobileMenu({
             document.removeEventListener("mousedown", handleClickOutside);
             document.removeEventListener("keydown", handleEscape);
         };
-    }, [closeMenu]);
+    }, [handleClickOutside, handleEscape]);
 
-    const listVariants: Variants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.2,
-                delayChildren: 0.3,
-            },
-        },
-        exit: {
-            opacity: 0,
-            transition: {
-                staggerChildren: 0.05,
-                staggerDirection: -1,
-            },
-        },
-    };
+    const menuItems = useMemo(
+        () =>
+            links.map((link) => {
+                const activeClass = isActive(link.href)
+                    ? "bg-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 text-transparent"
+                    : "";
 
-    const itemVariants: Variants = {
-        hidden: {
-            opacity: 0,
-            x: 200,
-            filter: "blur(8px)",
-        },
-        visible: {
-            opacity: 1,
-            x: 0,
-            filter: "blur(0px)",
-            transition: {
-                duration: 0.4,
-                ease: [0.25, 0.1, 0.25, 1],
-            },
-        },
-        exit: {
-            opacity: 0,
-            x: 200,
-            filter: "blur(8px)",
-            transition: {
-                duration: 0.2,
-            },
-        },
-    };
+                return (
+                    <motion.li
+                        key={link.href}
+                        variants={itemVariants}
+                        className={`${activeClass} hover:bg-transparent hover:text-foreground p-3 rounded-md transition-all ease-fluid cursor-pointer uppercase`}
+                    >
+                        <Link
+                            href={`/${currentLocale}${link.href}`}
+                            className="block"
+                            onClick={(e) => handleLinkClick(e, link.href)}
+                        >
+                            {link.label}
+                        </Link>
+                    </motion.li>
+                );
+            }),
+        [links, isActive, itemVariants, currentLocale, handleLinkClick]
+    );
 
     return (
         <AnimatePresence>
@@ -129,7 +192,6 @@ export function MobileMenu({
                         <HamburgerIcon isOpen={isOpen} />
                     </Button>
 
-                    {/* Obalení seznamu AnimatePresence pro správné mizení položek */}
                     <AnimatePresence>
                         {showItems && (
                             <motion.ul
@@ -139,27 +201,7 @@ export function MobileMenu({
                                 exit="exit"
                                 className="flex flex-col items-center gap-8 font-bold text-foreground text-4xl text-center"
                             >
-                                {links.map((link) => (
-                                    <motion.li
-                                        key={link.href}
-                                        variants={itemVariants}
-                                        className={`${
-                                            isActive(link.href)
-                                                ? "bg-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 text-transparent"
-                                                : ""
-                                        } hover:bg-transparent hover:text-foreground p-3 rounded-md transition-all ease-fluid cursor-pointer uppercase`}
-                                    >
-                                        <Link
-                                            href={`/${currentLocale}${link.href}`}
-                                            className="block"
-                                            onClick={(e) =>
-                                                handleLinkClick(e, link.href)
-                                            }
-                                        >
-                                            {link.label}
-                                        </Link>
-                                    </motion.li>
-                                ))}
+                                {menuItems}
                             </motion.ul>
                         )}
                     </AnimatePresence>
@@ -171,24 +213,12 @@ export function MobileMenu({
                             variant="ghost"
                             size="icon"
                             className="relative rounded-full size-10 cursor-pointer"
-                            aria-label={
-                                currentLocale === "en"
-                                    ? "Switch to Czech"
-                                    : "Přepnout na angličtinu"
-                            }
+                            aria-label={languageToggleLabel}
                         >
                             <Flag
-                                code={currentLocale === "en" ? "GB" : "CZ"}
-                                style={{
-                                    width: "1.5rem",
-                                    height: "1rem",
-                                    borderRadius: "2px",
-                                }}
-                                alt={
-                                    currentLocale === "en"
-                                        ? "British flag"
-                                        : "Czech flag"
-                                }
+                                code={flagCode}
+                                style={flagStyle}
+                                alt={flagAlt}
                             />
                         </Button>
                     </div>

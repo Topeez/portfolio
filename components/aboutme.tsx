@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo, memo } from "react";
 import {
     FaReact,
     FaGraduationCap,
@@ -17,9 +17,62 @@ import {
 } from "@/components/ui/accordion";
 import { motion, useInView } from "framer-motion";
 
-export function AboutMe() {
+const AboutMe = memo(function AboutMe() {
     const t = useTranslations("HomePage");
     const [isExpanded, setIsExpanded] = useState(false);
+
+    // Memoize the timeline data to prevent recreation on every render
+    const timelineData = useMemo(
+        () => [
+            {
+                icon: <FaGraduationCap />,
+                year: "2022",
+                text: t("AboutMe.Timeline.text1"),
+            },
+            {
+                icon: <FaTrophy />,
+                year: "2023",
+                text: t("AboutMe.Timeline.text2"),
+            },
+            {
+                icon: <FaTrophy />,
+                year: "2024",
+                text: t("AboutMe.Timeline.text3"),
+            },
+            {
+                icon: <FaReact />,
+                year: "2025",
+                text: t("AboutMe.Timeline.text4"),
+            },
+            {
+                icon: <FaCodeBranch />,
+                year: "2025",
+                text: t("AboutMe.Timeline.text5"),
+            },
+        ],
+        [t]
+    ); // Only recreate when translations change
+
+    // Memoize the accordion change handler
+    const handleAccordionChange = useMemo(
+        () => (value: unknown) => setIsExpanded(value === "more-content"),
+        []
+    );
+
+    // Memoize the rendered timeline items
+    const timelineItems = useMemo(
+        () =>
+            timelineData.map((item, index) => (
+                <TimelineItem
+                    key={index}
+                    icon={item.icon}
+                    year={item.year}
+                    text={item.text}
+                    index={index}
+                />
+            )),
+        [timelineData]
+    );
 
     return (
         <section id="about" className="grid grid-cols-12 py-20 cs-container">
@@ -44,9 +97,7 @@ export function AboutMe() {
                         <Accordion
                             type="single"
                             collapsible
-                            onValueChange={(value) =>
-                                setIsExpanded(value === "more-content")
-                            }
+                            onValueChange={handleAccordionChange}
                         >
                             <AccordionItem value="more-content" className="">
                                 <AccordionContent className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
@@ -74,50 +125,16 @@ export function AboutMe() {
 
                     {/* Right: Timeline */}
                     <div className="relative space-y-6 ml-8 pl-6 border-border border-l">
-                        {[
-                            {
-                                icon: <FaGraduationCap />,
-                                year: "2022",
-                                text: t("AboutMe.Timeline.text1"),
-                            },
-                            {
-                                icon: <FaTrophy />,
-                                year: "2023",
-                                text: t("AboutMe.Timeline.text2"),
-                            },
-                            {
-                                icon: <FaTrophy />,
-                                year: "2024",
-                                text: t("AboutMe.Timeline.text3"),
-                            },
-                            {
-                                icon: <FaReact />,
-                                year: "2025",
-                                text: t("AboutMe.Timeline.text4"),
-                            },
-                            {
-                                icon: <FaCodeBranch />,
-                                year: "2025",
-                                text: t("AboutMe.Timeline.text5"),
-                            },
-                        ].map((item, index) => (
-                            <TimelineItem
-                                key={index}
-                                icon={item.icon}
-                                year={item.year}
-                                text={item.text}
-                                index={index}
-                            />
-                        ))}
+                        {timelineItems}
                     </div>
                 </div>
             </div>
         </section>
     );
-}
+});
 
-// TimelineItem remains the same
-function TimelineItem({
+// Memoize TimelineItem to prevent unnecessary re-renders
+const TimelineItem = memo(function TimelineItem({
     icon,
     year,
     text,
@@ -131,12 +148,22 @@ function TimelineItem({
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
 
+    // Memoize animation variants to prevent recreation
+    const animationVariants = useMemo(
+        () => ({
+            initial: { opacity: 0, y: 40, filter: "blur(8px)" },
+            animate: isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {},
+            transition: { duration: 0.5, delay: index * 0.25 },
+        }),
+        [isInView, index]
+    );
+
     return (
         <motion.div
             ref={ref}
-            initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
-            animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-            transition={{ duration: 0.5, delay: index * 0.25 }}
+            initial={animationVariants.initial}
+            animate={animationVariants.animate}
+            transition={animationVariants.transition}
             className="relative pl-8"
         >
             <div className="top-3 left-[-34px] absolute text-blue-600 text-xl">
@@ -146,4 +173,6 @@ function TimelineItem({
             <p className="text-foreground text-base">{text}</p>
         </motion.div>
     );
-}
+});
+
+export default AboutMe;

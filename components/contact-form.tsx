@@ -19,7 +19,7 @@ import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 import { Send } from "lucide-react";
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, easeOut } from "framer-motion";
 import { useRef, useMemo, useCallback } from "react";
 
 export function ContactForm() {
@@ -118,7 +118,7 @@ export function ContactForm() {
         () => ({
             initial: { opacity: 0, y: 40, filter: "blur(6px)" },
             animate: { opacity: 1, y: 0, filter: "blur(0px)" },
-            transition: { duration: 0.6, ease: "easeOut", delay: 0.2 },
+            transition: { duration: 0.6, easeOut, delay: 0.2 },
         }),
         []
     );
@@ -249,7 +249,7 @@ export function Contact() {
         () => ({
             initial: { opacity: 0, y: 40, filter: "blur(8px)" },
             animate: isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {},
-            transition: { duration: 0.6, ease: "easeOut" },
+            transition: { duration: 0.6, easeOut },
         }),
         [isInView]
     );

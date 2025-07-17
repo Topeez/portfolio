@@ -51,6 +51,8 @@
         "Projects": {
             "title": "Projekty",
             "text": "Podívejte se na projekty, na kterých jsem v minulosti pracoval nebo ještě teď pracuji.",
+            "api": "API integrace",
+            "template": "Šablonování",
             "project1": {
                 "title": "Víceúčelový rozvrh hodin pro mou školu",
                 "description": "Víceúčelový rozvrh hodin pro mou školu, umožňující studentům vidět, jaké dnes mají hodiny a v jaké učebně, kolik hodin mají a který učitel je učí. Zahrnuje také odjezdy autobusů a oznámení různých akcí školy.",

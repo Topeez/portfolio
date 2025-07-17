@@ -51,6 +51,8 @@
         "Projects": {
             "title": "Featured projects",
             "text": "Have a look on some projects I've worked on so far.",
+            "api": "API Integration",
+            "template": "Template blocks",
             "project1": {
                 "title": "Multi-use hours scheduler for my school",
                 "description": "A multi-use hours scheduler for my school, allowing students to see what classes they have today, how many hours and which teacher is teaching them. Also include bus departures and announcements.",

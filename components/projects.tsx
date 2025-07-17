@@ -50,7 +50,7 @@ const Projects = memo(function Projects() {
                     "Python",
                     "Typescript",
                     "Tailwind CSS",
-                    "API Integration",
+                    t("api"),
                     "Docker",
                     "Node.js",
                 ],
@@ -65,7 +65,7 @@ const Projects = memo(function Projects() {
                     "React",
                     "Next.js",
                     "Tailwind CSS",
-                    "API Integration",
+                    t("api"),
                     "Node.js",
                 ],
                 github: "https://github.com/galfar-coder/zenith",
@@ -75,7 +75,7 @@ const Projects = memo(function Projects() {
             {
                 id: 4,
                 image: "/assets/img/projects/web_skoly.png",
-                technologies: ["PHP", "WordPress", "Templates"],
+                technologies: ["PHP", "WordPress", t("template")],
                 github: "#",
                 demo: "https://sos.mesosdev.cz/",
                 inProggress: true,
@@ -88,15 +88,15 @@ const Projects = memo(function Projects() {
                     "Next.js",
                     "Tailwind CSS",
                     "shadcn UI",
-                    "API Integration",
+                    t("api"),
                 ],
                 github: "",
                 demo: "travasstineni.vercel.app",
                 inProggress: true,
             },
         ],
-        []
-    ); // Empty dependency array since this data is static
+        [t]
+    );
 
     // Memoize the carousel items to prevent recreation on every render
     const carouselItems = useMemo(

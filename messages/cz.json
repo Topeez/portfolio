@@ -28,7 +28,7 @@
         "description": "Vytvářím webové stránky a webové aplikace. Specializuji se na React, Typescript, Tailwind CSS a Next.js. Také pracuji s Node.js, MongoDB, Prisma a dalšími. Mám také vášeň pro responzivní webový design.",
         "ctabutton": "Více o mně",
 
-        "AboutMe" : {
+        "AboutMe": {
             "title": "O mně",
             "text1-part1": "Jsem 19letý junior frontend vývojář z ",
             "text1-part2": " se specializací na vytváření responzivních, uživatelsky přívětivých webových aplikací. Mám velmi dobrý základ v HTML a CSS, specializuji se na moderní frameworky jako React na Next.js a stylingové řešení jako Tailwind CSS.",
@@ -72,6 +72,12 @@
             "project4": {
                 "title": "Webová stránka školy, kterou jsem úspěšně vystudoval",
                 "description": "Stránka vytvořena pomocí bloků ve WordPress",
+                "btncode": "Zobrazit kód",
+                "btnlink": "Zobrazit ukázku"
+            },
+            "project5": {
+                "title": "Webová stránka pro mého prvního klienta",
+                "description": "Klient se specializuje na montáž a servis stínící techniky",
                 "btncode": "Zobrazit kód",
                 "btnlink": "Zobrazit ukázku"
             }

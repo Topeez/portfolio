@@ -85,9 +85,13 @@ export function TechCard({
             </Link>
             <div className="mt-2 text-muted-foreground">{t("skill")}</div>
             <div className="flex justify-center items-center gap-1 mt-2">
-                <span className="font-bold text-muted-foreground">&lt;</span>
+                <span className="font-extrabold text-muted-foreground text-2xl">
+                    &lt;
+                </span>
                 {levelIndicators}
-                <span className="font-bold text-muted-foreground">&gt;</span>
+                <span className="font-extrabold text-muted-foreground text-2xl">
+                    &gt;
+                </span>
             </div>
         </motion.div>
     );

@@ -80,6 +80,20 @@ const Projects = memo(function Projects() {
                 demo: "https://sos.mesosdev.cz/",
                 inProggress: true,
             },
+            {
+                id: 5,
+                image: "/assets/img/projects/majktravas.png",
+                technologies: [
+                    "React",
+                    "Next.js",
+                    "Tailwind CSS",
+                    "shadcn UI",
+                    "API Integration",
+                ],
+                github: "",
+                demo: "travasstineni.vercel.app",
+                inProggress: true,
+            },
         ],
         []
     ); // Empty dependency array since this data is static

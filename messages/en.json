@@ -13,7 +13,6 @@
         "Lang": {
             "change": "Change language"
         }
-
     },
     "404": {
         "title": "404",
@@ -28,7 +27,7 @@
         "subtitle": "Frontend developer",
         "description": "I build websites and web apps. Specializing in React, Typescript, Tailwind CSS and Next.js. I also work with Node.js, MongoDB, Prisma and more. I also have passion for responsive web design.",
         "ctabutton": "More about me",
-        
+
         "AboutMe": {
             "title": "About me",
             "text1-part1": "I'm passionate 19 year old junior frontend developer from ",
@@ -48,36 +47,42 @@
                 "text5": "Collaboration with Galfar on some projects."
             }
         },
-        
+
         "Projects": {
             "title": "Featured projects",
             "text": "Have a look on some projects I've worked on so far.",
             "project1": {
-                "title":"Multi-use hours scheduler for my school",
+                "title": "Multi-use hours scheduler for my school",
                 "description": "A multi-use hours scheduler for my school, allowing students to see what classes they have today, how many hours and which teacher is teaching them. Also include bus departures and announcements.",
                 "btncode": "View code",
                 "btnlink": "View demo"
             },
             "project2": {
-                "title":"Tic tac toe platform",
+                "title": "Tic tac toe platform",
                 "description": "Tic tac toe platform for web developing contest Tour de App, where I learnt a lot about web development.",
                 "btncode": "View code",
                 "btnlink": "View demo"
             },
             "project3": {
-                "title":"Music platform for starting artists",
+                "title": "Music platform for starting artists",
                 "description": "Music platform for starting artists",
                 "btncode": "View code",
                 "btnlink": "View demo"
             },
             "project4": {
-                "title":"A website for the high school I graduated from",
+                "title": "A website for the high school I graduated from",
                 "description": "Created using template blocks in WordPress",
+                "btncode": "View code",
+                "btnlink": "View demo"
+            },
+            "project5": {
+                "title": "A website for my first client",
+                "description": "The client specializes in the installation and service of shading equipment",
                 "btncode": "View code",
                 "btnlink": "View demo"
             }
         },
-        
+
         "TechStack": {
             "title": "Tech stack",
             "text": "Here is my overview of tech stack.",

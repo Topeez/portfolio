@@ -4,11 +4,10 @@ import Flag from "react-world-flags";
 import Link from "next/link";
 import { ModeToggle } from "@/components/theme-switcher";
 import { Button } from "@/components/ui/button";
-import { useEffect, useRef, useState, useMemo, useCallback } from "react"; // Přidáno useState
+import { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import { useLocale } from "next-intl";
 import HamburgerIcon from "@/components/hamburger-icon";
 import { motion, AnimatePresence } from "framer-motion";
-import type { Variants } from "framer-motion";
 
 interface MobileMenuProps {
     isOpen: boolean;
@@ -29,56 +28,7 @@ export function MobileMenu({
 }: MobileMenuProps) {
     const currentLocale = useLocale();
     const mobileMenuRef = useRef<HTMLDivElement>(null);
-    const [showItems, setShowItems] = useState(false); // Nový stav pro řízení animace položek
-
-    const listVariants: Variants = useMemo(
-        () => ({
-            hidden: { opacity: 0 },
-            visible: {
-                opacity: 1,
-                transition: {
-                    staggerChildren: 0.2,
-                    delayChildren: 0.3,
-                },
-            },
-            exit: {
-                opacity: 0,
-                transition: {
-                    staggerChildren: 0.05,
-                    staggerDirection: -1,
-                },
-            },
-        }),
-        []
-    );
-
-    const itemVariants: Variants = useMemo(
-        () => ({
-            hidden: {
-                opacity: 0,
-                x: 200,
-                filter: "blur(8px)",
-            },
-            visible: {
-                opacity: 1,
-                x: 0,
-                filter: "blur(0px)",
-                transition: {
-                    duration: 0.4,
-                    ease: [0.25, 0.1, 0.25, 1],
-                },
-            },
-            exit: {
-                opacity: 0,
-                x: 200,
-                filter: "blur(8px)",
-                transition: {
-                    duration: 0.2,
-                },
-            },
-        }),
-        []
-    );
+    const [showItems, setShowItems] = useState(false);
 
     const flagCode = useMemo(
         () => (currentLocale === "en" ? "GB" : "CZ"),
@@ -109,7 +59,8 @@ export function MobileMenu({
 
     useEffect(() => {
         if (isOpen) {
-            const timer = setTimeout(() => setShowItems(true), 400);
+            // Small delay to ensure the menu is mounted before starting animations
+            const timer = setTimeout(() => setShowItems(true), 100);
             return () => clearTimeout(timer);
         } else {
             setShowItems(false);
@@ -148,16 +99,24 @@ export function MobileMenu({
 
     const menuItems = useMemo(
         () =>
-            links.map((link) => {
+            links.map((link, index) => {
                 const activeClass = isActive(link.href)
                     ? "bg-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 text-transparent"
                     : "";
 
                 return (
-                    <motion.li
+                    <li
                         key={link.href}
-                        variants={itemVariants}
-                        className={`${activeClass} hover:bg-transparent hover:text-foreground p-3 rounded-md transition-all ease-fluid cursor-pointer uppercase`}
+                        className={`${activeClass} hover:bg-transparent hover:text-foreground transition-all duration-500 ease-in-out cursor-pointer uppercase ${
+                            showItems
+                                ? "opacity-100 translate-x-0 blur-none"
+                                : "opacity-0 translate-x-32 blur-sm"
+                        }`}
+                        style={{
+                            transitionDelay: showItems
+                                ? `${index * 150}ms`
+                                : "0ms",
+                        }}
                     >
                         <Link
                             href={`/${currentLocale}${link.href}`}
@@ -166,10 +125,10 @@ export function MobileMenu({
                         >
                             {link.label}
                         </Link>
-                    </motion.li>
+                    </li>
                 );
             }),
-        [links, isActive, itemVariants, currentLocale, handleLinkClick]
+        [links, isActive, currentLocale, handleLinkClick, showItems]
     );
 
     return (
@@ -192,21 +151,22 @@ export function MobileMenu({
                         <HamburgerIcon isOpen={isOpen} />
                     </Button>
 
-                    <AnimatePresence>
-                        {showItems && (
-                            <motion.ul
-                                variants={listVariants}
-                                initial="hidden"
-                                animate="visible"
-                                exit="exit"
-                                className="flex flex-col items-center gap-8 font-bold text-foreground text-4xl text-center"
-                            >
-                                {menuItems}
-                            </motion.ul>
-                        )}
-                    </AnimatePresence>
+                    <ul className="flex flex-col items-center gap-14 font-bold text-foreground text-4xl text-center">
+                        {menuItems}
+                    </ul>
 
-                    <div className="flex justify-center items-center gap-6 mt-10">
+                    <div
+                        className={`flex justify-center items-center gap-6 mt-10 transition-all duration-500 ease-in-out ${
+                            showItems
+                                ? "opacity-100 translate-y-0 blur-none"
+                                : "opacity-0 translate-y-4 blur-sm"
+                        }`}
+                        style={{
+                            transitionDelay: showItems
+                                ? `${links.length * 150}ms`
+                                : "0ms",
+                        }}
+                    >
                         <ModeToggle />
                         <Button
                             onClick={toggleLanguage}

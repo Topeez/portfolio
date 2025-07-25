@@ -71,7 +71,7 @@ export function TechCard({
             initial={animationVariants.initial}
             animate={isInView ? animationVariants.animate : {}}
             transition={transitionConfig}
-            className="group !z-50 flex flex-col justify-center items-center bg-background shadow-sm p-8 border border-muted rounded-xl w-full max-w-80 hover:scale-[1.03] transition-transform duration-300 ease-in-out"
+            className="group !z-50 flex flex-col justify-center items-center shadow-sm p-8 border border-muted rounded-xl w-full max-w-80 hover:scale-[1.03] transition-transform duration-300 ease-in-out card-gradient"
         >
             <Link href={link} target="_blank" aria-label={text}>
                 <Image

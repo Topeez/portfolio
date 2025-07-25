@@ -17,10 +17,11 @@
     "404": {
         "title": "404",
         "text": "We couldn't find the page you're looking for.",
-        "btn": "Go back"
+        "btnHome": "Home",
+        "btnPrev": "Go back"
     },
     "HomePage": {
-        "available": "Available for work",
+        "available": "Open to work",
         "getintouch": "Get in touch now",
         "title": "Hello, I'm ",
         "name": "Andrew",
@@ -32,7 +33,7 @@
             "title": "About me",
             "text1-part1": "I'm passionate 19 year old junior frontend developer from ",
             "text1-part2": " with expertise in creating responsive, user-friendly web applications. With strong foundation in HTML and CSS, I specialize in modern frameworks like React on Next.js and styling solutions like Tailwind CSS.",
-            "text2": "My carrer started in 2022 when I've learned HTML and CSS. Then, because of my interest in programming, I started learning basic JavaScript. Now I work on a few projects.",
+            "text2": "My career started in 2022 when I've learned HTML and CSS. Then, because of my interest in programming, I started learning basic JavaScript. Now I work on a few projects.",
             "text3": "Since then, I've participated in 3rd year of web development competition with my friends and we had to create reservation system for lecturers from Czech Republic. We used PHP, basic HTML5 and CSS3 and hardcoded all logic without using any frameworks... We went through 1st round and but we didn't get to the final 20 teams.",
             "text4": "The next year, I tried to participate again with different guys from my school and this time we had to create Tic Tac Toe platform. We use Python Django, Typescript, Tailwind CSS and API Integration. We went through 1st round and but we didn't get to the final 20 teams again because we didn't have enough time to finish the project. After that I've started to focus on React and Next.js but also I had to prepare for my finals at high school. Now I work on a few projects with my friend ",
             "cz": "Czech Republic",

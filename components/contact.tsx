@@ -12,7 +12,11 @@ export function Contact() {
     const isInView = useInView(ref, { once: true });
 
     return (
-        <section id="contact" className="py-16 w-full" ref={ref}>
+        <section
+            id="contact"
+            className="bg-foreground bg-gradient-to-b from-background to-neutral-200 dark:to-neutral-900 py-16"
+            ref={ref}
+        >
             <motion.div
                 initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
                 animate={

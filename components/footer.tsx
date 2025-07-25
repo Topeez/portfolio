@@ -11,7 +11,7 @@ export function Footer() {
     const t = useTranslations("Footer");
 
     return (
-        <footer className="bg-muted p-6 md:p-12 w-full">
+        <footer className="bg-gradient-to-b from-neutral-200 dark:from-neutral-900 to-neutral-100 dark:to-neutral-800 p-6 md:p-12 w-full">
             <div className="flex md:flex-row flex-col justify-between items-center gap-10 cs-container">
                 {/* Left Column - Brand Info */}
                 <div className="flex flex-col items-center md:items-start gap-6 md:gap-10">

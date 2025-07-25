@@ -108,6 +108,7 @@ const AboutMe = memo(function AboutMe() {
                                             <Link
                                                 href="https://github.com/galfar-coder"
                                                 className="bg-transparent hover:bg-clip-text hover:bg-gradient-to-r from-blue-600 to-sky-400 font-bold hover:text-transparent transition-all ease-in-out"
+                                                target="_blank"
                                             >
                                                 {t("AboutMe.galfar")}
                                             </Link>

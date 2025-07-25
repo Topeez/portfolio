@@ -26,6 +26,7 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 import { motion, useInView } from "framer-motion";
 import { useRef, useMemo, memo } from "react";
 
@@ -133,11 +134,19 @@ const Projects = memo(function Projects() {
                     </span>
                     {t("title")}
                 </h2>
-                <div className="space-y-2 text-xl text-left">
+                <div className="relative space-y-2 text-xl text-left">
                     <div>{t("text")}</div>
                     <Spacer />
+                    <div className="z-10 inset-0 bg-gradient-to-r from-background via-transparent to-background aboslute"></div>
 
-                    <Carousel className="w-full">
+                    <Carousel
+                        className="w-full"
+                        plugins={[
+                            Autoplay({
+                                delay: 5000,
+                            }),
+                        ]}
+                    >
                         <CarouselContent className="-ml-4">
                             {carouselItems}
                         </CarouselContent>
@@ -250,7 +259,7 @@ const AnimatedCard = memo(function AnimatedCard({
             animate={animationVariants.animate}
             transition={animationVariants.transition}
         >
-            <Card className="group relative hover:shadow-xl pt-0 pb-6 h-full overflow-hidden transition-shadow duration-300">
+            <Card className="group relative hover:shadow-xl pt-0 pb-6 h-full overflow-hidden transition-shadow duration-300 card-gradient">
                 <div className="relative h-[240px] overflow-hidden">
                     <Image
                         src={image}

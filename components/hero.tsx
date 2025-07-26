@@ -9,112 +9,183 @@ import { Skeleton } from "./ui/skeleton";
 import { useState, useMemo, useCallback, memo, useEffect } from "react";
 import React from "react";
 import GlareHover from "@/src/blocks/Animations/GlareHover/GlareHover";
-import TextType from "@/src/blocks/TextAnimations/TextType/TextType";
 
-// Enhanced TextType component that handles children animation internally
-type TextTypeWithChildrenProps = {
-    text: string; // Changed from string[] to string
-    children?: React.ReactNode; // Made optional
-    typingSpeed?: number;
-    initialDelay?: number;
-    childDelay?: number;
-    childSpeed?: number;
+// Custom typing animation component with underscore cursor
+type TypingAnimationProps = {
+    text: string;
+    speed?: number;
+    delay?: number;
     className?: string;
-    loop?: boolean;
+    onComplete?: () => void;
 };
 
-const TextTypeWithChildren = ({
+const TypingAnimation = ({
     text,
-    children,
-    typingSpeed = 100,
-    initialDelay = 0,
-    childDelay = 300,
-    childSpeed = 100,
+    speed = 100,
+    delay = 0,
     className = "",
-    loop = false, // Added the missing loop prop
-}: TextTypeWithChildrenProps) => {
+    onComplete,
+}: TypingAnimationProps) => {
     const [displayedText, setDisplayedText] = useState("");
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [showChildren, setShowChildren] = useState(false);
     const [showCursor, setShowCursor] = useState(true);
+    const [isComplete, setIsComplete] = useState(false);
 
     useEffect(() => {
         setDisplayedText("");
         setCurrentIndex(0);
-        setShowChildren(false);
+        setIsComplete(false);
     }, [text]);
 
     useEffect(() => {
-        if (currentIndex === 0 && initialDelay > 0) {
-            // Initial delay before starting
-            const initialTimeout = setTimeout(() => {
-                setCurrentIndex(1);
-                setDisplayedText(text[0] || ""); // Added fallback
-            }, initialDelay);
-            return () => clearTimeout(initialTimeout);
-        } else if (currentIndex > 0 && currentIndex < text.length) {
-            const timeout = setTimeout(() => {
-                setDisplayedText((prev) => prev + text[currentIndex]);
-                setCurrentIndex((prev) => prev + 1);
+        if (currentIndex < text.length) {
+            const timeout = setTimeout(
+                () => {
+                    setDisplayedText((prev) => prev + text[currentIndex]);
+                    setCurrentIndex((prev) => prev + 1);
 
-                // Show children when main text is done
-                if (currentIndex + 1 === text.length) {
-                    setTimeout(() => {
-                        setShowChildren(true);
-                    }, childDelay);
-                }
-            }, typingSpeed);
+                    // Check if animation is complete
+                    if (currentIndex + 1 === text.length) {
+                        setIsComplete(true);
+                        onComplete?.();
+                    }
+                },
+                currentIndex === 0 ? delay : speed
+            );
 
             return () => clearTimeout(timeout);
         }
-    }, [currentIndex, text, typingSpeed, initialDelay, childDelay]);
+    }, [currentIndex, text, speed, delay, onComplete]);
 
-    // Cursor blinking
+    // Cursor blinking effect
     useEffect(() => {
         const cursorInterval = setInterval(() => {
             setShowCursor((prev) => !prev);
-        }, 500);
+        }, 530);
         return () => clearInterval(cursorInterval);
     }, []);
 
     return (
         <span className={className}>
             {displayedText}
-            {currentIndex < text.length && (
+            {!isComplete && (
                 <span
-                    className={`inline-block ml-1 ${showCursor ? "opacity-100" : "opacity-0"} transition-opacity duration-200`}
+                    className={`inline-block ml-1 transition-opacity duration-200 ${
+                        showCursor ? "opacity-100" : "opacity-0"
+                    }`}
                 >
                     <svg
                         width="0.8em"
-                        height="1em"
-                        viewBox="0 0 8 16"
+                        height="0.2em"
+                        viewBox="0 0 16 4"
                         fill="currentColor"
-                        className="inline-block"
+                        className="inline-block rotate-90"
                     >
-                        <rect x="0" y="0" width="2" height="16" />
+                        <rect x="0" y="0" width="16" height="3" />
                     </svg>
                 </span>
             )}
-            {showChildren &&
-                children &&
-                React.isValidElement(children) &&
-                React.cloneElement(children, {
-                    ...children.props,
-                    children: (
-                        <TextType
-                            text={
-                                typeof children.props.children === "string"
-                                    ? children.props.children
-                                    : React.Children.toArray(
-                                          children.props.children
-                                      ).join("")
-                            }
-                            typingSpeed={childSpeed}
-                            initialDelay={0}
-                            loop={false}
-                        />
-                    ),
-                })}
+        </span>
+    );
+};
+
+// Sequential typing animation component that handles multiple text segments
+type SequentialTypingProps = {
+    segments: Array<{
+        text: string;
+        className?: string;
+        speed?: number;
+        delay?: number;
+    }>;
+    className?: string;
+};
+
+const SequentialTyping = ({
+    segments,
+    className = "",
+}: SequentialTypingProps) => {
+    const [currentSegment, setCurrentSegment] = useState(0);
+    const [completedSegments, setCompletedSegments] = useState<string[]>([]);
+    const [showFinalCursor, setShowFinalCursor] = useState(true);
+    const [allComplete, setAllComplete] = useState(false);
+
+    useEffect(() => {
+        // Reset when segments change
+        setCurrentSegment(0);
+        setCompletedSegments([]);
+        setAllComplete(false);
+    }, [segments]);
+
+    // Final cursor blinking effect
+    useEffect(() => {
+        if (allComplete) {
+            const cursorInterval = setInterval(() => {
+                setShowFinalCursor((prev) => !prev);
+            }, 530);
+            return () => clearInterval(cursorInterval);
+        }
+    }, [allComplete]);
+
+    const handleSegmentComplete = useCallback(
+        (segmentText: string) => {
+            setCompletedSegments((prev) => [...prev, segmentText]);
+            const nextSegment = currentSegment + 1;
+            setCurrentSegment(nextSegment);
+
+            // Check if all segments are complete
+            if (nextSegment >= segments.length) {
+                setAllComplete(true);
+                // Hide cursor after 2 seconds
+                setTimeout(() => {
+                    setShowFinalCursor(false);
+                }, 2000);
+            }
+        },
+        [currentSegment, segments.length]
+    );
+
+    return (
+        <span className={className}>
+            {/* Render completed segments */}
+            {completedSegments.map((text, index) => {
+                const segment = segments[index];
+                return (
+                    <span key={index} className={segment?.className || ""}>
+                        {text}
+                    </span>
+                );
+            })}
+
+            {/* Render current typing segment */}
+            {currentSegment < segments.length && (
+                <TypingAnimation
+                    text={segments[currentSegment].text}
+                    speed={segments[currentSegment].speed || 100}
+                    delay={segments[currentSegment].delay || 0}
+                    className={segments[currentSegment].className || ""}
+                    onComplete={() =>
+                        handleSegmentComplete(segments[currentSegment].text)
+                    }
+                />
+            )}
+
+            {/* Show final cursor after all segments complete */}
+            {allComplete && showFinalCursor && (
+                <span
+                    className="inline-block ml-1 transition-opacity duration-200"
+                    style={{ verticalAlign: "baseline" }}
+                >
+                    <svg
+                        width="0.8em"
+                        height="0.2em"
+                        viewBox="0 0 16 4"
+                        fill="currentColor"
+                        className="inline-block rotate-90"
+                    >
+                        <rect x="0" y="0" width="16" height="3" />
+                    </svg>
+                </span>
+            )}
         </span>
     );
 };
@@ -153,24 +224,32 @@ const Hero = memo(function Hero() {
         [t]
     );
 
+    // Define the typing segments
+    const titleSegments = useMemo(
+        () => [
+            {
+                text: t("title"),
+                speed: 80,
+                delay: 500,
+            },
+            {
+                text: t("name"),
+                className:
+                    "bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 font-bold text-transparent",
+                speed: 120,
+                delay: 300,
+            },
+        ],
+        [t]
+    );
+
     const mainTitle = useMemo(
         () => (
             <h1 className="font-bold md:text-[65px] text-6xl lg:text-left text-center slide-in">
-                <TextTypeWithChildren
-                    text={t("title")}
-                    typingSpeed={80}
-                    initialDelay={500}
-                    childDelay={0}
-                    childSpeed={120}
-                    loop={false}
-                >
-                    <span className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 font-bold text-transparent">
-                        {t("name")}
-                    </span>
-                </TextTypeWithChildren>
+                <SequentialTyping segments={titleSegments} />
             </h1>
         ),
-        [t]
+        [titleSegments]
     );
 
     const ctaButton = useMemo(

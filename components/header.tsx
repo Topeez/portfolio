@@ -186,7 +186,7 @@ export function Header() {
         () =>
             links.map((link) => {
                 const activeClass = isActive(link.href)
-                    ? "bg-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 text-transparent transition-all ease-fluid duration-500"
+                    ? "bg-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 text-transparent transition-all ease-fluid duration-500 hover:text-foreground"
                     : "";
 
                 return (

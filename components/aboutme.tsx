@@ -16,6 +16,7 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion";
 import { motion, useInView } from "framer-motion";
+import { AmbientGlow } from "./ambient-glow";
 
 const AboutMe = memo(function AboutMe() {
     const t = useTranslations("HomePage");
@@ -75,8 +76,15 @@ const AboutMe = memo(function AboutMe() {
     );
 
     return (
-        <section id="about" className="grid grid-cols-12 py-20 cs-container">
-            <div className="space-y-12 col-span-12">
+        <section
+            id="about"
+            className="relative grid grid-cols-12 py-44 overflow-hidden"
+        >
+            <div className="hidden lg:block absolute inset-0">
+                <AmbientGlow />
+            </div>
+
+            <div className="z-10 relative space-y-12 col-span-12 backdrop-blur-2xl p-12 lg:border border-muted dark:border-[#141414] rounded-2xl cs-container">
                 <h2 className="font-bold text-5xl md:text-left text-center">
                     <span className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 mx-3 text-transparent">
                         /
@@ -93,7 +101,6 @@ const AboutMe = memo(function AboutMe() {
                             {t("AboutMe.text1-part2")}
                         </p>
                         <p>{t("AboutMe.text2")}</p>
-
                         <Accordion
                             type="single"
                             collapsible
@@ -125,7 +132,7 @@ const AboutMe = memo(function AboutMe() {
                     </div>
 
                     {/* Right: Timeline */}
-                    <div className="relative space-y-6 ml-8 pl-6 border-border border-l">
+                    <div className="relative space-y-6 ml-8 pl-6 border-gray-600 border-l">
                         {timelineItems}
                     </div>
                 </div>

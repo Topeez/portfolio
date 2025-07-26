@@ -6,8 +6,118 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Skeleton } from "./ui/skeleton";
-import { useState, useMemo, useCallback, memo } from "react";
+import { useState, useMemo, useCallback, memo, useEffect } from "react";
+import React from "react";
 import GlareHover from "@/src/blocks/Animations/GlareHover/GlareHover";
+import TextType from "@/src/blocks/TextAnimations/TextType/TextType";
+
+// Enhanced TextType component that handles children animation internally
+type TextTypeWithChildrenProps = {
+    text: string; // Changed from string[] to string
+    children?: React.ReactNode; // Made optional
+    typingSpeed?: number;
+    initialDelay?: number;
+    childDelay?: number;
+    childSpeed?: number;
+    className?: string;
+    loop?: boolean;
+};
+
+const TextTypeWithChildren = ({
+    text,
+    children,
+    typingSpeed = 100,
+    initialDelay = 0,
+    childDelay = 300,
+    childSpeed = 100,
+    className = "",
+    loop = false, // Added the missing loop prop
+}: TextTypeWithChildrenProps) => {
+    const [displayedText, setDisplayedText] = useState("");
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [showChildren, setShowChildren] = useState(false);
+    const [showCursor, setShowCursor] = useState(true);
+
+    useEffect(() => {
+        setDisplayedText("");
+        setCurrentIndex(0);
+        setShowChildren(false);
+    }, [text]);
+
+    useEffect(() => {
+        if (currentIndex === 0 && initialDelay > 0) {
+            // Initial delay before starting
+            const initialTimeout = setTimeout(() => {
+                setCurrentIndex(1);
+                setDisplayedText(text[0] || ""); // Added fallback
+            }, initialDelay);
+            return () => clearTimeout(initialTimeout);
+        } else if (currentIndex > 0 && currentIndex < text.length) {
+            const timeout = setTimeout(() => {
+                setDisplayedText((prev) => prev + text[currentIndex]);
+                setCurrentIndex((prev) => prev + 1);
+
+                // Show children when main text is done
+                if (currentIndex + 1 === text.length) {
+                    setTimeout(() => {
+                        setShowChildren(true);
+                    }, childDelay);
+                }
+            }, typingSpeed);
+
+            return () => clearTimeout(timeout);
+        }
+    }, [currentIndex, text, typingSpeed, initialDelay, childDelay]);
+
+    // Cursor blinking
+    useEffect(() => {
+        const cursorInterval = setInterval(() => {
+            setShowCursor((prev) => !prev);
+        }, 500);
+        return () => clearInterval(cursorInterval);
+    }, []);
+
+    return (
+        <span className={className}>
+            {displayedText}
+            {currentIndex < text.length && (
+                <span
+                    className={`inline-block ml-1 ${showCursor ? "opacity-100" : "opacity-0"} transition-opacity duration-200`}
+                >
+                    <svg
+                        width="0.8em"
+                        height="1em"
+                        viewBox="0 0 8 16"
+                        fill="currentColor"
+                        className="inline-block"
+                    >
+                        <rect x="0" y="0" width="2" height="16" />
+                    </svg>
+                </span>
+            )}
+            {showChildren &&
+                children &&
+                React.isValidElement(children) &&
+                React.cloneElement(children, {
+                    ...children.props,
+                    children: (
+                        <TextType
+                            text={
+                                typeof children.props.children === "string"
+                                    ? children.props.children
+                                    : React.Children.toArray(
+                                          children.props.children
+                                      ).join("")
+                            }
+                            typingSpeed={childSpeed}
+                            initialDelay={0}
+                            loop={false}
+                        />
+                    ),
+                })}
+        </span>
+    );
+};
 
 const Hero = memo(function Hero() {
     const [imageLoaded, setImageLoaded] = useState(false);
@@ -46,10 +156,18 @@ const Hero = memo(function Hero() {
     const mainTitle = useMemo(
         () => (
             <h1 className="font-bold md:text-[65px] text-6xl lg:text-left text-center slide-in">
-                {t("title")}
-                <span className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 font-bold text-transparent">
-                    {t("name")}
-                </span>
+                <TextTypeWithChildren
+                    text={t("title")}
+                    typingSpeed={80}
+                    initialDelay={500}
+                    childDelay={0}
+                    childSpeed={120}
+                    loop={false}
+                >
+                    <span className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 font-bold text-transparent">
+                        {t("name")}
+                    </span>
+                </TextTypeWithChildren>
             </h1>
         ),
         [t]

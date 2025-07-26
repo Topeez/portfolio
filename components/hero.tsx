@@ -6,189 +6,9 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Skeleton } from "./ui/skeleton";
-import { useState, useMemo, useCallback, memo, useEffect } from "react";
+import { useState, useMemo, useCallback, memo } from "react";
 import React from "react";
 import GlareHover from "@/src/blocks/Animations/GlareHover/GlareHover";
-
-// Custom typing animation component with underscore cursor
-type TypingAnimationProps = {
-    text: string;
-    speed?: number;
-    delay?: number;
-    className?: string;
-    onComplete?: () => void;
-};
-
-const TypingAnimation = ({
-    text,
-    speed = 100,
-    delay = 0,
-    className = "",
-    onComplete,
-}: TypingAnimationProps) => {
-    const [displayedText, setDisplayedText] = useState("");
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [showCursor, setShowCursor] = useState(true);
-    const [isComplete, setIsComplete] = useState(false);
-
-    useEffect(() => {
-        setDisplayedText("");
-        setCurrentIndex(0);
-        setIsComplete(false);
-    }, [text]);
-
-    useEffect(() => {
-        if (currentIndex < text.length) {
-            const timeout = setTimeout(
-                () => {
-                    setDisplayedText((prev) => prev + text[currentIndex]);
-                    setCurrentIndex((prev) => prev + 1);
-
-                    // Check if animation is complete
-                    if (currentIndex + 1 === text.length) {
-                        setIsComplete(true);
-                        onComplete?.();
-                    }
-                },
-                currentIndex === 0 ? delay : speed
-            );
-
-            return () => clearTimeout(timeout);
-        }
-    }, [currentIndex, text, speed, delay, onComplete]);
-
-    // Cursor blinking effect
-    useEffect(() => {
-        const cursorInterval = setInterval(() => {
-            setShowCursor((prev) => !prev);
-        }, 530);
-        return () => clearInterval(cursorInterval);
-    }, []);
-
-    return (
-        <span className={className}>
-            {displayedText}
-            {!isComplete && (
-                <span
-                    className={`inline-block ml-1 transition-opacity duration-200 ${
-                        showCursor ? "opacity-100" : "opacity-0"
-                    }`}
-                >
-                    <svg
-                        width="0.8em"
-                        height="0.2em"
-                        viewBox="0 0 16 4"
-                        fill="currentColor"
-                        className="inline-block rotate-90"
-                    >
-                        <rect x="0" y="0" width="16" height="3" />
-                    </svg>
-                </span>
-            )}
-        </span>
-    );
-};
-
-// Sequential typing animation component that handles multiple text segments
-type SequentialTypingProps = {
-    segments: Array<{
-        text: string;
-        className?: string;
-        speed?: number;
-        delay?: number;
-    }>;
-    className?: string;
-};
-
-const SequentialTyping = ({
-    segments,
-    className = "",
-}: SequentialTypingProps) => {
-    const [currentSegment, setCurrentSegment] = useState(0);
-    const [completedSegments, setCompletedSegments] = useState<string[]>([]);
-    const [showFinalCursor, setShowFinalCursor] = useState(true);
-    const [allComplete, setAllComplete] = useState(false);
-
-    useEffect(() => {
-        // Reset when segments change
-        setCurrentSegment(0);
-        setCompletedSegments([]);
-        setAllComplete(false);
-    }, [segments]);
-
-    // Final cursor blinking effect
-    useEffect(() => {
-        if (allComplete) {
-            const cursorInterval = setInterval(() => {
-                setShowFinalCursor((prev) => !prev);
-            }, 530);
-            return () => clearInterval(cursorInterval);
-        }
-    }, [allComplete]);
-
-    const handleSegmentComplete = useCallback(
-        (segmentText: string) => {
-            setCompletedSegments((prev) => [...prev, segmentText]);
-            const nextSegment = currentSegment + 1;
-            setCurrentSegment(nextSegment);
-
-            // Check if all segments are complete
-            if (nextSegment >= segments.length) {
-                setAllComplete(true);
-                // Hide cursor after 2 seconds
-                setTimeout(() => {
-                    setShowFinalCursor(false);
-                }, 2000);
-            }
-        },
-        [currentSegment, segments.length]
-    );
-
-    return (
-        <span className={className}>
-            {/* Render completed segments */}
-            {completedSegments.map((text, index) => {
-                const segment = segments[index];
-                return (
-                    <span key={index} className={segment?.className || ""}>
-                        {text}
-                    </span>
-                );
-            })}
-
-            {/* Render current typing segment */}
-            {currentSegment < segments.length && (
-                <TypingAnimation
-                    text={segments[currentSegment].text}
-                    speed={segments[currentSegment].speed || 100}
-                    delay={segments[currentSegment].delay || 0}
-                    className={segments[currentSegment].className || ""}
-                    onComplete={() =>
-                        handleSegmentComplete(segments[currentSegment].text)
-                    }
-                />
-            )}
-
-            {/* Show final cursor after all segments complete */}
-            {allComplete && showFinalCursor && (
-                <span
-                    className="inline-block ml-1 transition-opacity duration-200"
-                    style={{ verticalAlign: "baseline" }}
-                >
-                    <svg
-                        width="0.8em"
-                        height="0.2em"
-                        viewBox="0 0 16 4"
-                        fill="currentColor"
-                        className="inline-block rotate-90"
-                    >
-                        <rect x="0" y="0" width="16" height="3" />
-                    </svg>
-                </span>
-            )}
-        </span>
-    );
-};
 
 const Hero = memo(function Hero() {
     const [imageLoaded, setImageLoaded] = useState(false);
@@ -224,32 +44,16 @@ const Hero = memo(function Hero() {
         [t]
     );
 
-    // Define the typing segments
-    const titleSegments = useMemo(
-        () => [
-            {
-                text: t("title"),
-                speed: 80,
-                delay: 500,
-            },
-            {
-                text: t("name"),
-                className:
-                    "bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 font-bold text-transparent",
-                speed: 120,
-                delay: 300,
-            },
-        ],
-        [t]
-    );
-
     const mainTitle = useMemo(
         () => (
             <h1 className="font-bold md:text-[65px] text-6xl lg:text-left text-center slide-in">
-                <SequentialTyping segments={titleSegments} />
+                {t("title")}
+                <span className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 font-bold text-transparent">
+                    {t("name")}
+                </span>
             </h1>
         ),
-        [titleSegments]
+        [t]
     );
 
     const ctaButton = useMemo(
@@ -305,7 +109,7 @@ const Hero = memo(function Hero() {
                 id="home"
                 className="relative flex flex-col content-center lg:grid grid-cols-12 pt-32 h-full cs-container"
             >
-                <div className="flex flex-col justify-center items-center lg:items-start space-y-6 lg:space-y-3 col-span-6 h-full">
+                <div className="flex flex-col justify-center items-center lg:items-start space-y-6 lg:space-y-4 col-span-6 h-full">
                     {availabilityPill}
                     {mainTitle}
                     <h2 className="text-3xl slide-in">{t("subtitle")}</h2>

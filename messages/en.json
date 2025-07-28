@@ -83,6 +83,12 @@
                 "description": "The client specializes in the installation and service of shading equipment",
                 "btncode": "View code",
                 "btnlink": "View demo"
+            },
+            "project6": {
+                "title": "A website for UrvTek",
+                "description": "This website is a platform for upcoming music competition made by UrvTek. Collaborating with Galfar.",
+                "btncode": "View code",
+                "btnlink": "View demo"
             }
         },
 

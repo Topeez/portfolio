@@ -95,6 +95,20 @@ const Projects = memo(function Projects() {
                 demo: "travasstineni.vercel.app",
                 inProggress: true,
             },
+            {
+                id: 6,
+                image: "/assets/img/projects/urvtek.png",
+                technologies: [
+                    "React",
+                    "Next.js",
+                    "Tailwind CSS",
+                    "shadcn UI",
+                    t("api"),
+                ],
+                github: "",
+                demo: "",
+                inProggress: true,
+            },
         ],
         [t]
     );

@@ -83,6 +83,12 @@
                 "description": "Klient se specializuje na montáž a servis stínící techniky",
                 "btncode": "Zobrazit kód",
                 "btnlink": "Zobrazit ukázku"
+            },
+            "project6": {
+                "title": "Webová stránka pro UrvTeka",
+                "description": "Tato stránka je platformou pro nadcházející hudební soutěž vytvořenou UrvTekem. Spolupracuji na tom s Galfarem.",
+                "btncode": "Zobrazit kód",
+                "btnlink": "Zobrazit ukázku"
             }
         },
 

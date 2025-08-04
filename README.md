@@ -67,11 +67,11 @@ Repozitář slouží jako zázemí a dokumentace k živému webu:
 - SEO optimalizace a podpora více jazyků (CZ/EN)
 
 ### Použité technologie
-- JavaScript / TypeScript  
-- React / Next.js nebo generátor statických stránek  
-- Tailwind CSS / SCSS / CSS moduly  
-- GSAP / Lottie / CSS animace  
-- Nasazení přes Vercel nebo Netlify  
+- TypeScript  
+- React / Next.js  
+- Tailwind CSS / Shadcn UI
+- Resend  
+- Nasazení přes Vercel  
 
 ### Struktura repozitáře
 - `/public/` # Statická aktiva (obrázky, ikony, favicon)

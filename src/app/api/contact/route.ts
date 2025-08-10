@@ -169,7 +169,7 @@ export async function POST(req: NextRequest) {
                     <h2 style="color: #2563eb; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px;">
                         Nová zpráva z kontaktního formuláře
                     </h2>
-                    <div style="background: #f9fafb; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                    <div style="background: transparent; padding: 20px; border-radius: 8px; margin: 20px 0;">
                         <p style="margin: 10px 0;"><strong>Jméno:</strong> ${sanitizedData.name}</p>
                         <p style="margin: 10px 0;"><strong>Email:</strong> 
                             <a href="mailto:${sanitizedData.email}" style="color: #2563eb;">

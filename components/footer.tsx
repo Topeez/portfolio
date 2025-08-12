@@ -1,6 +1,5 @@
 "use client";
 
-import { Links } from "@/components/links";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
@@ -78,13 +77,12 @@ export function Footer() {
             <div className="mt-8 cs-container">
                 <Separator className="bg-gradient-to-r from-blue-600 to-sky-400 my-6" />
 
-                <div className="flex md:flex-row flex-col justify-between items-center gap-4 text-center">
-                    <div className="text-sm md:text-base">
+                <div className="flex md:flex-row flex-col justify-between items-center gap-4 w-full text-center">
+                    <div className="mx-auto font-bold text-sm md:text-base">
                         {t("copyright1")}
                         {new Date().getFullYear()}
                         {t("copyright2")}
                     </div>
-                    <Links />
                 </div>
             </div>
         </footer>

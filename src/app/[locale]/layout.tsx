@@ -75,17 +75,6 @@ export const metadata: Metadata = {
         ],
     },
 
-    // Twitter Card metadata
-    twitter: {
-        card: "summary_large_image",
-        site: "@yourtwitterhandle", // Replace with your Twitter handle
-        creator: "@yourtwitterhandle",
-        title: "Ondřej Topínka - Frontend Developer & UI/UX Designer",
-        description:
-            "Experienced Frontend Developer creating modern web applications with React, Next.js, and TypeScript.",
-        images: ["/og-image.jpg"],
-    },
-
     // Additional metadata
     category: "Technology",
     classification: "Portfolio Website",
@@ -105,7 +94,7 @@ export const metadata: Metadata = {
 
     // Verification codes (add these if you use these services)
     verification: {
-        google: "your-google-verification-code",
+        google: "	google-site-verification=0DnDrwVUQ-fbq7JrpY1OF69zEKilb3OUMyAJ0WXiE50",
         // yandex: "your-yandex-verification-code",
         // bing: "your-bing-verification-code"
     },

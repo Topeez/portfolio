@@ -122,8 +122,7 @@ export async function POST(req: NextRequest) {
         let body;
         try {
             body = await req.json();
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        } catch (error) {
+        } catch {
             return NextResponse.json(
                 { error: "Neplatný JSON formát." },
                 { status: 400, headers: corsHeaders }

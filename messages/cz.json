@@ -53,6 +53,7 @@
             "title": "Projekty",
             "text": "Podívejte se na projekty, na kterých jsem v minulosti pracoval nebo ještě teď pracuji.",
             "api": "API integrace",
+            "db": "Databáze",
             "template": "Šablonování",
             "project1": {
                 "title": "Víceúčelový rozvrh hodin pro mou školu",
@@ -73,7 +74,7 @@
                 "btnlink": "Zobrazit ukázku"
             },
             "project4": {
-                "title": "Webová stránka školy, kterou jsem úspěšně vystudoval",
+                "title": "Webová stránka školy - MěSOŠ Klobouky u Brna",
                 "description": "Stránka vytvořena pomocí bloků ve WordPress",
                 "btncode": "Zobrazit kód",
                 "btnlink": "Zobrazit ukázku"
@@ -87,6 +88,12 @@
             "project6": {
                 "title": "Webová stránka pro UrvTeka",
                 "description": "Tato stránka je platformou pro nadcházející hudební soutěž vytvořenou UrvTekem. Spolupracuji na tom s Galfarem.",
+                "btncode": "Zobrazit kód",
+                "btnlink": "Zobrazit ukázku"
+            },
+            "project7": {
+                "title": "Webová stránka pro Rook Rules",
+                "description": "Tato stránka je PokeDexem her, které Rook hrál na streamu. Obsahuje základní informace o hře a krátký popis hry. Také obsahuje správce pro import těchto karet a zobrazení v Game Dex. Spolupracuji s Galfarem.",
                 "btncode": "Zobrazit kód",
                 "btnlink": "Zobrazit ukázku"
             }

@@ -91,8 +91,8 @@ const Projects = memo(function Projects() {
                     "shadcn UI",
                     t("api"),
                 ],
-                github: "",
-                demo: "travasstineni.vercel.app",
+                github: "https://github.com/Topeez/majktravasweb",
+                demo: "https://travasstineni.cz",
                 inProggress: true,
             },
             {
@@ -104,6 +104,23 @@ const Projects = memo(function Projects() {
                     "Tailwind CSS",
                     "shadcn UI",
                     t("api"),
+                ],
+                github: "",
+                demo: "",
+                inProggress: true,
+            },
+            {
+                id: 7,
+                image: "/assets/img/projects/rooksite.png",
+                technologies: [
+                    "React",
+                    "Next.js",
+                    "Tailwind CSS",
+                    "shadcn UI",
+                    t("api"),
+                    "Prisma",
+                    "SQLite",
+                    t("db"),
                 ],
                 github: "",
                 demo: "",
@@ -176,7 +193,6 @@ const Projects = memo(function Projects() {
 });
 
 // Memoize AnimatedCard to prevent unnecessary re-renders
-// Memoize AnimatedCard to prevent unnecessary re-renders
 const AnimatedCard = memo(function AnimatedCard({
     index,
     image,
@@ -209,24 +225,34 @@ const AnimatedCard = memo(function AnimatedCard({
         [isInView, index]
     );
 
+    // Check if links are disabled
+    const isGithubDisabled = github === "#" || github === "";
+    const isDemoDisabled = demo === "#" || demo === "";
+
     // Memoize button configurations to prevent recreation
     const buttonConfigs = useMemo(
         () => ({
             github: {
-                disabled: github === "#" || github === "",
+                disabled: isGithubDisabled,
                 className: `cursor-pointer bg-white/20 backdrop-blur-sm text-white border-white/30 hover:bg-white/30 !rounded-button whitespace-nowrap ${
-                    github === "#" || github === "" ? "cursor-not-allowed" : ""
+                    isGithubDisabled ? "cursor-not-allowed opacity-50" : ""
                 }`,
             },
             demo: {
-                disabled: demo === "#" || demo === "",
+                disabled: isDemoDisabled,
                 className: `cursor-pointer bg-gradient-to-r from-blue-600 to-sky-400 hover:from-blue-700 hover:to-sky-500 text-white !rounded-button whitespace-nowrap ${
-                    demo === "#" || demo === "" ? "cursor-not-allowed" : ""
+                    isDemoDisabled ? "cursor-not-allowed opacity-50" : ""
                 }`,
             },
         }),
-        [github, demo]
+        [isGithubDisabled, isDemoDisabled]
     );
+
+    // Handle click events for disabled buttons
+    const handleDisabledClick = (e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+    };
 
     // Memoize the technology badges to prevent recreation
     const technologyBadges = useMemo(
@@ -235,7 +261,7 @@ const AnimatedCard = memo(function AnimatedCard({
                 <Badge
                     key={i}
                     variant="outline"
-                    className="border-blue-600 text-blue-600 cursor-default"
+                    className="dark:border-sky-400 border-blue-600 text-blue-600 dark:text-sky-400 cursor-default"
                 >
                     {tech}
                 </Badge>
@@ -289,27 +315,75 @@ const AnimatedCard = memo(function AnimatedCard({
                     <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <div className="p-4 w-full">
                             <div className="flex justify-between items-center">
-                                <Button
-                                    variant="outline"
-                                    className={buttonConfigs.github.className}
-                                >
-                                    <GitBranch className="md:mr-2" />
-                                    <span className="hidden md:inline">
-                                        {t(`project${projectIndex}.btncode`)}
-                                    </span>
-                                </Button>
-                                <Link href={demo}>
-                                    <Button
-                                        className={buttonConfigs.demo.className}
-                                    >
-                                        <ExternalLink className="md:mr-2" />
-                                        <span className="hidden md:inline">
-                                            {t(
-                                                `project${projectIndex}.btnlink`
-                                            )}
-                                        </span>
-                                    </Button>
-                                </Link>
+                                {/* GitHub Button */}
+                                {isGithubDisabled ? (
+                                    <div onClick={handleDisabledClick}>
+                                        <Button
+                                            variant="outline"
+                                            className={
+                                                buttonConfigs.github.className
+                                            }
+                                            disabled
+                                        >
+                                            <GitBranch className="md:mr-2" />
+                                            <span className="hidden md:inline">
+                                                {t(
+                                                    `project${projectIndex}.btncode`
+                                                )}
+                                            </span>
+                                        </Button>
+                                    </div>
+                                ) : (
+                                    <Link href={github} target="_blank">
+                                        <Button
+                                            variant="outline"
+                                            className={
+                                                buttonConfigs.github.className
+                                            }
+                                        >
+                                            <GitBranch className="md:mr-2" />
+                                            <span className="hidden md:inline">
+                                                {t(
+                                                    `project${projectIndex}.btncode`
+                                                )}
+                                            </span>
+                                        </Button>
+                                    </Link>
+                                )}
+
+                                {/* Demo Button */}
+                                {isDemoDisabled ? (
+                                    <div onClick={handleDisabledClick}>
+                                        <Button
+                                            className={
+                                                buttonConfigs.demo.className
+                                            }
+                                            disabled
+                                        >
+                                            <ExternalLink className="md:mr-2" />
+                                            <span className="hidden md:inline">
+                                                {t(
+                                                    `project${projectIndex}.btnlink`
+                                                )}
+                                            </span>
+                                        </Button>
+                                    </div>
+                                ) : (
+                                    <Link href={demo} target="_blank">
+                                        <Button
+                                            className={
+                                                buttonConfigs.demo.className
+                                            }
+                                        >
+                                            <ExternalLink className="md:mr-2" />
+                                            <span className="hidden md:inline">
+                                                {t(
+                                                    `project${projectIndex}.btnlink`
+                                                )}
+                                            </span>
+                                        </Button>
+                                    </Link>
+                                )}
                             </div>
                         </div>
                     </div>

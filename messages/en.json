@@ -53,6 +53,7 @@
             "title": "Featured projects",
             "text": "Have a look on some projects I've worked on so far.",
             "api": "API Integration",
+            "db": "Database",
             "template": "Template blocks",
             "project1": {
                 "title": "Multi-use hours scheduler for my school",
@@ -73,7 +74,7 @@
                 "btnlink": "View demo"
             },
             "project4": {
-                "title": "A website for the high school I graduated from",
+                "title": "A school website - MěSOŠ Klobouky u Brna",
                 "description": "Created using template blocks in WordPress",
                 "btncode": "View code",
                 "btnlink": "View demo"
@@ -87,6 +88,12 @@
             "project6": {
                 "title": "A website for UrvTek",
                 "description": "This website is a platform for upcoming music competition made by UrvTek. Collaborating with Galfar.",
+                "btncode": "View code",
+                "btnlink": "View demo"
+            },
+            "project7": {
+                "title": "A website for Rook Rules",
+                "description": "This website is a PokeDex of games Rook has played on stream so far. It features simple info about the game and brief description of the game. Also includes admin dashboard for actually importing these cards to display them in Game Dex. Collaborating with Galfar.",
                 "btncode": "View code",
                 "btnlink": "View demo"
             }

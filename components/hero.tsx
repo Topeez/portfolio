@@ -69,7 +69,7 @@ const Hero = memo(function Hero() {
                     className="rounded-2xl"
                 >
                     <Link href="/#about">
-                        <Button className="hover:bg-gradient-to-r from-blue-600 to-sky-400 px-16 py-8 rounded-2xl hover:text-white text-2xl transition-all ease-in-out cursor-pointer">
+                        <Button className="bg-foreground hover:bg-gradient-to-r from-blue-600 to-sky-400 px-16 py-8 rounded-2xl hover:text-white text-2xl transition-all ease-in-out cursor-pointer">
                             <UserRound className="mr-1" />
                             {t("ctabutton")}
                         </Button>

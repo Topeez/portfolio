@@ -202,7 +202,7 @@ export function ContactForm() {
                                     <FormLabel>{fieldConfig.label}</FormLabel>
                                     <FormControl>
                                         <fieldConfig.component
-                                            className="focus-visible:border-blue-500 outline-none focus-visible:outline-none focus-visible:ring-0 active:ring-0 transition-colors"
+                                            className="focus-visible:border-blue-500 outline-none focus-visible:outline-none focus-visible:ring-0 active:ring-0 max-h-32 transition-colors"
                                             placeholder={
                                                 fieldConfig.placeholder
                                             }
@@ -216,7 +216,7 @@ export function ContactForm() {
                     ))}
 
                     <Button
-                        className="group hover:bg-gradient-to-br from-blue-500 to-sky-400 rounded-lg w-full hover:text-foreground hover:scale-[1.01] transition-all duration-300 cursor-pointer will-change-transform"
+                        className="group bg-foreground hover:bg-gradient-to-br from-blue-500 to-sky-400 rounded-lg w-full hover:text-foreground hover:scale-[1.01] transition-all duration-300 cursor-pointer will-change-transform"
                         type="submit"
                     >
                         {t("send")}

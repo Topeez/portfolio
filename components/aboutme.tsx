@@ -78,7 +78,7 @@ const AboutMe = memo(function AboutMe() {
     return (
         <section
             id="about"
-            className="relative grid grid-cols-12 py-44 overflow-hidden"
+            className="relative grid grid-cols-12 py-6 md:py-44 overflow-hidden"
         >
             <div className="hidden lg:block absolute inset-0">
                 <AmbientGlow />

@@ -31,7 +31,7 @@
 
         "AboutMe": {
             "title": "About me",
-            "text1-part1": "I'm a 19 year old frontend developer from ",
+            "text1-part1": "I'm a 20 year old frontend developer from ",
             "text1-part2": " with experience in React, Next.js, and Tailwind CSS. I build fast, responsive, and clean web applications.",
             "text2": "I started learning frontend in 2022 and since then I’ve worked on personal projects, small client websites, and interactive applications.",
             "text3": "I participated in a web development competition where our team built a booking system for teachers. We used PHP, HTML5, and CSS3, coding all the logic manually without frameworks. We advanced through the first round.",

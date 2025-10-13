@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ModeToggle } from "@/components/theme-switcher";
+import { ThemeToggle } from "@/components/theme-switcher";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useRouter, usePathname } from "next/navigation";
@@ -25,7 +25,7 @@ export function Header() {
     );
     const liClasses = useMemo(
         () =>
-            "hover:bg-foreground hover:text-background p-3 rounded-md transition-all ease-fluid cursor-pointer uppercase will-change-transform",
+            "hover:bg-transparent p-3 border-b-2 border-transparent hover:border-foreground transition-all ease-fluid cursor-pointer uppercase will-change-transform",
         []
     );
 
@@ -49,7 +49,7 @@ export function Header() {
 
     const headerClasses = useMemo(
         () =>
-            `fixed top-2 right-0 left-0 z-[1501] transition-all ease-fluid duration-500 ${!isVisible ? "-translate-y-28" : "-translate-y-2"}`,
+            `fixed top-5 right-0 left-0 z-[1501] transition-all ease-fluid duration-500 ${!isVisible ? "-translate-y-28" : "-translate-y-2"}`,
         [isVisible]
     );
 
@@ -186,7 +186,7 @@ export function Header() {
         () =>
             links.map((link) => {
                 const activeClass = isActive(link.href)
-                    ? "bg-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 text-transparent transition-all ease-fluid duration-500 hover:text-foreground"
+                    ? "bg-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 text-transparent border-b-2 border-sky-400 transition-all ease-fluid duration-500 hover:text-foreground"
                     : "";
 
                 return (
@@ -209,7 +209,7 @@ export function Header() {
 
     return (
         <header className={headerClasses}>
-            <nav className="flex justify-between items-center backdrop-blur-xl p-5 xl:border border-muted md:rounded-2xl w-full cs-container">
+            <nav className="flex justify-between items-center backdrop-blur-xl p-3 xl:border border-muted md:rounded-full w-full cs-container">
                 <Link
                     href={"/"}
                     className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 font-bold text-transparent uppercase"
@@ -223,7 +223,7 @@ export function Header() {
 
                 {/* Desktop Controls (hidden on mobile) */}
                 <div className="hidden xl:flex items-center gap-4">
-                    <ModeToggle />
+                    <ThemeToggle />
                     <LanguageToggleWithTooltip
                         currentLocale={currentLocale}
                         toggleLanguage={toggleLanguage}

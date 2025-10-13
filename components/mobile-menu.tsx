@@ -2,7 +2,7 @@
 
 import Flag from "react-world-flags";
 import Link from "next/link";
-import { ModeToggle } from "@/components/theme-switcher";
+import { ThemeToggle } from "@/components/theme-switcher";
 import { Button } from "@/components/ui/button";
 import { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import { useLocale } from "next-intl";
@@ -167,7 +167,7 @@ export function MobileMenu({
                                 : "0ms",
                         }}
                     >
-                        <ModeToggle />
+                        <ThemeToggle />
                         <Button
                             onClick={toggleLanguage}
                             variant="ghost"

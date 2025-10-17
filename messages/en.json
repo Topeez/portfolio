@@ -96,6 +96,12 @@
                 "description": "This website is a PokeDex of games Rook has played on stream so far. It features simple info about the game and brief description of the game. Also includes admin dashboard for actually importing these cards to display them in Game Dex. Collaborating with Galfar.",
                 "btncode": "View code",
                 "btnlink": "View demo"
+            },
+            "project8": {
+                "title": "Flock™ web application",
+                "description": "This web application is a platform for messaging with friends. It is still in the beginning of its development. Collaborating with Galfar.",
+                "btncode": "View code",
+                "btnlink": "View demo"
             }
         },
 

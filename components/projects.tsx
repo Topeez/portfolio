@@ -126,6 +126,14 @@ const Projects = memo(function Projects() {
                 demo: "",
                 inProggress: true,
             },
+            {
+                id: 8,
+                image: "/assets/img/projects/flock layout.png",
+                technologies: ["React", "Next.js", "Tailwind CSS", "shadcn UI"],
+                github: "",
+                demo: "",
+                inProggress: true,
+            },
         ],
         [t]
     );

@@ -96,6 +96,12 @@
                 "description": "Tato stránka je PokeDexem her, které Rook hrál na streamu. Obsahuje základní informace o hře a krátký popis hry. Také obsahuje správce pro import těchto karet a zobrazení v Game Dex. Spolupracuji s Galfarem.",
                 "btncode": "Zobrazit kód",
                 "btnlink": "Zobrazit ukázku"
+            },
+            "project8": {
+                "title": "Webová aplikace Flock™",
+                "description": "Tato aplikace je budoucí platformou pro komunikaci s přáteli. Je stále v úplném začátku vývoje. Spolupracuji s Galfarem.",
+                "btncode": "Zobrazit kód",
+                "btnlink": "Zobrazit ukázku"
             }
         },
 

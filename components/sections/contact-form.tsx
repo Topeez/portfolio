@@ -134,13 +134,17 @@ export function ContactForm() {
                         href={item.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label={item.label + " link"}
+                        aria-label={item.label}
                     >
-                        <Icon className="fill-foreground hover:fill-blue-600 size-10 hover:scale-[1.02] transition-all duration-300 will-change-transform" />
+                        <Icon
+                            className="fill-foreground hover:fill-blue-600 size-10 hover:scale-[1.02] transition-all duration-300 will-change-transform"
+                            aria-hidden="true"
+                        />
+                        <span className="sr-only">{item.label}</span>
                     </Link>
                 );
             }),
-        []
+        [socialMedia]
     );
 
     const formRef = useRef(null);

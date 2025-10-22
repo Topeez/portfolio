@@ -29,6 +29,7 @@ export function BackToTop() {
             variant={"ghost"}
             onClick={scrollToTop}
             className={`fixed bottom-7 md:bottom-5 md:translate-x-0 translate-x-1/2 right-1/2 md:right-5 z-50 flex items-center justify-center rounded-full aspect-square size-10 md:size-12 bg-gradient-to-r from-blue-600 to-sky-400 text-background cursor-pointer border border-background hover:border-foreground ${visible ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+            aria-label="Back to top button"
         >
             <ArrowUp size={20} />
         </Button>

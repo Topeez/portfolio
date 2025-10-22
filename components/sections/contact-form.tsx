@@ -134,6 +134,7 @@ export function ContactForm() {
                         href={item.link}
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label={item.label + " link"}
                     >
                         <Icon className="fill-foreground hover:fill-blue-600 size-10 hover:scale-[1.02] transition-all duration-300 will-change-transform" />
                     </Link>

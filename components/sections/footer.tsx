@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { socialMedia } from "@/components/socialMedia";
+import { socialMedia } from "@/components/sections/socialMedia";
 
 export function Footer() {
     const t = useTranslations("Footer");

@@ -18,20 +18,23 @@ import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { Spacer } from "@/components/spacer";
+import { Spacer } from "@/components/utils/spacer";
 import {
     Carousel,
     CarouselContent,
     CarouselItem,
     CarouselNext,
     CarouselPrevious,
+    type CarouselApi,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { motion, useInView } from "framer-motion";
-import { useRef, useMemo, memo } from "react";
+import { useRef, useMemo, memo, useState, useEffect, useCallback } from "react";
 
 const Projects = memo(function Projects() {
     const t = useTranslations("HomePage.Projects");
+    const [api, setApi] = useState<CarouselApi>();
+    const [selectedIndex, setSelectedIndex] = useState(0);
 
     // Memoize the project data to prevent recreation on every render
     const projectData = useMemo(
@@ -93,7 +96,7 @@ const Projects = memo(function Projects() {
                 ],
                 github: "https://github.com/Topeez/majktravasweb",
                 demo: "https://travasstineni.cz",
-                inProggress: true,
+                inProggress: false,
             },
             {
                 id: 6,
@@ -138,11 +141,31 @@ const Projects = memo(function Projects() {
         [t]
     );
 
+    // Track the selected carousel index
+    const onSelect = useCallback(() => {
+        if (!api) return;
+        setSelectedIndex(api.selectedScrollSnap());
+    }, [api]);
+
+    // Set up event listener for carousel selection changes
+    useEffect(() => {
+        if (!api) return;
+
+        onSelect();
+        api.on("select", onSelect);
+
+        return () => {
+            api.off("select", onSelect);
+        };
+    }, [api, onSelect]);
+
     // Memoize the carousel items to prevent recreation on every render
     const carouselItems = useMemo(
         () =>
             projectData.map((project, index) => {
                 const projectIndex = index + 1;
+                const isSelected = selectedIndex === index;
+
                 return (
                     <CarouselItem
                         key={project.id}
@@ -157,11 +180,12 @@ const Projects = memo(function Projects() {
                             projectIndex={projectIndex}
                             technologies={project.technologies}
                             inProgress={project.inProggress}
+                            isSelected={isSelected}
                         />
                     </CarouselItem>
                 );
             }),
-        [projectData, t]
+        [projectData, t, selectedIndex]
     );
 
     return (
@@ -179,10 +203,11 @@ const Projects = memo(function Projects() {
                     <div className="z-10 inset-0 bg-gradient-to-r from-background via-transparent to-background aboslute"></div>
 
                     <Carousel
-                        className="w-full"
+                        className="relative w-full"
+                        setApi={setApi}
                         plugins={[
                             Autoplay({
-                                delay: 5000,
+                                delay: 10000,
                             }),
                         ]}
                     >
@@ -193,6 +218,9 @@ const Projects = memo(function Projects() {
                             <CarouselPrevious className="static translate-x-0 translate-y-0 cursor-pointer" />
                             <CarouselNext className="static translate-x-0 translate-y-0 cursor-pointer" />
                         </div>
+
+                        <div className="hidden md:block top-0 left-0 absolute bg-gradient-to-r from-background to-transparent w-28 h-full"></div>
+                        <div className="hidden md:block top-0 right-0 absolute bg-gradient-to-l from-background to-transparent w-28 h-full"></div>
                     </Carousel>
                 </div>
             </div>
@@ -210,6 +238,7 @@ const AnimatedCard = memo(function AnimatedCard({
     projectIndex,
     technologies,
     inProgress,
+    isSelected,
 }: {
     index: number;
     image: string;
@@ -219,6 +248,7 @@ const AnimatedCard = memo(function AnimatedCard({
     projectIndex: number;
     technologies: string[];
     inProgress: boolean;
+    isSelected: boolean;
 }) {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
@@ -269,7 +299,7 @@ const AnimatedCard = memo(function AnimatedCard({
                 <Badge
                     key={i}
                     variant="outline"
-                    className="dark:border-sky-400 border-blue-600 text-blue-600 dark:text-sky-400 cursor-default"
+                    className="border-blue-600 dark:border-sky-400 text-blue-600 dark:text-sky-400 cursor-default"
                 >
                     {tech}
                 </Badge>
@@ -307,7 +337,9 @@ const AnimatedCard = memo(function AnimatedCard({
             animate={animationVariants.animate}
             transition={animationVariants.transition}
         >
-            <Card className="group relative hover:shadow-xl pt-0 pb-6 h-full overflow-hidden transition-shadow duration-300 card-gradient">
+            <Card
+                className={`group relative hover:shadow-xl pt-0 pb-6 h-full overflow-hidden transition-shadow duration-300 ${isSelected ? "card-gradient" : ""}`}
+            >
                 <div className="relative h-[240px] overflow-hidden">
                     <Image
                         src={image}

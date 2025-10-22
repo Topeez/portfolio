@@ -2,11 +2,11 @@
 
 import Flag from "react-world-flags";
 import Link from "next/link";
-import { ThemeToggle } from "@/components/theme-switcher";
+import { ThemeToggle } from "@/components/header/theme-switcher";
 import { Button } from "@/components/ui/button";
 import { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import { useLocale } from "next-intl";
-import HamburgerIcon from "@/components/hamburger-icon";
+import HamburgerIcon from "@/components/header/hamburger-icon";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface MobileMenuProps {

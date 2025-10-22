@@ -1,13 +1,13 @@
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
-import Hero from "@/components/hero";
-import AboutMe from "@/components/aboutme";
-import Projects from "@/components/projects";
-import { Spacer } from "@/components/spacer";
-import { TechStack } from "@/components/tech-stack";
-import { HeroDivider } from "@/components/hero-divider";
-import { Ambient } from "@/components/hero-ambient";
-import { Contact } from "@/components/contact";
+import { Header } from "@/components/header/header";
+import { Footer } from "@/components/sections/footer";
+import Hero from "@/components/hero/hero";
+import AboutMe from "@/components/sections/aboutme";
+import Projects from "@/components/sections/projects";
+import { Spacer } from "@/components/utils/spacer";
+import { TechStack } from "@/components/sections/tech-stack";
+import { HeroDivider } from "@/components/hero/hero-divider";
+import { Ambient } from "@/components/hero/hero-ambient";
+import { Contact } from "@/components/sections/contact";
 
 export default function Home() {
     return (

@@ -3,7 +3,7 @@
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 interface ThemeToggleProps {
     className?: string;
@@ -19,6 +19,20 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
     }, []);
 
     const isDark = resolvedTheme === "dark";
+
+    const handleKeyDown = useCallback(
+        (e: KeyboardEvent) => {
+            if (e.shiftKey && e.key === "D") {
+                setTheme(isDark ? "light" : "dark");
+            }
+        },
+        [isDark, setTheme]
+    );
+
+    useEffect(() => {
+        document.addEventListener("keydown", handleKeyDown);
+        return () => document.removeEventListener("keydown", handleKeyDown);
+    }, [handleKeyDown]);
 
     if (!mounted) {
         // Return a placeholder with the same dimensions during SSR

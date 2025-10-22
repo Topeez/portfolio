@@ -14,7 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { socialMedia } from "@/components/socialMedia";
+import { socialMedia } from "@/components/sections/socialMedia";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 import { Send } from "lucide-react";
@@ -223,7 +223,7 @@ export function ContactForm() {
                         <Send className="group-hover:scale-105" />
                     </Button>
 
-                    <div className="after:top-1/2 after:z-0 after:absolute relative after:inset-0 after:flex after:items-center after:border-t after:border-border text-sm text-center">
+                    <div className="after:top-1/2 after:z-0 after:absolute relative after:inset-0 after:flex after:items-center after:border-border after:border-t text-sm text-center">
                         <span className="z-10 relative bg-background px-2 text-muted-foreground">
                             {t("contact")}
                         </span>

@@ -16,7 +16,7 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion";
 import { motion, useInView } from "framer-motion";
-import { AmbientGlow } from "./ambient-glow";
+import { AmbientGlow } from "../utils/ambient-glow";
 
 const AboutMe = memo(function AboutMe() {
     const t = useTranslations("HomePage");

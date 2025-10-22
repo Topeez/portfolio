@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { useMemo } from "react";
-import { TechCard } from "@/components/tech-card";
+import { TechCard } from "@/components/sections/tech-card";
 
 export function TechStack() {
     const t = useTranslations("HomePage.TechStack");

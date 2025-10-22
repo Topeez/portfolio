@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Skeleton } from "./ui/skeleton";
+import { Skeleton } from "../ui/skeleton";
 import { useState, useMemo, useCallback, memo } from "react";
 import React from "react";
 import GlareHover from "@/src/blocks/Animations/GlareHover/GlareHover";

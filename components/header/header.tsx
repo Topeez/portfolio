@@ -1,14 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { ThemeToggle } from "@/components/theme-switcher";
+import { ThemeToggle } from "@/components/header/theme-switcher";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { LanguageToggleWithTooltip } from "@/components/lang-switcher";
+import { LanguageToggleWithTooltip } from "@/components/header/lang-switcher";
 import { MobileMenu } from "./mobile-menu";
-import HamburgerIcon from "@/components/hamburger-icon";
+import HamburgerIcon from "@/components/header/hamburger-icon";
+import { Kbd, KbdGroup } from "../ui/kbd";
+import { ArrowBigUp } from "lucide-react";
 
 export function Header() {
     const [isVisible, setIsVisible] = useState(true);
@@ -16,13 +18,16 @@ export function Header() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState<string | null>(null);
     const mobileMenuRef = useRef<HTMLDivElement>(null);
+    const throttleTimeoutRef = useRef<NodeJS.Timeout | null>(null);
     const router = useRouter();
     const pathname = usePathname();
     const currentLocale = useLocale();
+
     const sectionIds = useMemo(
         () => ["home", "about", "projects", "techstack", "contact"],
         []
     );
+
     const liClasses = useMemo(
         () =>
             "hover:bg-transparent p-3 border-b-2 border-transparent hover:border-foreground transition-all ease-fluid cursor-pointer uppercase will-change-transform",
@@ -52,6 +57,15 @@ export function Header() {
             `fixed top-5 right-0 left-0 z-[1501] transition-all ease-fluid duration-500 ${!isVisible ? "-translate-y-28" : "-translate-y-2"}`,
         [isVisible]
     );
+
+    // Define callbacks BEFORE useEffect hooks that use them
+    const closeMobileMenu = useCallback(() => {
+        setIsMobileMenuOpen(false);
+    }, []);
+
+    const toggleMobileMenu = useCallback(() => {
+        setIsMobileMenuOpen((prev) => !prev);
+    }, []);
 
     const highlightCurrentSection = useCallback(() => {
         let current = "";
@@ -89,31 +103,33 @@ export function Header() {
         lastScrollY.current = currentScrollY;
     }, [isHomePage, highlightCurrentSection]);
 
-    useEffect(() => {
-        window.addEventListener("scroll", handleScroll);
-        handleScroll();
+    // Throttled scroll handler
+    const throttledScroll = useCallback(() => {
+        if (throttleTimeoutRef.current) return;
 
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
+        throttleTimeoutRef.current = setTimeout(() => {
+            handleScroll();
+            throttleTimeoutRef.current = null;
+        }, 100);
     }, [handleScroll]);
 
+    // Scroll event listener with throttling
+    useEffect(() => {
+        window.addEventListener("scroll", throttledScroll, { passive: true });
+        handleScroll(); // Initial call
+
+        return () => {
+            window.removeEventListener("scroll", throttledScroll);
+            if (throttleTimeoutRef.current) {
+                clearTimeout(throttleTimeoutRef.current);
+            }
+        };
+    }, [throttledScroll, handleScroll]);
+
+    // Combined mobile menu effects (body overflow + click outside + escape)
     useEffect(() => {
         document.body.style.overflow = isMobileMenuOpen ? "hidden" : "auto";
-        return () => {
-            document.body.style.overflow = "auto";
-        };
-    }, [isMobileMenuOpen]);
 
-    const closeMobileMenu = useCallback(() => {
-        setIsMobileMenuOpen(false);
-    }, []);
-
-    const toggleMobileMenu = useCallback(() => {
-        setIsMobileMenuOpen((prev) => !prev);
-    }, []);
-
-    useEffect(() => {
         const handleClickOutside = (e: MouseEvent) => {
             if (
                 mobileMenuRef.current &&
@@ -128,14 +144,17 @@ export function Header() {
             if (e.key === "Escape") closeMobileMenu();
         };
 
-        document.addEventListener("mousedown", handleClickOutside);
-        document.addEventListener("keydown", handleEscape);
+        if (isMobileMenuOpen) {
+            document.addEventListener("mousedown", handleClickOutside);
+            document.addEventListener("keydown", handleEscape);
+        }
 
         return () => {
+            document.body.style.overflow = "auto";
             document.removeEventListener("mousedown", handleClickOutside);
             document.removeEventListener("keydown", handleEscape);
         };
-    }, [closeMobileMenu]);
+    }, [isMobileMenuOpen, closeMobileMenu]);
 
     const handleLinkClick = useCallback(
         (e: React.MouseEvent, hash: string) => {
@@ -171,6 +190,7 @@ export function Header() {
         router.replace(newPath);
     }, [currentLocale, pathname, router]);
 
+    // Keyboard shortcut for language toggle
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
             if (event.shiftKey && event.key === "C") {
@@ -221,8 +241,12 @@ export function Header() {
                     {desktopLinks}
                 </ul>
 
-                {/* Desktop Controls (hidden on mobile) */}
                 <div className="hidden xl:flex items-center gap-4">
+                    <KbdGroup>
+                        <Kbd className="bg-transparent p-3.5 border border-muted rounded-full">
+                            <ArrowBigUp className="size-4" /> + D
+                        </Kbd>
+                    </KbdGroup>
                     <ThemeToggle />
                     <LanguageToggleWithTooltip
                         currentLocale={currentLocale}

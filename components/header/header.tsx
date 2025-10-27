@@ -248,10 +248,7 @@ export function Header() {
                         </Kbd>
                     </KbdGroup>
                     <ThemeToggle />
-                    <LanguageToggleWithTooltip
-                        currentLocale={currentLocale}
-                        toggleLanguage={toggleLanguage}
-                    />
+                    <LanguageToggleWithTooltip currentLocale={currentLocale} />
                 </div>
 
                 <div className="xl:hidden">

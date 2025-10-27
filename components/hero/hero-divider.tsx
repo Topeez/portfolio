@@ -1,32 +1,54 @@
 export function HeroDivider() {
     return (
-        <div className="-translate-y-28 md:-translate-y-36 lg:-translate-y-44">
+        <div className="-translate-y-28 md:-translate-y-36 lg:-translate-y-36">
             <div className="divider-bottom">
                 <svg
-                    data-name="Layer 1"
                     xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 1200 120"
+                    viewBox="0 0 1000 100"
                     preserveAspectRatio="none"
                     className="z-[1500]"
                 >
-                    <path
-                        d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-                        className="shape-fill"
-                    ></path>
+                    <g fill="#000">
+                        <path
+                            d="M0 0v100c166.7 0 166.7-66 333.3-66S500 77 666.7 77 833.3 28 1000 28V0H0Z"
+                            opacity=".5"
+                            className="shape-fill"
+                        ></path>
+                        <path
+                            d="M0 0v100c166.7 0 166.7-66 333.3-66S500 70 666.7 70 833.3 16 1000 16V0H0Z"
+                            opacity=".5"
+                            className="shape-fill"
+                        ></path>
+                        <path
+                            d="M0 0v100c166.7 0 166.7-66 333.3-66S500 63 666.7 63 833.3 4 1000 4V0H0Z"
+                            className="shape-fill"
+                        ></path>
+                    </g>
                 </svg>
             </div>
             <div className="divider-top">
                 <svg
-                    data-name="Layer 1"
                     xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 1200 120"
+                    viewBox="0 0 1000 100"
                     preserveAspectRatio="none"
                     className="z-[1500]"
                 >
-                    <path
-                        d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-                        className="shape-fill"
-                    ></path>
+                    <g fill="#000">
+                        <path
+                            d="M1000 100C500 100 500 64 0 64V0h1000v100Z"
+                            opacity=".5"
+                            className="shape-fill"
+                        ></path>
+                        <path
+                            d="M1000 100C500 100 500 34 0 34V0h1000v100Z"
+                            opacity=".5"
+                            className="shape-fill"
+                        ></path>
+                        <path
+                            d="M1000 100C500 100 500 4 0 4V0h1000v100Z"
+                            className="shape-fill"
+                        ></path>
+                    </g>
                 </svg>
             </div>
         </div>

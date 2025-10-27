@@ -144,6 +144,7 @@ export function ContactForm() {
                     </Link>
                 );
             }),
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [socialMedia]
     );
 

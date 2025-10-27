@@ -144,7 +144,7 @@
     }
 
     .form-wrapper {
-        @apply relative p-px rounded-2xl overflow-hidden border;
+        @apply relative p-px border rounded-2xl overflow-hidden;
     }
 
     .form-wrapper::before {
@@ -155,11 +155,11 @@
             transparent 80deg
         );
 
-        @apply absolute left-[-50%] top-[-50%] size-[200%] animate-border-spin content-[''];
+        @apply top-[-50%] left-[-50%] absolute size-[200%] content-[''] animate-border-spin;
     }
 
     .form-content {
-        @apply relative rounded-2xl bg-background;
+        @apply relative bg-background rounded-2xl;
     }
 
     .card-gradient {
@@ -305,11 +305,11 @@
     }
 
     body {
-        @apply bg-background text-foreground overflow-x-hidden overflow-y-auto;
+        @apply bg-background overflow-x-hidden overflow-y-auto text-foreground;
     }
 
     .footer-socials svg {
-        @apply size-6 md:size-8 transition-all ease-fluid hover:scale-105;
+        @apply size-6 md:size-8 hover:scale-105 transition-all ease-fluid;
     }
 
     .divider-bottom,

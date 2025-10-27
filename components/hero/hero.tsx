@@ -123,7 +123,7 @@ const Hero = memo(function Hero() {
                     {!imageLoaded && (
                         <Skeleton className="absolute inset-0 w-full h-full" />
                     )}
-                    <div className="z-auto absolute inset-0 bg-gradient-to-t from-10% from-background to-30% to-transparent" />
+                    <div className="z-auto absolute inset-0 bg-gradient-to-t from-10% dark:from-background to-30% to-transparent" />
                     <Image
                         src="/assets/img/me_transparent.png"
                         alt="me"

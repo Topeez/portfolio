@@ -30,11 +30,18 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 import { motion, useInView } from "framer-motion";
 import { useRef, useMemo, memo, useState, useEffect, useCallback } from "react";
+import { cn } from "@/lib/utils";
 
 const Projects = memo(function Projects() {
     const t = useTranslations("HomePage.Projects");
     const [api, setApi] = useState<CarouselApi>();
     const [selectedIndex, setSelectedIndex] = useState(0);
+
+    const autoplayRef = useRef(
+        Autoplay({
+            delay: 10000,
+        })
+    );
 
     // Memoize the project data to prevent recreation on every render
     const projectData = useMemo(
@@ -159,6 +166,14 @@ const Projects = memo(function Projects() {
         };
     }, [api, onSelect]);
 
+    const handleDotClick = useCallback(
+        (index: number) => {
+            api?.scrollTo(index);
+            autoplayRef.current.reset();
+        },
+        [api]
+    );
+
     // Memoize the carousel items to prevent recreation on every render
     const carouselItems = useMemo(
         () =>
@@ -214,8 +229,24 @@ const Projects = memo(function Projects() {
                         <CarouselContent className="-ml-4">
                             {carouselItems}
                         </CarouselContent>
-                        <div className="flex justify-center gap-4 mt-4">
+
+                        {/* Pagination Dots */}
+                        <div className="flex justify-center items-center gap-2 mt-4">
                             <CarouselPrevious className="static translate-x-0 translate-y-0 cursor-pointer" />
+                            {projectData.map((_, index) => (
+                                <button
+                                    key={index}
+                                    onClick={() => handleDotClick(index)}
+                                    className={cn(
+                                        "border-2 rounded-full w-3 h-3 transition-all duration-300",
+                                        selectedIndex === index
+                                            ? "border-blue-600 dark:border-sky-400 bg-blue-600 dark:bg-sky-400"
+                                            : "border-gray-400 dark:border-gray-600 hover:border-blue-500 dark:hover:border-sky-500"
+                                    )}
+                                    aria-label={`Go to slide ${index + 1}`}
+                                />
+                            ))}
+
                             <CarouselNext className="static translate-x-0 translate-y-0 cursor-pointer" />
                         </div>
 
@@ -228,7 +259,7 @@ const Projects = memo(function Projects() {
     );
 });
 
-// Memoize AnimatedCard to prevent unnecessary re-renders
+// AnimatedCard component remains the same
 const AnimatedCard = memo(function AnimatedCard({
     index,
     image,

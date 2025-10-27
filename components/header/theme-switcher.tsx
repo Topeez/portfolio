@@ -39,7 +39,7 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
         return (
             <div
                 className={cn(
-                    "flex p-1 border border-muted rounded-full w-16 h-8",
+                    "flex p-1.5 border border-muted rounded-full w-16 h-8",
                     className
                 )}
             >
@@ -64,7 +64,7 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
     return (
         <div
             className={cn(
-                "flex backdrop-blur-lg p-1 border border-muted rounded-full w-16 h-8 transition-all duration-300 cursor-pointer",
+                "flex backdrop-blur-lg p-1.5 border border-muted rounded-full w-16 h-8 transition-all duration-300 cursor-pointer",
                 className
             )}
             onClick={() => setTheme(isDark ? "light" : "dark")}

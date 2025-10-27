@@ -2,6 +2,7 @@
 
 import Flag from "react-world-flags";
 import { useTranslations } from "next-intl";
+import { usePathname, useRouter } from "@/src/i18n/navigation";
 import {
     Tooltip,
     TooltipContent,
@@ -9,17 +10,40 @@ import {
 } from "@/components/ui/tooltip";
 import { ArrowBigUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useEffect, useCallback } from "react";
 
 interface LanguageToggleWithTooltipProps {
     currentLocale: string;
-    toggleLanguage: () => void;
 }
 
 export function LanguageToggleWithTooltip({
     currentLocale,
-    toggleLanguage,
 }: LanguageToggleWithTooltipProps) {
     const t = useTranslations("Header");
+    const router = useRouter();
+    const pathname = usePathname();
+
+    const toggleLanguage = useCallback(() => {
+        const newLocale = currentLocale === "en" ? "cz" : "en";
+        router.replace(pathname, { locale: newLocale });
+        router.refresh();
+    }, [currentLocale, pathname, router]);
+
+    useEffect(() => {
+        const handleKeyDown = (event: KeyboardEvent) => {
+            // Fixed: compare to lowercase "c", not uppercase "C"
+            if (event.shiftKey && event.key.toLowerCase() === "c") {
+                event.preventDefault();
+                toggleLanguage();
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [toggleLanguage]);
 
     return (
         <Tooltip>

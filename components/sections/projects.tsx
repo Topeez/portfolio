@@ -148,13 +148,12 @@ const Projects = memo(function Projects() {
         [t]
     );
 
-    // Track the selected carousel index
     const onSelect = useCallback(() => {
         if (!api) return;
         setSelectedIndex(api.selectedScrollSnap());
+        autoplayRef.current.reset();
     }, [api]);
 
-    // Set up event listener for carousel selection changes
     useEffect(() => {
         if (!api) return;
 
@@ -169,7 +168,6 @@ const Projects = memo(function Projects() {
     const handleDotClick = useCallback(
         (index: number) => {
             api?.scrollTo(index);
-            autoplayRef.current.reset();
         },
         [api]
     );
@@ -220,11 +218,7 @@ const Projects = memo(function Projects() {
                     <Carousel
                         className="relative w-full"
                         setApi={setApi}
-                        plugins={[
-                            Autoplay({
-                                delay: 10000,
-                            }),
-                        ]}
+                        plugins={[autoplayRef.current]}
                     >
                         <CarouselContent className="-ml-4">
                             {carouselItems}
@@ -259,7 +253,7 @@ const Projects = memo(function Projects() {
     );
 });
 
-// AnimatedCard component remains the same
+// AnimatedCard component remains exactly the same...
 const AnimatedCard = memo(function AnimatedCard({
     index,
     image,
@@ -284,21 +278,18 @@ const AnimatedCard = memo(function AnimatedCard({
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
 
-    // Memoize animation variants
     const animationVariants = useMemo(
         () => ({
-            initial: { opacity: 0, y: 40 },
+            initial: { opacity: 0, y: 20 },
             animate: isInView ? { opacity: 1, y: 0 } : {},
-            transition: { duration: 0.5, delay: index * 0.15 },
+            transition: { duration: 0.3, delay: index * 0.05 },
         }),
         [isInView, index]
     );
 
-    // Check if links are disabled
     const isGithubDisabled = github === "#" || github === "";
     const isDemoDisabled = demo === "#" || demo === "";
 
-    // Memoize button configurations to prevent recreation
     const buttonConfigs = useMemo(
         () => ({
             github: {
@@ -317,13 +308,11 @@ const AnimatedCard = memo(function AnimatedCard({
         [isGithubDisabled, isDemoDisabled]
     );
 
-    // Handle click events for disabled buttons
     const handleDisabledClick = (e: React.MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
     };
 
-    // Memoize the technology badges to prevent recreation
     const technologyBadges = useMemo(
         () =>
             technologies.map((tech, i) => (
@@ -338,7 +327,6 @@ const AnimatedCard = memo(function AnimatedCard({
         [technologies]
     );
 
-    // Memoize the status icon
     const statusIcon = useMemo(
         () =>
             inProgress ? (
@@ -349,7 +337,6 @@ const AnimatedCard = memo(function AnimatedCard({
         [inProgress]
     );
 
-    // Get the alt text with fallback
     const altText = useMemo(() => {
         try {
             return (
@@ -386,7 +373,6 @@ const AnimatedCard = memo(function AnimatedCard({
                     <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <div className="p-4 w-full">
                             <div className="flex justify-between items-center">
-                                {/* GitHub Button */}
                                 {isGithubDisabled ? (
                                     <div onClick={handleDisabledClick}>
                                         <Button
@@ -422,7 +408,6 @@ const AnimatedCard = memo(function AnimatedCard({
                                     </Link>
                                 )}
 
-                                {/* Demo Button */}
                                 {isDemoDisabled ? (
                                     <div onClick={handleDisabledClick}>
                                         <Button

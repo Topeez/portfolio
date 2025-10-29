@@ -106,9 +106,14 @@
         },
 
         "TechStack": {
-            "title": "Technologie",
-            "text": "Zde je přehled technologií, které jsem použil ve svých projektech.",
-            "skill": "Úroveň dovednosti"
+            "title": "Tech stack",
+            "text": "Here is my overview of technologies I've worked with and their experience levels.",
+            "experience": {
+                "5plus": "5+ let",
+                "3plus": "3+ let",
+                "2plus": "2+ let",
+                "1plus": "1+ let"
+            }
         }
     },
     "Contact": {

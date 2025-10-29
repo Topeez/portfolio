@@ -107,8 +107,13 @@
 
         "TechStack": {
             "title": "Tech stack",
-            "text": "Here is my overview of tech stack I've used so far.",
-            "skill": "Skill level"
+            "text": "Here is my overview of technologies I've worked with and their experience levels.",
+            "experience": {
+                "5plus": "5+ years",
+                "3plus": "3+ years",
+                "2plus": "2+ years",
+                "1plus": "1+ year"
+            }
         }
     },
     "Contact": {

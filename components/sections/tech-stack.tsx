@@ -12,66 +12,66 @@ export function TechStack() {
         () => [
             {
                 id: 1,
-                text: "Next.js",
-                image: "/assets/icons/nextjs.svg",
-                link: "https://nextjs.org/",
-                level: 2,
+                text: "HTML5",
+                image: "/assets/icons/html-5.svg",
+                link: "https://html.spec.whatwg.org/",
+                experience: t("experience.3plus"), // Optional: add context
             },
             {
                 id: 2,
-                text: "React",
-                image: "/assets/icons/react.svg",
-                link: "https://react.dev/",
-                level: 3,
+                text: "CSS3",
+                image: "/assets/icons/css3.svg",
+                link: "https://www.w3.org/Style/CSS/",
+                experience: t("experience.3plus"),
             },
             {
                 id: 3,
                 text: "Tailwind CSS",
                 image: "/assets/icons/tailwind.svg",
                 link: "https://tailwindcss.com/",
-                level: 4,
+                experience: t("experience.2plus"),
             },
             {
                 id: 4,
                 text: "JavaScript",
                 image: "/assets/icons/javascript.svg",
                 link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
-                level: 3,
+                experience: t("experience.3plus"),
             },
             {
                 id: 5,
-                text: "TypeScript",
-                image: "/assets/icons/typescript.svg",
-                link: "https://www.typescriptlang.org/",
-                level: 2,
+                text: "React",
+                image: "/assets/icons/react.svg",
+                link: "https://react.dev/",
+                experience: t("experience.1plus"),
             },
             {
                 id: 6,
-                text: "HTML5",
-                image: "/assets/icons/html-5.svg",
-                link: "https://html.spec.whatwg.org/",
-                level: 5,
+                text: "Next.js",
+                image: "/assets/icons/nextjs.svg",
+                link: "https://nextjs.org/",
+                experience: t("experience.1plus"),
             },
             {
                 id: 7,
-                text: "Docker",
-                image: "/assets/icons/docker.svg",
-                link: "https://www.docker.com/",
-                level: 2,
+                text: "TypeScript",
+                image: "/assets/icons/typescript.svg",
+                link: "https://www.typescriptlang.org/",
+                experience: t("experience.1plus"),
             },
             {
                 id: 8,
-                text: "CSS3",
-                image: "/assets/icons/css3.svg",
-                link: "https://www.w3.org/Style/CSS/",
-                level: 5,
-            },
-            {
-                id: 9,
                 text: "Python Django",
                 image: "/assets/icons/django.svg",
                 link: "https://www.djangoproject.com/",
-                level: 3,
+                experience: t("experience.2plus"),
+            },
+            {
+                id: 9,
+                text: "Docker",
+                image: "/assets/icons/docker.svg",
+                link: "https://www.docker.com/",
+                experience: t("experience.2plus"),
             },
         ],
         []
@@ -86,7 +86,7 @@ export function TechStack() {
                     image={logo.image}
                     link={logo.link}
                     text={logo.text}
-                    level={logo.level}
+                    experience={logo.experience}
                 />
             )),
         [logos]

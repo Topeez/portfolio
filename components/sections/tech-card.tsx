@@ -4,22 +4,20 @@ import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef, useMemo } from "react";
-import { useTranslations } from "next-intl";
 
 export function TechCard({
     image,
     link,
     text,
-    level,
+    experience,
 }: {
     image: string;
     link: string;
     text: string;
-    level: number;
+    experience?: string;
 }) {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
-    const t = useTranslations("HomePage.TechStack");
 
     // Memoize the animation variants to prevent recreation on every render
     const animationVariants = useMemo(
@@ -49,22 +47,6 @@ export function TechCard({
         []
     );
 
-    // Memoize the level indicators array creation
-    const levelIndicators = useMemo(() => {
-        return Array.from({ length: 5 }, (_, i) => (
-            <span
-                key={i}
-                className={`group-hover:rotate-0 transition-all duration-400 ease-in-out group-hover:h-2 group-hover:rounded-xs will-change-transform
-                    ${
-                        i < level
-                            ? "bg-gradient-to-r from-blue-600 to-sky-400 h-1 w-5 -rotate-70"
-                            : "h-1 w-5 -rotate-70 bg-muted-foreground"
-                    }
-                `}
-            />
-        ));
-    }, [level]);
-
     return (
         <motion.div
             ref={ref}
@@ -79,20 +61,18 @@ export function TechCard({
                     alt={text}
                     width={100}
                     height={100}
-                    className="size-32 lg:size-52 object-contain select-none"
+                    className="size-32 lg:size-52 object-contain group-hover:scale-110 transition-transform duration-300 select-none"
                     draggable={false}
                 />
             </Link>
-            <div className="mt-2 text-muted-foreground">{t("skill")}</div>
-            <div className="flex justify-center items-center gap-1 mt-2">
-                <span className="font-extrabold text-muted-foreground text-2xl">
-                    &lt;
-                </span>
-                {levelIndicators}
-                <span className="font-extrabold text-muted-foreground text-2xl">
-                    &gt;
-                </span>
+            <div className="mt-4 font-semibold text-foreground text-lg">
+                {text}
             </div>
+            {experience && (
+                <div className="mt-1 text-muted-foreground text-sm">
+                    {experience}
+                </div>
+            )}
         </motion.div>
     );
 }

@@ -232,7 +232,7 @@ const Projects = memo(function Projects() {
                                     key={index}
                                     onClick={() => handleDotClick(index)}
                                     className={cn(
-                                        "border-2 rounded-full w-3 h-3 transition-all duration-300",
+                                        "border rounded-full w-3 h-3 transition-all duration-300",
                                         selectedIndex === index
                                             ? "border-blue-600 dark:border-sky-400 bg-blue-600 dark:bg-sky-400"
                                             : "border-gray-400 dark:border-gray-600 hover:border-blue-500 dark:hover:border-sky-500"

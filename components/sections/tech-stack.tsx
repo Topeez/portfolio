@@ -74,7 +74,7 @@ export function TechStack() {
                 experience: t("experience.2plus"),
             },
         ],
-        []
+        [t]
     );
 
     // Memoize the rendered cards to prevent unnecessary re-renders

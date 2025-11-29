@@ -54,7 +54,7 @@ export function Header() {
 
     const headerClasses = useMemo(
         () =>
-            `fixed top-5 right-0 left-0 z-[1501] transition-all ease-fluid duration-500 ${!isVisible ? "-translate-y-28" : "-translate-y-2"}`,
+            `fixed top-0 lg:top-5 right-0 left-0 z-[1501] transition-all ease-fluid duration-500 ${!isVisible ? "-translate-y-28" : "-translate-y-2"}`,
         [isVisible]
     );
 

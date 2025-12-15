@@ -31,7 +31,6 @@ export function LanguageToggleWithTooltip({
 
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
-            // Fixed: compare to lowercase "c", not uppercase "C"
             if (event.shiftKey && event.key.toLowerCase() === "c") {
                 event.preventDefault();
                 toggleLanguage();

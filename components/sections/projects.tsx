@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
+import { projects } from "@/src/data/projects";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { Spacer } from "@/components/utils/spacer";
@@ -43,109 +44,9 @@ const Projects = memo(function Projects() {
         })
     );
 
-    // Memoize the project data to prevent recreation on every render
-    const projectData = useMemo(
-        () => [
-            {
-                id: 1,
-                image: "/assets/img/projects/tv_rozvrh_1.png",
-                technologies: ["PHP", "JavaScript", "CSS3", "Python"],
-                github: "#",
-                demo: "https://tv.mesosdev.cz",
-                inProggress: false,
-            },
-            {
-                id: 2,
-                image: "/assets/img/projects/tda_homepage_1.png",
-                technologies: [
-                    "Python",
-                    "Typescript",
-                    "Tailwind CSS",
-                    t("api"),
-                    "Docker",
-                    "Node.js",
-                ],
-                github: "#",
-                demo: "#",
-                inProggress: false,
-            },
-            {
-                id: 3,
-                image: "/assets/img/projects/zenith.png",
-                technologies: [
-                    "React",
-                    "Next.js",
-                    "Tailwind CSS",
-                    t("api"),
-                    "Node.js",
-                ],
-                github: "https://github.com/galfar-coder/zenith",
-                demo: "#",
-                inProggress: true,
-            },
-            {
-                id: 4,
-                image: "/assets/img/projects/web_skoly.png",
-                technologies: ["PHP", "WordPress", t("template")],
-                github: "#",
-                demo: "https://sos.mesosdev.cz/",
-                inProggress: true,
-            },
-            {
-                id: 5,
-                image: "/assets/img/projects/majktravas.png",
-                technologies: [
-                    "React",
-                    "Next.js",
-                    "Tailwind CSS",
-                    "shadcn UI",
-                    t("api"),
-                ],
-                github: "https://github.com/Topeez/majktravasweb",
-                demo: "https://travasstineni.cz",
-                inProggress: false,
-            },
-            {
-                id: 6,
-                image: "/assets/img/projects/urvtek.png",
-                technologies: [
-                    "React",
-                    "Next.js",
-                    "Tailwind CSS",
-                    "shadcn UI",
-                    t("api"),
-                ],
-                github: "",
-                demo: "",
-                inProggress: true,
-            },
-            {
-                id: 7,
-                image: "/assets/img/projects/rooksite.png",
-                technologies: [
-                    "React",
-                    "Next.js",
-                    "Tailwind CSS",
-                    "shadcn UI",
-                    t("api"),
-                    "Prisma",
-                    "SQLite",
-                    t("db"),
-                ],
-                github: "",
-                demo: "",
-                inProggress: true,
-            },
-            {
-                id: 8,
-                image: "/assets/img/projects/flock layout.png",
-                technologies: ["React", "Next.js", "Tailwind CSS", "shadcn UI"],
-                github: "",
-                demo: "",
-                inProggress: true,
-            },
-        ],
-        [t]
+    const featuredProjects = useMemo(
+        () => projects.filter((p) => p.featured).slice(0, 3),
+        []
     );
 
     const onSelect = useCallback(() => {
@@ -175,8 +76,7 @@ const Projects = memo(function Projects() {
     // Memoize the carousel items to prevent recreation on every render
     const carouselItems = useMemo(
         () =>
-            projectData.map((project, index) => {
-                const projectIndex = index + 1;
+            featuredProjects.map((project, index) => {
                 const isSelected = selectedIndex === index;
 
                 return (
@@ -187,18 +87,25 @@ const Projects = memo(function Projects() {
                         <AnimatedCard
                             index={index}
                             image={project.image}
-                            github={project.github}
-                            demo={project.demo}
+                            slug={project.slug}
+                            github={project.github ?? "#"}
+                            demo={project.demo ?? "#"}
                             t={t}
-                            projectIndex={projectIndex}
-                            technologies={project.technologies}
-                            inProgress={project.inProggress}
+                            translationKey={project.translationKey}
+                            technologies={project.technologies.map((tech) =>
+                                tech === "api" ||
+                                tech == "db" ||
+                                tech == "template"
+                                    ? t(tech)
+                                    : tech
+                            )}
+                            inProgress={project.inProgress}
                             isSelected={isSelected}
                         />
                     </CarouselItem>
                 );
             }),
-        [projectData, t, selectedIndex]
+        [featuredProjects, t, selectedIndex]
     );
 
     return (
@@ -227,7 +134,7 @@ const Projects = memo(function Projects() {
                         {/* Pagination Dots */}
                         <div className="flex justify-center items-center gap-2 mt-4">
                             <CarouselPrevious className="static translate-x-0 translate-y-0 cursor-pointer" />
-                            {projectData.map((_, index) => (
+                            {featuredProjects.map((_, index) => (
                                 <button
                                     key={index}
                                     onClick={() => handleDotClick(index)}
@@ -248,6 +155,15 @@ const Projects = memo(function Projects() {
                         <div className="hidden md:block top-0 right-0 absolute bg-gradient-to-l from-background to-transparent w-28 h-full"></div>
                     </Carousel>
                 </div>
+                <div className="flex justify-center mt-6">
+                    <Button asChild>
+                        {/* Use your i18n-aware Link from navigation.ts if you prefer */}
+                        <Link href="/projects">
+                            {t("viewAllProjects")}{" "}
+                            {/* add this key in messages */}
+                        </Link>
+                    </Button>
+                </div>
             </div>
         </section>
     );
@@ -260,7 +176,8 @@ const AnimatedCard = memo(function AnimatedCard({
     github,
     demo,
     t,
-    projectIndex,
+    slug,
+    translationKey,
     technologies,
     inProgress,
     isSelected,
@@ -270,7 +187,8 @@ const AnimatedCard = memo(function AnimatedCard({
     github: string;
     demo: string;
     t: ReturnType<typeof useTranslations>;
-    projectIndex: number;
+    slug: string;
+    translationKey: string;
     technologies: string[];
     inProgress: boolean;
     isSelected: boolean;
@@ -339,14 +257,12 @@ const AnimatedCard = memo(function AnimatedCard({
 
     const altText = useMemo(() => {
         try {
-            return (
-                t(`project${projectIndex}.title`) || `Project ${projectIndex}`
-            );
+            return t(`${translationKey}.title`) || `Project ${translationKey}`;
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (error) {
-            return `Project ${projectIndex}`;
+            return `Project ${translationKey}`;
         }
-    }, [t, projectIndex]);
+    }, [t, translationKey]);
 
     return (
         <motion.div
@@ -384,9 +300,7 @@ const AnimatedCard = memo(function AnimatedCard({
                                         >
                                             <GitBranch className="md:mr-2" />
                                             <span className="hidden md:inline">
-                                                {t(
-                                                    `project${projectIndex}.btncode`
-                                                )}
+                                                {t(`${translationKey}.btncode`)}
                                             </span>
                                         </Button>
                                     </div>
@@ -400,9 +314,7 @@ const AnimatedCard = memo(function AnimatedCard({
                                         >
                                             <GitBranch className="md:mr-2" />
                                             <span className="hidden md:inline">
-                                                {t(
-                                                    `project${projectIndex}.btncode`
-                                                )}
+                                                {t(`${translationKey}.btncode`)}
                                             </span>
                                         </Button>
                                     </Link>
@@ -418,9 +330,7 @@ const AnimatedCard = memo(function AnimatedCard({
                                         >
                                             <ExternalLink className="md:mr-2" />
                                             <span className="hidden md:inline">
-                                                {t(
-                                                    `project${projectIndex}.btnlink`
-                                                )}
+                                                {t(`${translationKey}.btnlink`)}
                                             </span>
                                         </Button>
                                     </div>
@@ -433,9 +343,7 @@ const AnimatedCard = memo(function AnimatedCard({
                                         >
                                             <ExternalLink className="md:mr-2" />
                                             <span className="hidden md:inline">
-                                                {t(
-                                                    `project${projectIndex}.btnlink`
-                                                )}
+                                                {t(`${translationKey}.btnlink`)}
                                             </span>
                                         </Button>
                                     </Link>
@@ -445,9 +353,14 @@ const AnimatedCard = memo(function AnimatedCard({
                     </div>
                 </div>
                 <CardHeader>
-                    <CardTitle>{t(`project${projectIndex}.title`)}</CardTitle>
+                    <Link
+                        href={`/projects/${slug}`}
+                        className="decoration-blue-500 hover:underline underline-offset-4"
+                    >
+                        <CardTitle>{t(`${translationKey}.title`)}</CardTitle>
+                    </Link>
                     <CardDescription className="text-gray-600">
-                        {t(`project${projectIndex}.description`)}
+                        {t(`${translationKey}.description`)}
                     </CardDescription>
                 </CardHeader>
                 <CardFooter>

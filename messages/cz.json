@@ -55,49 +55,51 @@
             "api": "API integrace",
             "db": "Databáze",
             "template": "Šablonování",
-            "project1": {
+            "viewAllProjects": "Zobrazit všechny projekty",
+            "showMore": "Zobrazit více",
+            "tv-rozvrh": {
                 "title": "Víceúčelový rozvrh hodin pro mou školu",
                 "description": "Víceúčelový rozvrh hodin pro mou školu, umožňující studentům vidět, jaké dnes mají hodiny a v jaké učebně, kolik hodin mají a který učitel je učí. Zahrnuje také odjezdy autobusů a oznámení různých akcí školy.",
                 "btncode": "Zobrazit kód",
                 "btnlink": "Zobrazit ukázku"
             },
-            "project2": {
+            "tda25": {
                 "title": "Platforma pro piškvorky",
                 "description": "Platforma pro piškvorky",
                 "btncode": "Zobrazit kód",
                 "btnlink": "Zobrazit ukázku"
             },
-            "project3": {
+            "zenith": {
                 "title": "Hudební platforma pro začínající umělce",
                 "description": "Hudební platforma pro začínající umělce",
                 "btncode": "Zobrazit kód",
                 "btnlink": "Zobrazit ukázku"
             },
-            "project4": {
+            "mesosweb": {
                 "title": "Webová stránka školy - MěSOŠ Klobouky u Brna",
                 "description": "Stránka vytvořena pomocí bloků ve WordPress",
                 "btncode": "Zobrazit kód",
                 "btnlink": "Zobrazit ukázku"
             },
-            "project5": {
+            "travasstineni": {
                 "title": "Webová stránka pro mého prvního klienta",
                 "description": "Klient se specializuje na montáž a servis stínící techniky",
                 "btncode": "Zobrazit kód",
                 "btnlink": "Zobrazit ukázku"
             },
-            "project6": {
+            "urvtek": {
                 "title": "Webová stránka pro UrvTeka",
                 "description": "Tato stránka je platformou pro nadcházející hudební soutěž vytvořenou UrvTekem. Spolupracuji na tom s Galfarem.",
                 "btncode": "Zobrazit kód",
                 "btnlink": "Zobrazit ukázku"
             },
-            "project7": {
+            "gamedex": {
                 "title": "Webová stránka pro Rook Rules",
                 "description": "Tato stránka je PokeDexem her, které Rook hrál na streamu. Obsahuje základní informace o hře a krátký popis hry. Také obsahuje správce pro import těchto karet a zobrazení v Game Dex. Spolupracuji s Galfarem.",
                 "btncode": "Zobrazit kód",
                 "btnlink": "Zobrazit ukázku"
             },
-            "project8": {
+            "flock": {
                 "title": "Webová aplikace Flock™",
                 "description": "Tato aplikace je budoucí platformou pro komunikaci s přáteli. Je stále v úplném začátku vývoje. Spolupracuji s Galfarem.",
                 "btncode": "Zobrazit kód",

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ThemeToggle } from "@/components/header/theme-switcher";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter, usePathname } from "@/src/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { LanguageToggleWithTooltip } from "@/components/header/lang-switcher";
 import { MobileMenu } from "./mobile-menu";
@@ -19,6 +19,7 @@ export function Header() {
     const [activeSection, setActiveSection] = useState<string | null>(null);
     const mobileMenuRef = useRef<HTMLDivElement>(null);
     const throttleTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
     const router = useRouter();
     const pathname = usePathname();
     const currentLocale = useLocale();
@@ -48,7 +49,7 @@ export function Header() {
     );
 
     const isHomePage = useMemo(
-        () => pathname === "/en" || pathname === "/cz",
+        () => pathname === "/" || pathname === "/en" || pathname === "/cz",
         [pathname]
     );
 
@@ -186,8 +187,8 @@ export function Header() {
 
     const toggleLanguage = useCallback(() => {
         const newLocale = currentLocale === "en" ? "cz" : "en";
-        const newPath = pathname.replace(`/${currentLocale}`, `/${newLocale}`);
-        router.replace(newPath);
+        router.replace(pathname, { locale: newLocale });
+        router.refresh();
     }, [currentLocale, pathname, router]);
 
     // Keyboard shortcut for language toggle
@@ -215,7 +216,7 @@ export function Header() {
                         className={`${activeClass} ${liClasses}`}
                     >
                         <Link
-                            href={`${"/en" + link.href} || ${"/cz" + link.href}`}
+                            href={link.href}
                             className="block"
                             onClick={(e) => handleLinkClick(e, link.href)}
                         >

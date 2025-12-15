@@ -59,7 +59,6 @@ export function MobileMenu({
 
     useEffect(() => {
         if (isOpen) {
-            // Small delay to ensure the menu is mounted before starting animations
             const timer = setTimeout(() => setShowItems(true), 100);
             return () => clearTimeout(timer);
         } else {

@@ -16,6 +16,7 @@ interface MobileMenuProps {
     links: { href: string; label: string }[];
     isActive: (href: string) => boolean;
     handleLinkClick: (e: React.MouseEvent, href: string) => void;
+    isHomePage?: boolean;
 }
 
 export function MobileMenu({
@@ -25,6 +26,7 @@ export function MobileMenu({
     links,
     isActive,
     handleLinkClick,
+    isHomePage = true,
 }: MobileMenuProps) {
     const currentLocale = useLocale();
     const mobileMenuRef = useRef<HTMLDivElement>(null);
@@ -103,9 +105,11 @@ export function MobileMenu({
                     ? "bg-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 text-transparent"
                     : "";
 
+                const href = isHomePage ? link.href : `/${link.href}`;
+
                 return (
                     <li
-                        key={link.href}
+                        key={href}
                         className={`${activeClass} hover:bg-transparent hover:text-foreground transition-all duration-500 ease-in-out cursor-pointer uppercase ${
                             showItems
                                 ? "opacity-100 translate-x-0 blur-none"
@@ -127,7 +131,7 @@ export function MobileMenu({
                     </li>
                 );
             }),
-        [links, isActive, currentLocale, handleLinkClick, showItems]
+        [links, isActive, currentLocale, handleLinkClick, showItems, isHomePage]
     );
 
     return (

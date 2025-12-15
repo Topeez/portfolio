@@ -187,7 +187,7 @@ export function ContactForm() {
             >
                 <form
                     onSubmit={form.handleSubmit(onSubmit)}
-                    className="space-y-8 bg-background p-12 rounded-2xl form-content"
+                    className="space-y-8 bg-background p-8 lg:p-12 rounded-2xl form-content"
                 >
                     {/* Honeypot field - hidden from users but visible to bots */}
                     <input

@@ -171,6 +171,8 @@ export function Header() {
                 if (target) {
                     target.scrollIntoView({ behavior: "smooth" });
                     setActiveSection(sectionId);
+
+                    window.history.pushState(null, "", `#${sectionId}`);
                 }
             }
         },
@@ -210,13 +212,15 @@ export function Header() {
                     ? "bg-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 text-transparent border-b-2 border-sky-400 transition-all ease-fluid duration-500 hover:text-foreground"
                     : "";
 
+                const destination = isHomePage ? link.href : `/${link.href}`;
+
                 return (
                     <li
                         key={link.href}
                         className={`${activeClass} ${liClasses}`}
                     >
                         <Link
-                            href={link.href}
+                            href={destination}
                             className="block"
                             onClick={(e) => handleLinkClick(e, link.href)}
                         >
@@ -225,12 +229,12 @@ export function Header() {
                     </li>
                 );
             }),
-        [links, isActive, liClasses, handleLinkClick]
+        [links, isActive, liClasses, handleLinkClick, isHomePage]
     );
 
     return (
         <header className={headerClasses}>
-            <nav className="flex justify-between items-center backdrop-blur-xl p-3 xl:border border-muted md:rounded-full w-full cs-container">
+            <nav className="flex justify-between items-center backdrop-blur-xl p-7 lg:p-4 xl:border border-muted md:rounded-full w-full cs-container">
                 <Link
                     href={"/"}
                     className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 font-bold text-transparent uppercase"
@@ -272,6 +276,7 @@ export function Header() {
                         links={links}
                         isActive={isActive}
                         handleLinkClick={handleLinkClick}
+                        isHomePage={isHomePage}
                     />
                 </div>
             </nav>

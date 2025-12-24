@@ -8,6 +8,10 @@ import { Toaster } from "sonner";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { BackToTop } from "@/components/utils/back-to-top";
 
+export function generateStaticParams() {
+  return [{ locale: 'en' }, { locale: 'cz' }];
+}
+
 const inter = Inter({
     subsets: ["latin"],
     variable: "--font-inter",

@@ -4,7 +4,12 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, GitBranch } from "lucide-react";
+import {
+    ExternalLink,
+    GitBranch,
+    Construction,
+    BadgeCheck,
+} from "lucide-react";
 import Link from "next/link";
 import { Header } from "@/components/header/header";
 import { Footer } from "@/components/sections/footer";
@@ -60,7 +65,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 <div className="flex flex-col gap-10">
                     {/* Header Section */}
                     <div className="space-y-4 md:text-left text-center">
-                        <h1 className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 w-fit font-bold text-transparent text-4xl md:text-6xl">
+                        <h1 className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 py-2 w-fit font-bold text-transparent text-4xl md:text-6xl">
                             {t(`${project.translationKey}.title`)}
                         </h1>
                         <p className="max-w-2xl text-muted-foreground text-xl">
@@ -71,8 +76,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                             {translatedTechs.map((tech) => (
                                 <Badge
                                     key={tech}
-                                    variant="secondary"
-                                    className="px-3 py-1 text-md"
+                                    variant="outline"
+                                    className="border-blue-600 dark:border-sky-400 text-blue-600 dark:text-sky-400 cursor-default"
                                 >
                                     {tech}
                                 </Badge>
@@ -138,9 +143,17 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                             <div className="bg-muted/50 mt-4 p-4 rounded-lg">
                                 <p className="text-muted-foreground text-sm italic">
                                     Status:{" "}
-                                    {project.inProgress
-                                        ? "In Progress 🚧"
-                                        : "Completed ✅"}
+                                    {project.inProgress ? (
+                                        <span className="flex gap-2">
+                                            In Progress{" "}
+                                            <Construction className="text-yellow-400" />
+                                        </span>
+                                    ) : (
+                                        <span className="flex gap-2">
+                                            Completed{" "}
+                                            <BadgeCheck className="text-green-400" />
+                                        </span>
+                                    )}
                                 </p>
                             </div>
                         </div>

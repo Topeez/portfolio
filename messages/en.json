@@ -104,6 +104,12 @@
                 "description": "This web application is a platform for messaging with friends. It is still in the beginning of its development. Collaborating with Galfar.",
                 "btncode": "View code",
                 "btnlink": "View demo"
+            },
+            "sidebyside": {
+                "title": "SideBySide web application",
+                "description": "This web application is a platform for sharing and managing content with your partner. It is still in the development. ",
+                "btncode": "View code",
+                "btnlink": "View demo"
             }
         },
 

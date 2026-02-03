@@ -59,7 +59,7 @@ export default async function ProjectsIndexPage({
                             (tech) =>
                                 ["api", "db", "template"].includes(tech)
                                     ? t(tech)
-                                    : tech
+                                    : tech,
                         );
 
                         // Limit techs to 3 to keep cards consistent height, add "+X more" if needed
@@ -76,9 +76,9 @@ export default async function ProjectsIndexPage({
                                     {/* Image Container */}
                                     <div className="relative bg-muted w-full h-48 overflow-hidden">
                                         <Image
-                                            src={project.image}
+                                            src={project.images[0]}
                                             alt={t(
-                                                `${project.translationKey}.title`
+                                                `${project.translationKey}.title`,
                                             )}
                                             fill
                                             className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -110,12 +110,12 @@ export default async function ProjectsIndexPage({
                                     <CardHeader className="flex-grow">
                                         <CardTitle className="group-hover:text-blue-600 text-xl line-clamp-1 transition-colors">
                                             {t(
-                                                `${project.translationKey}.title`
+                                                `${project.translationKey}.title`,
                                             )}
                                         </CardTitle>
                                         <CardDescription className="mt-2 line-clamp-2">
                                             {t(
-                                                `${project.translationKey}.description`
+                                                `${project.translationKey}.description`,
                                             )}
                                         </CardDescription>
                                     </CardHeader>

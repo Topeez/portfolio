@@ -41,12 +41,12 @@ const Projects = memo(function Projects() {
     const autoplayRef = useRef(
         Autoplay({
             delay: 10000,
-        })
+        }),
     );
 
     const featuredProjects = useMemo(
         () => projects.filter((p) => p.featured).slice(0, 3),
-        []
+        [],
     );
 
     const onSelect = useCallback(() => {
@@ -70,10 +70,9 @@ const Projects = memo(function Projects() {
         (index: number) => {
             api?.scrollTo(index);
         },
-        [api]
+        [api],
     );
 
-    // Memoize the carousel items to prevent recreation on every render
     const carouselItems = useMemo(
         () =>
             featuredProjects.map((project, index) => {
@@ -86,7 +85,7 @@ const Projects = memo(function Projects() {
                     >
                         <AnimatedCard
                             index={index}
-                            image={project.image}
+                            image={project.images[0]}
                             slug={project.slug}
                             github={project.github ?? "#"}
                             demo={project.demo ?? "#"}
@@ -97,7 +96,7 @@ const Projects = memo(function Projects() {
                                 tech == "db" ||
                                 tech == "template"
                                     ? t(tech)
-                                    : tech
+                                    : tech,
                             )}
                             inProgress={project.inProgress}
                             isSelected={isSelected}
@@ -105,7 +104,7 @@ const Projects = memo(function Projects() {
                     </CarouselItem>
                 );
             }),
-        [featuredProjects, t, selectedIndex]
+        [featuredProjects, t, selectedIndex],
     );
 
     return (
@@ -142,7 +141,7 @@ const Projects = memo(function Projects() {
                                         "border rounded-full w-3 h-3 transition-all duration-300",
                                         selectedIndex === index
                                             ? "border-blue-600 dark:border-sky-400 bg-blue-600 dark:bg-sky-400"
-                                            : "border-gray-400 dark:border-gray-600 hover:border-blue-500 dark:hover:border-sky-500"
+                                            : "border-gray-400 dark:border-gray-600 hover:border-blue-500 dark:hover:border-sky-500",
                                     )}
                                     aria-label={`Go to slide ${index + 1}`}
                                 />
@@ -157,11 +156,7 @@ const Projects = memo(function Projects() {
                 </div>
                 <div className="flex justify-center mt-6">
                     <Button asChild>
-                        {/* Use your i18n-aware Link from navigation.ts if you prefer */}
-                        <Link href="/projects">
-                            {t("viewAllProjects")}{" "}
-                            {/* add this key in messages */}
-                        </Link>
+                        <Link href="/projects">{t("viewAllProjects")} </Link>
                     </Button>
                 </div>
             </div>
@@ -169,7 +164,6 @@ const Projects = memo(function Projects() {
     );
 });
 
-// AnimatedCard component remains exactly the same...
 const AnimatedCard = memo(function AnimatedCard({
     index,
     image,
@@ -202,7 +196,7 @@ const AnimatedCard = memo(function AnimatedCard({
             animate: isInView ? { opacity: 1, y: 0 } : {},
             transition: { duration: 0.3, delay: index * 0.05 },
         }),
-        [isInView, index]
+        [isInView, index],
     );
 
     const isGithubDisabled = github === "#" || github === "";
@@ -223,7 +217,7 @@ const AnimatedCard = memo(function AnimatedCard({
                 }`,
             },
         }),
-        [isGithubDisabled, isDemoDisabled]
+        [isGithubDisabled, isDemoDisabled],
     );
 
     const handleDisabledClick = (e: React.MouseEvent) => {
@@ -242,7 +236,7 @@ const AnimatedCard = memo(function AnimatedCard({
                     {tech}
                 </Badge>
             )),
-        [technologies]
+        [technologies],
     );
 
     const statusIcon = useMemo(
@@ -252,7 +246,7 @@ const AnimatedCard = memo(function AnimatedCard({
             ) : (
                 <BadgeCheck className="right-4 bottom-4 absolute text-green-400" />
             ),
-        [inProgress]
+        [inProgress],
     );
 
     const altText = useMemo(() => {

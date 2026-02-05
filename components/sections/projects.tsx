@@ -138,7 +138,7 @@ const Projects = memo(function Projects() {
                                     key={index}
                                     onClick={() => handleDotClick(index)}
                                     className={cn(
-                                        "border rounded-full w-3 h-3 transition-all duration-300",
+                                        "border rounded-full size-3 transition-all duration-300",
                                         selectedIndex === index
                                             ? "border-blue-600 dark:border-sky-400 bg-blue-600 dark:bg-sky-400"
                                             : "border-gray-400 dark:border-gray-600 hover:border-blue-500 dark:hover:border-sky-500",
@@ -150,8 +150,8 @@ const Projects = memo(function Projects() {
                             <CarouselNext className="static translate-x-0 translate-y-0 cursor-pointer" />
                         </div>
 
-                        <div className="hidden md:block top-0 left-0 absolute bg-gradient-to-r from-background to-transparent w-28 h-full"></div>
-                        <div className="hidden md:block top-0 right-0 absolute bg-gradient-to-l from-background to-transparent w-28 h-full"></div>
+                        <div className="hidden dark:md:block top-0 left-0 absolute bg-gradient-to-r from-background/65 to-transparent w-28 h-full"></div>
+                        <div className="hidden dark:md:block top-0 right-0 absolute bg-gradient-to-l from-background/65 to-transparent w-28 h-full"></div>
                     </Carousel>
                 </div>
                 <div className="flex justify-center mt-6">

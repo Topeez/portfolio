@@ -17,7 +17,11 @@ export const projects: Project[] = [
         featured: false,
         translationKey: "tv-rozvrh",
         images: [
-            "/assets/img/projects/tv_rozvrh_1.png"
+            "/assets/img/projects/tv-rozvrh/tv_rozvrh_1.png",
+            "/assets/img/projects/tv-rozvrh/tv_rozvrh_2.png",
+            "/assets/img/projects/tv-rozvrh/tv_rozvrh_akce.png",
+            "/assets/img/projects/tv-rozvrh/tv_rozvrh_login.png",
+            "/assets/img/projects/tv-rozvrh/tv_rozvrh_odjezdy.png"
         ],
         technologies: ["PHP", "JavaScript", "CSS3", "Python"],
         github: "#",
@@ -30,7 +34,11 @@ export const projects: Project[] = [
         featured: false,
         translationKey: "tda25",
         images: [
-            "/assets/img/projects/tda_homepage_1.png"
+            "/assets/img/projects/tda/tda_homepage_1.png",
+            "/assets/img/projects/tda/tda_homepage_2.png",
+            "/assets/img/projects/tda/tda_homepage_3.png",
+            "/assets/img/projects/tda/tda_homepage_4.png",
+            "/assets/img/projects/tda/tda_homepage_5.png",
         ],
         technologies: [
             "Python",
@@ -47,7 +55,7 @@ export const projects: Project[] = [
     {
         id: "zenith",
         slug: "zenith",
-        featured: true,
+        featured: false,
         translationKey: "zenith",
         images: [
             "/assets/img/projects/zenith.png"
@@ -76,7 +84,10 @@ export const projects: Project[] = [
         featured: true,
         translationKey: "travasstineni",
         images: [
-            "/assets/img/projects/majktravas.png"
+            "/assets/img/projects/majktravas/majktravas.png",
+            "/assets/img/projects/majktravas/majktravas-services.png",
+            "/assets/img/projects/majktravas/majktravas-aboutme.png",
+            "/assets/img/projects/majktravas/majktravas-references.png",
         ],
         technologies: ["React", "Next.js", "Tailwind CSS", "shadcn UI", "API"],
         github: "https://github.com/Topeez/majktravasweb",
@@ -102,7 +113,13 @@ export const projects: Project[] = [
         featured: false,
         translationKey: "gamedex",
         images: [
-            "/assets/img/projects/rooksite.png"
+            "/assets/img/projects/rooksite/rooksite.png",
+            "/assets/img/projects/rooksite/rooksite-gamedex.png",
+            "/assets/img/projects/rooksite/rooksite-game-card.png",
+            "/assets/img/projects/rooksite/rooksite-admin-login.png",
+            "/assets/img/projects/rooksite/rooksite-card-creation.png",
+            "/assets/img/projects/rooksite/rooksite-card-list.png"
+
         ],
         technologies: [
             "React",
@@ -121,10 +138,12 @@ export const projects: Project[] = [
     {
         id: "flock",
         slug: "flock",
-        featured: false,
+        featured: true,
         translationKey: "flock",
         images: [
-            "/assets/img/projects/flock layout.png"
+          "/assets/img/projects/flock/flock.png",
+            "/assets/img/projects/flock/flock-homepage.png",
+            "/assets/img/projects/flock/flock-messages.png",
         ],
         technologies: ["React", "Next.js", "Tailwind CSS", "shadcn UI"],
         github: "",

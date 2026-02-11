@@ -111,6 +111,7 @@ export default function Hero() {
                     alt="me"
                     width={1800}
                     height={2400}
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className={imageClassName}
                     onLoad={handleImageLoad}
                     onError={handleImageError}

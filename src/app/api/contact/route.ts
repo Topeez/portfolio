@@ -23,7 +23,6 @@ const contactFormSchema = z.object({
     honeypot: z.string().optional(), // Bot detection
 });
 
-// Rate limiting with Map (simple in-memory solution)
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
 
 function checkRateLimit(ip: string, limit: number = 5, windowMs: number = 60000): boolean {
@@ -184,9 +183,6 @@ export async function POST(req: NextRequest) {
                 </div>
             `,
         });
-
-        // Log successful submission (without sensitive data)
-        console.log(`Contact form submitted successfully from ${ip} at ${new Date().toISOString()}`);
 
         return NextResponse.json(
             { success: true, message: "Zpráva byla úspěšně odeslána!" },

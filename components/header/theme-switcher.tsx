@@ -3,7 +3,7 @@
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 
 interface ThemeToggleProps {
     className?: string;
@@ -13,21 +13,17 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
     const { resolvedTheme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
 
-    // Ensure component is mounted to avoid hydration mismatch
     useEffect(() => {
         setMounted(true);
     }, []);
 
     const isDark = resolvedTheme === "dark";
 
-    const handleKeyDown = useCallback(
-        (e: KeyboardEvent) => {
-            if (e.shiftKey && e.key === "D") {
-                setTheme(isDark ? "light" : "dark");
-            }
-        },
-        [isDark, setTheme]
-    );
+    const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.shiftKey && e.key === "D") {
+            setTheme(isDark ? "light" : "dark");
+        }
+    };
 
     useEffect(() => {
         document.addEventListener("keydown", handleKeyDown);
@@ -40,7 +36,7 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
             <div
                 className={cn(
                     "flex p-1.5 border border-muted rounded-full w-16 h-8",
-                    className
+                    className,
                 )}
             >
                 <div className="flex justify-between items-center w-full">
@@ -65,7 +61,7 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
         <div
             className={cn(
                 "flex backdrop-blur-lg p-1.5 border border-muted rounded-full w-16 h-8 transition-all duration-300 cursor-pointer",
-                className
+                className,
             )}
             onClick={() => setTheme(isDark ? "light" : "dark")}
             role="button"
@@ -83,7 +79,7 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
                         "flex justify-center items-center rounded-full w-6 h-6 transition-transform duration-300",
                         isDark
                             ? "transform translate-x-0 bg-zinc-800"
-                            : "transform translate-x-8 bg-gray-200"
+                            : "transform translate-x-8 bg-gray-200",
                     )}
                 >
                     {isDark ? (
@@ -101,7 +97,7 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
                 <div
                     className={cn(
                         "flex justify-center items-center rounded-full w-6 h-6 transition-transform duration-300",
-                        isDark ? "bg-transparent" : "transform -translate-x-8"
+                        isDark ? "bg-transparent" : "transform -translate-x-8",
                     )}
                 >
                     {isDark ? (

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ThemeToggle } from "@/components/header/theme-switcher";
 import { Button } from "@/components/ui/button";
-import { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter, usePathname } from "@/src/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { LanguageToggleWithTooltip } from "@/components/header/lang-switcher";
@@ -12,71 +12,59 @@ import HamburgerIcon from "@/components/header/hamburger-icon";
 import { Kbd, KbdGroup } from "../ui/kbd";
 import { ArrowBigUp } from "lucide-react";
 
+const SECTION_IDS = ["home", "about", "projects", "techstack", "contact"];
+const LI_CLASSES =
+    "hover:bg-transparent p-3 border-b-2 border-transparent hover:border-foreground transition-all ease-fluid cursor-pointer uppercase will-change-transform";
+
 export function Header() {
     const [isVisible, setIsVisible] = useState(true);
-    const lastScrollY = useRef(0);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState<string | null>(null);
+
+    const lastScrollY = useRef(0);
     const mobileMenuRef = useRef<HTMLDivElement>(null);
     const throttleTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     const router = useRouter();
     const pathname = usePathname();
     const currentLocale = useLocale();
-
-    const sectionIds = useMemo(
-        () => ["home", "about", "projects", "techstack", "contact"],
-        []
-    );
-
-    const liClasses = useMemo(
-        () =>
-            "hover:bg-transparent p-3 border-b-2 border-transparent hover:border-foreground transition-all ease-fluid cursor-pointer uppercase will-change-transform",
-        []
-    );
-
     const t = useTranslations("Header");
 
-    const links = useMemo(
-        () => [
-            { href: "#home", label: t("home") },
-            { href: "#about", label: t("about") },
-            { href: "#projects", label: t("projects") },
-            { href: "#techstack", label: t("techstack") },
-            { href: "#contact", label: t("contact") },
-        ],
-        [t]
-    );
+    // 2. Computed values are now just regular variables.
+    const isHomePage =
+        pathname === "/" || pathname === "/en" || pathname === "/cz";
 
-    const isHomePage = useMemo(
-        () => pathname === "/" || pathname === "/en" || pathname === "/cz",
-        [pathname]
-    );
+    const links = [
+        { href: "#home", label: t("home") },
+        { href: "#about", label: t("about") },
+        { href: "#projects", label: t("projects") },
+        { href: "#techstack", label: t("techstack") },
+        { href: "#contact", label: t("contact") },
+    ];
 
-    const headerClasses = useMemo(
-        () =>
-            `fixed top-0 lg:top-5 right-0 left-0 z-[1501] transition-all ease-fluid duration-500 ${!isVisible ? "-translate-y-28" : "-translate-y-2"}`,
-        [isVisible]
-    );
+    const headerClasses = `fixed top-0 lg:top-5 right-0 left-0 z-[1501] transition-all ease-fluid duration-500 ${
+        !isVisible ? "-translate-y-28" : "-translate-y-2"
+    }`;
 
-    // Define callbacks BEFORE useEffect hooks that use them
-    const closeMobileMenu = useCallback(() => {
+    // 3. Functions are defined directly.
+    const closeMobileMenu = () => {
         setIsMobileMenuOpen(false);
-    }, []);
+    };
 
-    const toggleMobileMenu = useCallback(() => {
+    const toggleMobileMenu = () => {
         setIsMobileMenuOpen((prev) => !prev);
-    }, []);
+    };
 
-    const highlightCurrentSection = useCallback(() => {
+    const highlightCurrentSection = () => {
         let current = "";
 
-        sectionIds.forEach((id) => {
+        SECTION_IDS.forEach((id) => {
             const section = document.getElementById(id);
             if (!section) return;
 
             const rect = section.getBoundingClientRect();
-            const sectionTop = rect.top + window.scrollY - 110;
+            // Adjusted offset slightly for better accuracy
+            const sectionTop = rect.top + window.scrollY - 150;
             const sectionHeight = rect.height;
 
             if (
@@ -88,10 +76,11 @@ export function Header() {
         });
 
         setActiveSection(current);
-    }, [sectionIds]);
+    };
 
-    const handleScroll = useCallback(() => {
+    const handleScroll = () => {
         const currentScrollY = window.scrollY;
+        // Simple scroll direction check
         const scrollDown =
             currentScrollY > lastScrollY.current && currentScrollY > 100;
 
@@ -102,32 +91,30 @@ export function Header() {
         }
 
         lastScrollY.current = currentScrollY;
-    }, [isHomePage, highlightCurrentSection]);
+    };
 
-    // Throttled scroll handler
-    const throttledScroll = useCallback(() => {
-        if (throttleTimeoutRef.current) return;
-
-        throttleTimeoutRef.current = setTimeout(() => {
-            handleScroll();
-            throttleTimeoutRef.current = null;
-        }, 100);
-    }, [handleScroll]);
-
-    // Scroll event listener with throttling
+    // 4. Effects still work the same way, but dependencies are handled more smartly by the compiler.
+    // We keep strict dependencies for safety, but `handleScroll` being a fresh function every render
+    // won't trigger infinite loops because the Compiler memoizes the function identity under the hood.
     useEffect(() => {
-        window.addEventListener("scroll", throttledScroll, { passive: true });
-        handleScroll(); // Initial call
+        const onScroll = () => {
+            if (throttleTimeoutRef.current) return;
+            throttleTimeoutRef.current = setTimeout(() => {
+                handleScroll();
+                throttleTimeoutRef.current = null;
+            }, 100);
+        };
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        handleScroll(); // Initial check
 
         return () => {
-            window.removeEventListener("scroll", throttledScroll);
-            if (throttleTimeoutRef.current) {
+            window.removeEventListener("scroll", onScroll);
+            if (throttleTimeoutRef.current)
                 clearTimeout(throttleTimeoutRef.current);
-            }
         };
-    }, [throttledScroll, handleScroll]);
+    }, [isHomePage]); // Only re-attach if isHomePage status changes (logic dependency)
 
-    // Combined mobile menu effects (body overflow + click outside + escape)
     useEffect(() => {
         document.body.style.overflow = isMobileMenuOpen ? "hidden" : "auto";
 
@@ -155,82 +142,63 @@ export function Header() {
             document.removeEventListener("mousedown", handleClickOutside);
             document.removeEventListener("keydown", handleEscape);
         };
-    }, [isMobileMenuOpen, closeMobileMenu]);
+    }, [isMobileMenuOpen]);
 
-    const handleLinkClick = useCallback(
-        (e: React.MouseEvent, hash: string) => {
-            const sectionId = hash.replace("#", "");
+    const handleLinkClick = (e: React.MouseEvent, hash: string) => {
+        const sectionId = hash.replace("#", "");
 
-            if (isMobileMenuOpen) {
-                closeMobileMenu();
+        if (isMobileMenuOpen) closeMobileMenu();
+
+        if (isHomePage) {
+            e.preventDefault();
+            const target = document.getElementById(sectionId);
+            if (target) {
+                target.scrollIntoView({ behavior: "smooth" });
+                setActiveSection(sectionId);
+                window.history.pushState(null, "", `#${sectionId}`);
             }
+        }
+    };
 
-            if (isHomePage) {
-                e.preventDefault();
-                const target = document.getElementById(sectionId);
-                if (target) {
-                    target.scrollIntoView({ behavior: "smooth" });
-                    setActiveSection(sectionId);
-
-                    window.history.pushState(null, "", `#${sectionId}`);
-                }
-            }
-        },
-        [isMobileMenuOpen, isHomePage, closeMobileMenu]
-    );
-
-    const isActive = useCallback(
-        (href: string) => {
-            const sectionId = href.replace("#", "");
-            return activeSection === sectionId;
-        },
-        [activeSection]
-    );
-
-    const toggleLanguage = useCallback(() => {
+    const toggleLanguage = () => {
         const newLocale = currentLocale === "en" ? "cz" : "en";
         router.replace(pathname, { locale: newLocale });
         router.refresh();
-    }, [currentLocale, pathname, router]);
+    };
 
-    // Keyboard shortcut for language toggle
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
-            if (event.shiftKey && event.key === "C") {
+            if (event.shiftKey && (event.key === "C" || event.key === "c")) {
                 toggleLanguage();
             }
         };
-
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
-    }, [toggleLanguage]);
+    }, [currentLocale, pathname, router]); // Dependencies for router/locale
 
-    const desktopLinks = useMemo(
-        () =>
-            links.map((link) => {
-                const activeClass = isActive(link.href)
-                    ? "bg-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 text-transparent border-b-2 border-sky-400 transition-all ease-fluid duration-500 hover:text-foreground"
-                    : "";
+    // 5. Removed useMemo for mapping links. It's fast enough to run every render.
+    const desktopLinks = links.map((link) => {
+        // Simple logic for active class
+        const isActiveLink = activeSection === link.href.replace("#", "");
 
-                const destination = isHomePage ? link.href : `/${link.href}`;
+        const activeClass = isActiveLink
+            ? "bg-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 text-transparent border-b-2 border-sky-400 transition-all ease-fluid duration-500 hover:text-foreground"
+            : "";
 
-                return (
-                    <li
-                        key={link.href}
-                        className={`${activeClass} ${liClasses}`}
-                    >
-                        <Link
-                            href={destination}
-                            className="block"
-                            onClick={(e) => handleLinkClick(e, link.href)}
-                        >
-                            {link.label}
-                        </Link>
-                    </li>
-                );
-            }),
-        [links, isActive, liClasses, handleLinkClick, isHomePage]
-    );
+        const destination = isHomePage ? link.href : `/${link.href}`;
+
+        return (
+            <li key={link.href} className={`${activeClass} ${LI_CLASSES}`}>
+                <Link
+                    href={destination}
+                    className="block"
+                    onClick={(e) => handleLinkClick(e, link.href)}
+                >
+                    {link.label}
+                </Link>
+            </li>
+        );
+    });
 
     return (
         <header className={headerClasses}>
@@ -274,7 +242,9 @@ export function Header() {
                         closeMenu={closeMobileMenu}
                         toggleLanguage={toggleLanguage}
                         links={links}
-                        isActive={isActive}
+                        isActive={(href) =>
+                            activeSection === href.replace("#", "")
+                        }
                         handleLinkClick={handleLinkClick}
                         isHomePage={isHomePage}
                     />

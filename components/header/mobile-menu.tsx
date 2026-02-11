@@ -4,7 +4,7 @@ import Flag from "react-world-flags";
 import Link from "next/link";
 import { ThemeToggle } from "@/components/header/theme-switcher";
 import { Button } from "@/components/ui/button";
-import { useEffect, useRef, useState, useMemo, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocale } from "next-intl";
 import HamburgerIcon from "@/components/header/hamburger-icon";
 import { motion, AnimatePresence } from "framer-motion";
@@ -32,32 +32,16 @@ export function MobileMenu({
     const mobileMenuRef = useRef<HTMLDivElement>(null);
     const [showItems, setShowItems] = useState(false);
 
-    const flagCode = useMemo(
-        () => (currentLocale === "en" ? "GB" : "CZ"),
-        [currentLocale]
-    );
+    const flagCode = currentLocale === "en" ? "GB" : "CZ";
+    const flagAlt = currentLocale === "en" ? "British flag" : "Czech flag";
+    const languageToggleLabel =
+        currentLocale === "en" ? "Switch to Czech" : "Přepnout na angličtinu";
 
-    const flagAlt = useMemo(
-        () => (currentLocale === "en" ? "British flag" : "Czech flag"),
-        [currentLocale]
-    );
-
-    const languageToggleLabel = useMemo(
-        () =>
-            currentLocale === "en"
-                ? "Switch to Czech"
-                : "Přepnout na angličtinu",
-        [currentLocale]
-    );
-
-    const flagStyle = useMemo(
-        () => ({
-            width: "1.5rem",
-            height: "1rem",
-            borderRadius: "2px",
-        }),
-        []
-    );
+    const flagStyle = {
+        width: "1.5rem",
+        height: "1rem",
+        borderRadius: "2px",
+    };
 
     useEffect(() => {
         if (isOpen) {
@@ -68,8 +52,8 @@ export function MobileMenu({
         }
     }, [isOpen]);
 
-    const handleClickOutside = useCallback(
-        (e: MouseEvent) => {
+    useEffect(() => {
+        const handleClickOutside = (e: MouseEvent) => {
             if (
                 mobileMenuRef.current &&
                 !mobileMenuRef.current.contains(e.target as Node) &&
@@ -77,18 +61,12 @@ export function MobileMenu({
             ) {
                 closeMenu();
             }
-        },
-        [closeMenu]
-    );
+        };
 
-    const handleEscape = useCallback(
-        (e: KeyboardEvent) => {
+        const handleEscape = (e: KeyboardEvent) => {
             if (e.key === "Escape") closeMenu();
-        },
-        [closeMenu]
-    );
+        };
 
-    useEffect(() => {
         document.addEventListener("mousedown", handleClickOutside);
         document.addEventListener("keydown", handleEscape);
 
@@ -96,43 +74,37 @@ export function MobileMenu({
             document.removeEventListener("mousedown", handleClickOutside);
             document.removeEventListener("keydown", handleEscape);
         };
-    }, [handleClickOutside, handleEscape]);
+    }, [closeMenu]);
 
-    const menuItems = useMemo(
-        () =>
-            links.map((link, index) => {
-                const activeClass = isActive(link.href)
-                    ? "bg-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 text-transparent"
-                    : "";
+    const menuItems = links.map((link, index) => {
+        const activeClass = isActive(link.href)
+            ? "bg-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 text-transparent"
+            : "";
 
-                const href = isHomePage ? link.href : `/${link.href}`;
+        const href = isHomePage ? link.href : `/${link.href}`;
 
-                return (
-                    <li
-                        key={href}
-                        className={`${activeClass} hover:bg-transparent hover:text-foreground transition-all duration-500 ease-in-out cursor-pointer uppercase ${
-                            showItems
-                                ? "opacity-100 translate-x-0 blur-none"
-                                : "opacity-0 translate-x-32 blur-sm"
-                        }`}
-                        style={{
-                            transitionDelay: showItems
-                                ? `${index * 150}ms`
-                                : "0ms",
-                        }}
-                    >
-                        <Link
-                            href={`/${currentLocale}${link.href}`}
-                            className="block"
-                            onClick={(e) => handleLinkClick(e, link.href)}
-                        >
-                            {link.label}
-                        </Link>
-                    </li>
-                );
-            }),
-        [links, isActive, currentLocale, handleLinkClick, showItems, isHomePage]
-    );
+        return (
+            <li
+                key={href}
+                className={`${activeClass} hover:bg-transparent hover:text-foreground transition-all duration-500 ease-in-out cursor-pointer uppercase ${
+                    showItems
+                        ? "opacity-100 translate-x-0 blur-none"
+                        : "opacity-0 translate-x-32 blur-sm"
+                }`}
+                style={{
+                    transitionDelay: showItems ? `${index * 150}ms` : "0ms",
+                }}
+            >
+                <Link
+                    href={`/${currentLocale}${link.href}`}
+                    className="block"
+                    onClick={(e) => handleLinkClick(e, link.href)}
+                >
+                    {link.label}
+                </Link>
+            </li>
+        );
+    });
 
     return (
         <AnimatePresence>

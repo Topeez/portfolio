@@ -16,34 +16,23 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { socialMedia } from "@/components/sections/socialMedia";
 import { toast } from "sonner";
-import { useTranslations } from "next-intl";
+
 import { Send } from "lucide-react";
 import Link from "next/link";
 import { motion, useInView, easeOut } from "framer-motion";
-import { useRef, useMemo, useCallback } from "react";
+import { useRef } from "react";
+import {
+    createContactSchema,
+    ContactFormValues,
+} from "@/schemas/contact-form-schema";
+import { useTranslations } from "next-intl";
 
 export function ContactForm() {
     const t = useTranslations("Contact");
 
-    // Memoize form schema to prevent recreation on every render
-    const formSchema = useMemo(
-        () =>
-            z.object({
-                name: z.string().min(2, {
-                    message: t("errors.name.tooShort"),
-                }),
-                email: z.string().email({
-                    message: t("errors.email.invalid"),
-                }),
-                message: z.string().min(10, {
-                    message: t("errors.message.tooShort"),
-                }),
-            }),
-        [t]
-    );
+    const formSchema = createContactSchema(t);
 
-    // Memoize form configuration
-    const form = useForm<z.infer<typeof formSchema>>({
+    const form = useForm<ContactFormValues>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             name: "",
@@ -53,128 +42,105 @@ export function ContactForm() {
     });
 
     // Memoize toast configuration to prevent recreation
-    const toastConfig = useMemo(
-        () => ({
-            duration: 6000,
-            className: "bg-background text-foreground",
-            style: {
-                color: "#1F2937",
-            },
-        }),
-        []
-    );
+    const toastConfig = {
+        duration: 6000,
+        className: "bg-background text-foreground",
+        style: {
+            color: "#1F2937",
+        },
+    };
 
     // Memoize notify function
-    const notify = useCallback(
-        (type: "success" | "error", message: string) => {
-            toast(message, {
-                ...toastConfig,
-                style: {
-                    ...toastConfig.style,
-                    borderLeftColor: type === "success" ? "#5ca437" : "#c53030",
-                },
-                icon: type === "success" ? "✅" : "❌",
-            });
-        },
-        [toastConfig]
-    );
+    const notify = (type: "success" | "error", message: string) => {
+        toast(message, {
+            ...toastConfig,
+            style: {
+                ...toastConfig.style,
+                borderLeftColor: type === "success" ? "#5ca437" : "#c53030",
+            },
+            icon: type === "success" ? "✅" : "❌",
+        });
+    };
 
     // Memoize submit handler
-    const onSubmit = useCallback(
-        async (values: z.infer<typeof formSchema>) => {
-            try {
-                // Add honeypot field to detect bots
-                const payload = {
-                    ...values,
-                    honeypot: "", // Empty honeypot field
-                };
+    const onSubmit = async (values: z.infer<typeof formSchema>) => {
+        try {
+            // Add honeypot field to detect bots
+            const payload = {
+                ...values,
+                honeypot: "", // Empty honeypot field
+            };
 
-                const response = await fetch("/api/contact", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(payload),
-                });
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload),
+            });
 
-                const data = await response.json();
+            const data = await response.json();
 
-                if (!response.ok) {
-                    console.error("Chyba: ", data.error);
-                    notify("error", t("submitError"));
-                    return;
-                }
-
-                notify("success", t("submitSuccess"));
-                form.reset();
-            } catch (error) {
-                console.error("Chyba při odesílání: ", error);
+            if (!response.ok) {
+                console.error("Chyba: ", data.error);
                 notify("error", t("submitError"));
+                return;
             }
-        },
-        [notify, t, form]
-    );
 
-    // Memoize animation variants
-    const animationVariants = useMemo(
-        () => ({
-            initial: { opacity: 0, y: 40, filter: "blur(6px)" },
-            animate: { opacity: 1, y: 0, filter: "blur(0px)" },
-            transition: { duration: 0.6, easeOut, delay: 0.2 },
-        }),
-        []
-    );
+            notify("success", t("submitSuccess"));
+            form.reset();
+        } catch (error) {
+            console.error("Chyba při odesílání: ", error);
+            notify("error", t("submitError"));
+        }
+    };
 
-    // Memoize social media links to prevent recreation
-    const socialMediaLinks = useMemo(
-        () =>
-            socialMedia.map((item, index) => {
-                const Icon = item.icon;
-                return (
-                    <Link
-                        key={index}
-                        href={item.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={item.label}
-                    >
-                        <Icon
-                            className="fill-foreground hover:fill-blue-600 size-10 hover:scale-[1.02] transition-all duration-300 will-change-transform"
-                            aria-hidden="true"
-                        />
-                        <span className="sr-only">{item.label}</span>
-                    </Link>
-                );
-            }),
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [socialMedia]
-    );
+    const animationVariants = {
+        initial: { opacity: 0, y: 40, filter: "blur(6px)" },
+        animate: { opacity: 1, y: 0, filter: "blur(0px)" },
+        transition: { duration: 0.6, easeOut, delay: 0.2 },
+    };
+
+    const socialMediaLinks = socialMedia.map((item, index) => {
+        const Icon = item.icon;
+        return (
+            <Link
+                key={index}
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={item.label}
+            >
+                <Icon
+                    className="fill-foreground hover:fill-blue-600 size-10 hover:scale-[1.02] transition-all duration-300 will-change-transform"
+                    aria-hidden="true"
+                />
+                <span className="sr-only">{item.label}</span>
+            </Link>
+        );
+    });
 
     const formRef = useRef(null);
     const isFormInView = useInView(formRef, { once: true });
 
-    // Memoize form fields configuration
-    const formFields = useMemo(
-        () => [
-            {
-                name: "name" as const,
-                label: t("name"),
-                placeholder: t("name-placeholder"),
-                component: Input,
-            },
-            {
-                name: "email" as const,
-                label: t("email"),
-                placeholder: t("email-placeholder"),
-                component: Input,
-            },
-            {
-                name: "message" as const,
-                label: t("message"),
-                placeholder: t("message-placeholder"),
-                component: Textarea,
-            },
-        ],
-        [t]
-    );
+    const formFields = [
+        {
+            name: "name" as const,
+            label: t("name"),
+            placeholder: t("name-placeholder"),
+            component: Input,
+        },
+        {
+            name: "email" as const,
+            label: t("email"),
+            placeholder: t("email-placeholder"),
+            component: Input,
+        },
+        {
+            name: "message" as const,
+            label: t("message"),
+            placeholder: t("message-placeholder"),
+            component: Textarea,
+        },
+    ];
 
     return (
         <Form {...form}>
@@ -189,7 +155,6 @@ export function ContactForm() {
                     onSubmit={form.handleSubmit(onSubmit)}
                     className="space-y-8 bg-background p-8 lg:p-12 rounded-2xl form-content"
                 >
-                    {/* Honeypot field - hidden from users but visible to bots */}
                     <input
                         type="text"
                         name="honeypot"
@@ -244,21 +209,16 @@ export function ContactForm() {
     );
 }
 
-// Optimized Contact component
 export function Contact() {
     const t = useTranslations("Contact");
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
 
-    // Memoize animation config
-    const animationConfig = useMemo(
-        () => ({
-            initial: { opacity: 0, y: 40, filter: "blur(8px)" },
-            animate: isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {},
-            transition: { duration: 0.6, easeOut },
-        }),
-        [isInView]
-    );
+    const animationConfig = {
+        initial: { opacity: 0, y: 40, filter: "blur(8px)" },
+        animate: isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {},
+        transition: { duration: 0.6, easeOut },
+    };
 
     return (
         <section id="contact" className="py-16 w-full" ref={ref}>

@@ -30,10 +30,10 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { motion, useInView } from "framer-motion";
-import { useRef, useMemo, memo, useState, useEffect, useCallback } from "react";
+import { useRef, useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
-const Projects = memo(function Projects() {
+function Projects() {
     const t = useTranslations("HomePage.Projects");
     const [api, setApi] = useState<CarouselApi>();
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -44,16 +44,13 @@ const Projects = memo(function Projects() {
         }),
     );
 
-    const featuredProjects = useMemo(
-        () => projects.filter((p) => p.featured).slice(0, 3),
-        [],
-    );
+    const featuredProjects = projects.filter((p) => p.featured).slice(0, 3);
 
-    const onSelect = useCallback(() => {
+    const onSelect = () => {
         if (!api) return;
         setSelectedIndex(api.selectedScrollSnap());
         autoplayRef.current.reset();
-    }, [api]);
+    };
 
     useEffect(() => {
         if (!api) return;
@@ -66,46 +63,34 @@ const Projects = memo(function Projects() {
         };
     }, [api, onSelect]);
 
-    const handleDotClick = useCallback(
-        (index: number) => {
-            api?.scrollTo(index);
-        },
-        [api],
-    );
+    const handleDotClick = (index: number) => {
+        api?.scrollTo(index);
+    };
 
-    const carouselItems = useMemo(
-        () =>
-            featuredProjects.map((project, index) => {
-                const isSelected = selectedIndex === index;
+    const carouselItems = featuredProjects.map((project, index) => {
+        const isSelected = selectedIndex === index;
 
-                return (
-                    <CarouselItem
-                        key={project.id}
-                        className="pl-4 md:basis-1/2"
-                    >
-                        <AnimatedCard
-                            index={index}
-                            image={project.images[0]}
-                            slug={project.slug}
-                            github={project.github ?? "#"}
-                            demo={project.demo ?? "#"}
-                            t={t}
-                            translationKey={project.translationKey}
-                            technologies={project.technologies.map((tech) =>
-                                tech === "api" ||
-                                tech == "db" ||
-                                tech == "template"
-                                    ? t(tech)
-                                    : tech,
-                            )}
-                            inProgress={project.inProgress}
-                            isSelected={isSelected}
-                        />
-                    </CarouselItem>
-                );
-            }),
-        [featuredProjects, t, selectedIndex],
-    );
+        return (
+            <CarouselItem key={project.id} className="pl-4 md:basis-1/2">
+                <AnimatedCard
+                    index={index}
+                    image={project.images[0]}
+                    slug={project.slug}
+                    github={project.github ?? "#"}
+                    demo={project.demo ?? "#"}
+                    t={t}
+                    translationKey={project.translationKey}
+                    technologies={project.technologies.map((tech) =>
+                        tech === "api" || tech == "db" || tech == "template"
+                            ? t(tech)
+                            : tech,
+                    )}
+                    inProgress={project.inProgress}
+                    isSelected={isSelected}
+                />
+            </CarouselItem>
+        );
+    });
 
     return (
         <section id="projects" className="grid grid-cols-12 cs-container">
@@ -162,9 +147,9 @@ const Projects = memo(function Projects() {
             </div>
         </section>
     );
-});
+}
 
-const AnimatedCard = memo(function AnimatedCard({
+function AnimatedCard({
     index,
     image,
     github,
@@ -190,73 +175,58 @@ const AnimatedCard = memo(function AnimatedCard({
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
 
-    const animationVariants = useMemo(
-        () => ({
-            initial: { opacity: 0, y: 20 },
-            animate: isInView ? { opacity: 1, y: 0 } : {},
-            transition: { duration: 0.3, delay: index * 0.05 },
-        }),
-        [isInView, index],
-    );
+    const animationVariants = {
+        initial: { opacity: 0, y: 20 },
+        animate: isInView ? { opacity: 1, y: 0 } : {},
+        transition: { duration: 0.3, delay: index * 0.05 },
+    };
 
     const isGithubDisabled = github === "#" || github === "";
     const isDemoDisabled = demo === "#" || demo === "";
 
-    const buttonConfigs = useMemo(
-        () => ({
-            github: {
-                disabled: isGithubDisabled,
-                className: `cursor-pointer bg-white/20 backdrop-blur-sm text-white border-white/30 hover:bg-white/30 !rounded-button whitespace-nowrap ${
-                    isGithubDisabled ? "cursor-not-allowed opacity-50" : ""
-                }`,
-            },
-            demo: {
-                disabled: isDemoDisabled,
-                className: `cursor-pointer bg-gradient-to-r from-blue-600 to-sky-400 hover:from-blue-700 hover:to-sky-500 text-white !rounded-button whitespace-nowrap ${
-                    isDemoDisabled ? "cursor-not-allowed opacity-50" : ""
-                }`,
-            },
-        }),
-        [isGithubDisabled, isDemoDisabled],
-    );
+    const buttonConfigs = {
+        github: {
+            disabled: isGithubDisabled,
+            className: `cursor-pointer bg-white/20 backdrop-blur-sm text-white border-white/30 hover:bg-white/30 !rounded-button whitespace-nowrap ${
+                isGithubDisabled ? "cursor-not-allowed opacity-50" : ""
+            }`,
+        },
+        demo: {
+            disabled: isDemoDisabled,
+            className: `cursor-pointer bg-gradient-to-r from-blue-600 to-sky-400 hover:from-blue-700 hover:to-sky-500 text-white !rounded-button whitespace-nowrap ${
+                isDemoDisabled ? "cursor-not-allowed opacity-50" : ""
+            }`,
+        },
+    };
 
     const handleDisabledClick = (e: React.MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
     };
 
-    const technologyBadges = useMemo(
-        () =>
-            technologies.map((tech, i) => (
-                <Badge
-                    key={i}
-                    variant="outline"
-                    className="border-blue-600 dark:border-sky-400 text-blue-600 dark:text-sky-400 cursor-default"
-                >
-                    {tech}
-                </Badge>
-            )),
-        [technologies],
+    const technologyBadges = technologies.map((tech, i) => (
+        <Badge
+            key={i}
+            variant="outline"
+            className="border-blue-600 dark:border-sky-400 text-blue-600 dark:text-sky-400 cursor-default"
+        >
+            {tech}
+        </Badge>
+    ));
+
+    const statusIcon = inProgress ? (
+        <Construction className="right-4 bottom-4 absolute text-yellow-400" />
+    ) : (
+        <BadgeCheck className="right-4 bottom-4 absolute text-green-400" />
     );
 
-    const statusIcon = useMemo(
-        () =>
-            inProgress ? (
-                <Construction className="right-4 bottom-4 absolute text-yellow-400" />
-            ) : (
-                <BadgeCheck className="right-4 bottom-4 absolute text-green-400" />
-            ),
-        [inProgress],
-    );
-
-    const altText = useMemo(() => {
+    function altText(): string {
         try {
             return t(`${translationKey}.title`) || `Project ${translationKey}`;
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        } catch (error) {
+        } catch {
             return `Project ${translationKey}`;
         }
-    }, [t, translationKey]);
+    }
 
     return (
         <motion.div
@@ -271,7 +241,7 @@ const AnimatedCard = memo(function AnimatedCard({
                 <div className="relative h-[240px] overflow-hidden">
                     <Image
                         src={image}
-                        alt={altText}
+                        alt={altText()}
                         className="group-hover:scale-105 transition-transform duration-500"
                         fill
                         sizes="100vw"
@@ -366,6 +336,6 @@ const AnimatedCard = memo(function AnimatedCard({
             </Card>
         </motion.div>
     );
-});
+}
 
 export default Projects;

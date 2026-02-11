@@ -3,7 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useMemo } from "react";
+import { useRef } from "react";
 
 export function TechCard({
     image,
@@ -20,32 +20,26 @@ export function TechCard({
     const isInView = useInView(ref, { once: true });
 
     // Memoize the animation variants to prevent recreation on every render
-    const animationVariants = useMemo(
-        () => ({
-            initial: {
-                opacity: 0,
-                filter: "blur(8px)",
-                transform: "translateY(20px)",
-                pointerEvents: "none" as const,
-            },
-            animate: {
-                opacity: 1,
-                filter: "blur(0px)",
-                transform: "translateY(0px)",
-                pointerEvents: "all" as const,
-            },
-        }),
-        []
-    );
+    const animationVariants = {
+        initial: {
+            opacity: 0,
+            filter: "blur(8px)",
+            transform: "translateY(20px)",
+            pointerEvents: "none" as const,
+        },
+        animate: {
+            opacity: 1,
+            filter: "blur(0px)",
+            transform: "translateY(0px)",
+            pointerEvents: "all" as const,
+        },
+    };
 
     // Memoize the transition object
-    const transitionConfig = useMemo(
-        () => ({
-            duration: 0.5,
-            ease: "easeOut" as const,
-        }),
-        []
-    );
+    const transitionConfig = {
+        duration: 0.5,
+        ease: "easeOut" as const,
+    };
 
     return (
         <motion.div

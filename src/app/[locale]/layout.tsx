@@ -9,7 +9,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { BackToTop } from "@/components/utils/back-to-top";
 
 export function generateStaticParams() {
-  return [{ locale: 'en' }, { locale: 'cz' }];
+    return [{ locale: "en" }, { locale: "cz" }];
 }
 
 const inter = Inter({
@@ -147,7 +147,7 @@ export default async function RootLayout(props: {
     } catch (error) {
         console.error(
             `Failed to load messages for locale: ${validLocale}`,
-            error
+            error,
         );
         // Fallback to English if the specific locale fails
         if (validLocale !== "en") {
@@ -156,7 +156,7 @@ export default async function RootLayout(props: {
             } catch (fallbackError) {
                 console.error(
                     "Failed to load fallback English messages:",
-                    fallbackError
+                    fallbackError,
                 );
             }
         }

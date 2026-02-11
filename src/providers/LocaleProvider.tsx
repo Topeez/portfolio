@@ -7,8 +7,7 @@ export default function LocaleProvider({
     timeZone,
     children,
 }: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    messages: any;
+    messages: object;
     locale: string;
     timeZone?: string;
     children: React.ReactNode;

@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/tooltip";
 import { ArrowBigUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useEffect, useCallback } from "react";
+import { useEffect } from "react"; // Removed useCallback
 
 interface LanguageToggleWithTooltipProps {
     currentLocale: string;
@@ -23,11 +23,12 @@ export function LanguageToggleWithTooltip({
     const router = useRouter();
     const pathname = usePathname();
 
-    const toggleLanguage = useCallback(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const toggleLanguage = () => {
         const newLocale = currentLocale === "en" ? "cz" : "en";
         router.replace(pathname, { locale: newLocale });
         router.refresh();
-    }, [currentLocale, pathname, router]);
+    };
 
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {

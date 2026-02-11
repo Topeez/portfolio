@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { useState, useRef, useMemo, memo } from "react";
+import { useState, useRef } from "react";
 import {
     FaReact,
     FaGraduationCap,
@@ -18,62 +18,54 @@ import {
 import { motion, useInView } from "framer-motion";
 import { AmbientGlow } from "../utils/ambient-glow";
 
-const AboutMe = memo(function AboutMe() {
+// Removed 'memo' wrapper
+function AboutMe() {
     const t = useTranslations("HomePage");
     const [isExpanded, setIsExpanded] = useState(false);
 
-    // Memoize the timeline data to prevent recreation on every render
-    const timelineData = useMemo(
-        () => [
-            {
-                icon: <FaGraduationCap />,
-                year: "2022",
-                text: t("AboutMe.Timeline.text1"),
-            },
-            {
-                icon: <FaTrophy />,
-                year: "2023",
-                text: t("AboutMe.Timeline.text2"),
-            },
-            {
-                icon: <FaTrophy />,
-                year: "2024",
-                text: t("AboutMe.Timeline.text3"),
-            },
-            {
-                icon: <FaReact />,
-                year: "2025",
-                text: t("AboutMe.Timeline.text4"),
-            },
-            {
-                icon: <FaCodeBranch />,
-                year: "2025",
-                text: t("AboutMe.Timeline.text5"),
-            },
-        ],
-        [t]
-    ); // Only recreate when translations change
+    // Static data defined directly inside render is fine with Compiler.
+    // It will hoist this automatically.
+    const timelineData = [
+        {
+            icon: <FaGraduationCap />,
+            year: "2022",
+            text: t("AboutMe.Timeline.text1"),
+        },
+        {
+            icon: <FaTrophy />,
+            year: "2023",
+            text: t("AboutMe.Timeline.text2"),
+        },
+        {
+            icon: <FaTrophy />,
+            year: "2024",
+            text: t("AboutMe.Timeline.text3"),
+        },
+        {
+            icon: <FaReact />,
+            year: "2025",
+            text: t("AboutMe.Timeline.text4"),
+        },
+        {
+            icon: <FaCodeBranch />,
+            year: "2025",
+            text: t("AboutMe.Timeline.text5"),
+        },
+    ];
 
-    // Memoize the accordion change handler
-    const handleAccordionChange = useMemo(
-        () => (value: unknown) => setIsExpanded(value === "more-content"),
-        []
-    );
+    const handleAccordionChange = (value: string) =>
+        setIsExpanded(value === "more-content");
 
-    // Memoize the rendered timeline items
-    const timelineItems = useMemo(
-        () =>
-            timelineData.map((item, index) => (
-                <TimelineItem
-                    key={index}
-                    icon={item.icon}
-                    year={item.year}
-                    text={item.text}
-                    index={index}
-                />
-            )),
-        [timelineData]
-    );
+    // Mapping is fast; no useMemo needed.
+    const timelineItems = timelineData.map((item, index) => (
+        <TimelineItem
+            key={index}
+            icon={item.icon}
+            year={item.year}
+            text={item.text}
+            index={index}
+        />
+    ));
 
     return (
         <section
@@ -139,10 +131,9 @@ const AboutMe = memo(function AboutMe() {
             </div>
         </section>
     );
-});
+}
 
-// Memoize TimelineItem to prevent unnecessary re-renders
-const TimelineItem = memo(function TimelineItem({
+function TimelineItem({
     icon,
     year,
     text,
@@ -155,23 +146,16 @@ const TimelineItem = memo(function TimelineItem({
 }) {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
-
-    // Memoize animation variants to prevent recreation
-    const animationVariants = useMemo(
-        () => ({
-            initial: { opacity: 0, y: 40, filter: "blur(8px)" },
-            animate: isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {},
-            transition: { duration: 0.5, delay: index * 0.25 },
-        }),
-        [isInView, index]
-    );
+    const initial = { opacity: 0, y: 40, filter: "blur(8px)" };
+    const animate = isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {};
+    const transition = { duration: 0.5, delay: index * 0.25 };
 
     return (
         <motion.div
             ref={ref}
-            initial={animationVariants.initial}
-            animate={animationVariants.animate}
-            transition={animationVariants.transition}
+            initial={initial}
+            animate={animate}
+            transition={transition}
             className="relative pl-8"
         >
             <div className="top-3 left-[-34px] absolute text-blue-600 text-xl">
@@ -181,6 +165,6 @@ const TimelineItem = memo(function TimelineItem({
             <p className="text-foreground text-base">{text}</p>
         </motion.div>
     );
-});
+}
 
 export default AboutMe;

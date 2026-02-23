@@ -177,9 +177,15 @@ export function ContactForm() {
                                         href={item.link}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        aria-label={item.label}
+                                        aria-label={`${item.label} (opens in new tab)`}
+                                        title={item.label}
                                     >
-                                        <Icon className="fill-foreground hover:fill-blue-600 size-10 hover:scale-[1.02] transition-all duration-300 will-change-transform" />
+                                        <span
+                                            aria-hidden="true"
+                                            className="flex justify-center items-center"
+                                        >
+                                            <Icon className="fill-foreground group-hover:fill-blue-600 size-10 transition-colors duration-300" />
+                                        </span>
                                         <span className="sr-only">
                                             {item.label}
                                         </span>

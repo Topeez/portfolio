@@ -1,43 +1,31 @@
-// app/sitemap.ts
 import { MetadataRoute } from 'next'
+import { projects } from '@/src/data/projects'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://topeeez.cz'
-  const lastModified = new Date('2025-08-12')
+  const lastModified = new Date() 
   
-  return [
-    // Homepage - highest priority
+  const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
-      lastModified: lastModified,
+      lastModified,
       changeFrequency: 'weekly',
       priority: 1.0,
     },
-    
-    // Main sections (current single-page app)
     {
-      url: `${baseUrl}/#about`,
-      lastModified: lastModified,
+      url: `${baseUrl}/projects`,
+      lastModified,
       changeFrequency: 'monthly',
       priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/#contact`,
-      lastModified: lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/#projects`,
-      lastModified: lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/#techstack`,
-      lastModified: lastModified,
-      changeFrequency: 'yearly',
-      priority: 0.6,
-    },
+    }
   ]
+
+  const projectRoutes: MetadataRoute.Sitemap = projects.map((project) => ({
+    url: `${baseUrl}/projects/${project.slug}`,
+    lastModified: lastModified, 
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  }))
+
+  return [...staticRoutes, ...projectRoutes]
 }

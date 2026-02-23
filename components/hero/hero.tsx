@@ -5,16 +5,10 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Skeleton } from "../ui/skeleton";
-import { useState } from "react";
 import GlareHover from "@/src/blocks/Animations/GlareHover/GlareHover";
 
 export default function Hero() {
-    const [imageLoaded, setImageLoaded] = useState(false);
     const t = useTranslations("HomePage");
-
-    const handleImageLoad = () => setImageLoaded(true);
-    const handleImageError = () => setImageLoaded(true);
 
     const availabilityPill = (
         <div className="flex items-center gap-2 p-1 border border-muted rounded-4xl max-w-fit">
@@ -42,7 +36,7 @@ export default function Hero() {
 
     const mainTitle = (
         <h1 className="font-bold md:text-[65px] text-6xl lg:text-left text-center slide-in">
-            {t("title")}
+            {t("title")}{" "}
             <span className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 font-bold text-transparent">
                 {t("name")}
             </span>
@@ -84,8 +78,6 @@ export default function Hero() {
         </>
     );
 
-    const imageClassName = `sm:size-3/4 lg:size-full select-none ${imageLoaded ? "opacity-100" : "opacity-0"}`;
-
     return (
         <section
             id="home"
@@ -101,20 +93,17 @@ export default function Hero() {
                 {ctaButton}
             </div>
             <div className="relative flex justify-center lg:justify-end items-center col-span-6 fade-in">
-                {!imageLoaded && (
-                    <Skeleton className="absolute inset-0 w-full h-full" />
-                )}
-                <div className="z-auto absolute inset-0 bg-gradient-to-t from-10% dark:from-background to-30% to-transparent" />
+                <div className="z-auto absolute inset-0 bg-gradient-to-t from-10% dark:from-background to-30% to-transparent pointer-events-none" />
 
                 <Image
                     src="/assets/img/me_transparent.png"
-                    alt="me"
-                    width={1800}
-                    height={2400}
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className={imageClassName}
-                    onLoad={handleImageLoad}
-                    onError={handleImageError}
+                    alt="Me"
+                    width={900}
+                    height={1200}
+                    priority
+                    fetchPriority="high"
+                    sizes="(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 33vw"
+                    className="rounded-full sm:size-3/4 lg:size-full object-cover object-top animate-image-reveal select-none"
                 />
 
                 {floatingIcons}

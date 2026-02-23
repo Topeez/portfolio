@@ -2,18 +2,45 @@
 
 import { useTranslations } from "next-intl";
 import { TechCard } from "@/components/sections/tech-card";
+import { LazyMotion, domAnimation, m, type Variants } from "framer-motion";
+
+const gridVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.15,
+        },
+    },
+};
+
+const cardVariants: Variants = {
+    hidden: {
+        opacity: 0,
+        filter: "blur(8px)",
+        y: 20,
+    },
+    visible: {
+        opacity: 1,
+        filter: "blur(0px)",
+        y: 0,
+        transition: {
+            duration: 0.5,
+            ease: "easeOut",
+        },
+    },
+};
 
 export function TechStack() {
     const t = useTranslations("HomePage.TechStack");
 
-    // Memoize the logos array to prevent recreation on every render
     const logos = [
         {
             id: 1,
             text: "HTML5",
             image: "/assets/icons/html-5.svg",
             link: "https://html.spec.whatwg.org/",
-            experience: t("experience.3plus"), // Optional: add context
+            experience: t("experience.3plus"),
         },
         {
             id: 2,
@@ -73,31 +100,46 @@ export function TechStack() {
         },
     ];
 
-    // Memoize the rendered cards to prevent unnecessary re-renders
-    const renderedCards = logos.map((logo) => (
-        <TechCard
-            key={logo.id}
-            image={logo.image}
-            link={logo.link}
-            text={logo.text}
-            experience={logo.experience}
-        />
-    ));
-
     return (
         <section id="techstack" className="grid grid-cols-12 cs-container">
-            <div className="space-y-12 col-span-12 md:text-left text-center">
-                <h2 className="font-bold text-5xl">
-                    <span className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 mx-3 font-bold text-transparent">
-                        /
-                    </span>
-                    {t("title")}
-                </h2>
-                <div className="text-xl text-left">{t("text")}</div>
-                <div className="place-items-center gap-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-                    {renderedCards}
-                </div>
-            </div>
+            <LazyMotion features={domAnimation}>
+                <m.div
+                    className="space-y-12 col-span-12 md:text-left text-center"
+                    variants={gridVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.15 }}
+                >
+                    <h2 className="font-bold text-5xl">
+                        <span className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 mx-3 font-bold text-transparent">
+                            /
+                        </span>
+                        {t("title")}
+                    </h2>
+
+                    <div className="text-xl text-left">{t("text")}</div>
+
+                    <div className="place-items-center gap-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+                        {logos.map((logo) => (
+                            <m.div
+                                key={logo.id}
+                                variants={cardVariants}
+                                style={{
+                                    willChange: "transform, opacity, filter",
+                                }}
+                                className="w-full max-w-80"
+                            >
+                                <TechCard
+                                    image={logo.image}
+                                    link={logo.link}
+                                    text={logo.text}
+                                    experience={logo.experience}
+                                />
+                            </m.div>
+                        ))}
+                    </div>
+                </m.div>
+            </LazyMotion>
         </section>
     );
 }

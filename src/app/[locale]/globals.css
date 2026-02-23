@@ -165,6 +165,14 @@
     .card-gradient {
         @apply dark:bg-gradient-to-b from-background dark:from-neutral-900 dark:to-background;
     }
+
+    .animate-twinkle {
+        animation: twinkle var(--duration, 2s) ease-in-out infinite alternate;
+    }
+
+    .animate-bokeh {
+        animation: bokeh var(--duration, 10s) ease-in-out infinite alternate;
+    }
 }
 
 @keyframes slide-up {
@@ -267,25 +275,27 @@
     }
 }
 
-@keyframes star-movement-bottom {
-    from {
-        transform: translate(0%, 0%);
-        opacity: 100;
-    }
-    to {
-        transform: translate(-100%, 0%);
+@keyframes twinkle {
+    0%,
+    100% {
         opacity: 0;
+        transform: scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
     }
 }
 
-@keyframes star-movement-top {
-    from {
-        transform: translate(0%, 0%);
-        opacity: 100;
+@keyframes bokeh {
+    0%,
+    100% {
+        opacity: 0.1;
+        transform: scale(0.8) translateY(0);
     }
-    to {
-        transform: translate(100%, 0%);
-        opacity: 0;
+    50% {
+        opacity: 0.2;
+        transform: scale(1.2) translateY(-20px);
     }
 }
 

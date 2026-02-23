@@ -29,11 +29,30 @@ import {
     type CarouselApi,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-import { motion, useInView } from "framer-motion";
+import { LazyMotion, domAnimation, m, type Variants } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
-function Projects() {
+const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.15,
+        },
+    },
+};
+
+const cardVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.5, ease: "easeOut" as const },
+    },
+};
+
+export default function Projects() {
     const t = useTranslations("HomePage.Projects");
     const [api, setApi] = useState<CarouselApi>();
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -41,6 +60,7 @@ function Projects() {
     const autoplayRef = useRef(
         Autoplay({
             delay: 10000,
+            stopOnInteraction: true,
         }),
     );
 
@@ -67,90 +87,119 @@ function Projects() {
         api?.scrollTo(index);
     };
 
-    const carouselItems = featuredProjects.map((project, index) => {
-        const isSelected = selectedIndex === index;
-
-        return (
-            <CarouselItem key={project.id} className="pl-4 md:basis-1/2">
-                <AnimatedCard
-                    index={index}
-                    image={project.images[0]}
-                    slug={project.slug}
-                    github={project.github ?? "#"}
-                    demo={project.demo ?? "#"}
-                    t={t}
-                    translationKey={project.translationKey}
-                    technologies={project.technologies.map((tech) =>
-                        tech === "api" || tech == "db" || tech == "template"
-                            ? t(tech)
-                            : tech,
-                    )}
-                    inProgress={project.inProgress}
-                    isSelected={isSelected}
-                />
-            </CarouselItem>
-        );
-    });
-
     return (
         <section id="projects" className="grid grid-cols-12 cs-container">
-            <div className="space-y-4 col-span-12 md:text-left text-center">
-                <h2 className="font-bold text-5xl">
-                    <span className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 mx-3 font-bold text-transparent">
-                        /
-                    </span>
-                    {t("title")}
-                </h2>
-                <div className="relative space-y-2 text-xl text-left">
-                    <div>{t("text")}</div>
-                    <Spacer />
-                    <div className="z-10 inset-0 bg-gradient-to-r from-background via-transparent to-background aboslute"></div>
+            <LazyMotion features={domAnimation}>
+                <m.div
+                    className="space-y-4 col-span-12 md:text-left text-center"
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.1 }}
+                >
+                    <h2 className="font-bold text-5xl">
+                        <span className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 mx-3 font-bold text-transparent">
+                            /
+                        </span>
+                        {t("title")}
+                    </h2>
+                    <div className="relative space-y-2 text-xl text-left">
+                        <div>{t("text")}</div>
+                        <Spacer />
 
-                    <Carousel
-                        className="relative w-full"
-                        setApi={setApi}
-                        plugins={[autoplayRef.current]}
-                    >
-                        <CarouselContent className="-ml-4">
-                            {carouselItems}
-                        </CarouselContent>
+                        <Carousel
+                            className="relative w-full"
+                            setApi={setApi}
+                            plugins={[autoplayRef.current]}
+                            opts={{
+                                align: "start",
+                                loop: true,
+                            }}
+                        >
+                            <CarouselContent className="-ml-4">
+                                {featuredProjects.map((project, index) => {
+                                    const isSelected = selectedIndex === index;
 
-                        {/* Pagination Dots */}
-                        <div className="flex justify-center items-center gap-2 mt-4">
-                            <CarouselPrevious className="static translate-x-0 translate-y-0 cursor-pointer" />
-                            {featuredProjects.map((_, index) => (
-                                <button
-                                    key={index}
-                                    onClick={() => handleDotClick(index)}
-                                    className={cn(
-                                        "border rounded-full size-3 transition-all duration-300",
-                                        selectedIndex === index
-                                            ? "border-blue-600 dark:border-sky-400 bg-blue-600 dark:bg-sky-400"
-                                            : "border-gray-400 dark:border-gray-600 hover:border-blue-500 dark:hover:border-sky-500",
-                                    )}
-                                    aria-label={`Go to slide ${index + 1}`}
-                                />
-                            ))}
+                                    return (
+                                        <CarouselItem
+                                            key={project.id}
+                                            className="pl-4 md:basis-1/2"
+                                        >
+                                            <m.div
+                                                variants={cardVariants}
+                                                className="h-full"
+                                                style={{
+                                                    willChange:
+                                                        "transform, opacity",
+                                                }}
+                                            >
+                                                <ProjectCard
+                                                    image={project.images[0]}
+                                                    slug={project.slug}
+                                                    github={
+                                                        project.github ?? "#"
+                                                    }
+                                                    demo={project.demo ?? "#"}
+                                                    t={t}
+                                                    translationKey={
+                                                        project.translationKey
+                                                    }
+                                                    technologies={project.technologies.map(
+                                                        (tech) =>
+                                                            tech === "api" ||
+                                                            tech == "db" ||
+                                                            tech == "template"
+                                                                ? t(tech)
+                                                                : tech,
+                                                    )}
+                                                    inProgress={
+                                                        project.inProgress
+                                                    }
+                                                    isSelected={isSelected}
+                                                />
+                                            </m.div>
+                                        </CarouselItem>
+                                    );
+                                })}
+                            </CarouselContent>
 
-                            <CarouselNext className="static translate-x-0 translate-y-0 cursor-pointer" />
-                        </div>
+                            <div className="flex justify-center items-center gap-2 mt-4">
+                                <CarouselPrevious className="static translate-x-0 translate-y-0 cursor-pointer" />
+                                {featuredProjects.map((_, index) => (
+                                    <button
+                                        key={index}
+                                        onClick={() => handleDotClick(index)}
+                                        className={cn(
+                                            "border rounded-full size-3 transition-all duration-300",
+                                            selectedIndex === index
+                                                ? "border-blue-600 dark:border-sky-400 bg-blue-600 dark:bg-sky-400"
+                                                : "border-gray-400 dark:border-gray-600 hover:border-blue-500 dark:hover:border-sky-500",
+                                        )}
+                                        aria-label={`Go to slide ${index + 1}`}
+                                    />
+                                ))}
 
-                        <div className="hidden dark:md:block top-0 left-0 absolute bg-gradient-to-r from-background/65 to-transparent w-28 h-full"></div>
-                        <div className="hidden dark:md:block top-0 right-0 absolute bg-gradient-to-l from-background/65 to-transparent w-28 h-full"></div>
-                    </Carousel>
-                </div>
-                <div className="flex justify-center mt-6">
-                    <Button asChild>
-                        <Link href="/projects">{t("viewAllProjects")} </Link>
-                    </Button>
-                </div>
-            </div>
+                                <CarouselNext className="static translate-x-0 translate-y-0 cursor-pointer" />
+                            </div>
+
+                            <div className="hidden dark:md:block top-0 left-0 absolute bg-gradient-to-r from-background/65 to-transparent w-12 h-full pointer-events-none"></div>
+                            <div className="hidden dark:md:block top-0 right-0 absolute bg-gradient-to-l from-background/65 to-transparent w-12 h-full pointer-events-none"></div>
+                        </Carousel>
+                    </div>
+                    <div className="flex justify-center mt-6">
+                        <Button asChild>
+                            <Link href="/projects">
+                                {t("viewAllProjects")}{" "}
+                            </Link>
+                        </Button>
+                    </div>
+                </m.div>
+            </LazyMotion>
         </section>
     );
 }
 
-function AnimatedCard({
-    index,
+function ProjectCard({
     image,
     github,
     demo,
@@ -161,7 +210,6 @@ function AnimatedCard({
     inProgress,
     isSelected,
 }: {
-    index: number;
     image: string;
     github: string;
     demo: string;
@@ -172,15 +220,6 @@ function AnimatedCard({
     inProgress: boolean;
     isSelected: boolean;
 }) {
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true });
-
-    const animationVariants = {
-        initial: { opacity: 0, y: 20 },
-        animate: isInView ? { opacity: 1, y: 0 } : {},
-        transition: { duration: 0.3, delay: index * 0.05 },
-    };
-
     const isGithubDisabled = github === "#" || github === "";
     const isDemoDisabled = demo === "#" || demo === "";
 
@@ -229,113 +268,98 @@ function AnimatedCard({
     }
 
     return (
-        <motion.div
-            ref={ref}
-            initial={animationVariants.initial}
-            animate={animationVariants.animate}
-            transition={animationVariants.transition}
+        <Card
+            className={`group relative hover:shadow-xl pt-0 pb-6 h-full overflow-hidden transition-shadow duration-300 ${isSelected ? "card-gradient" : ""}`}
         >
-            <Card
-                className={`group relative hover:shadow-xl pt-0 pb-6 h-full overflow-hidden transition-shadow duration-300 ${isSelected ? "card-gradient" : ""}`}
-            >
-                <div className="relative h-[240px] overflow-hidden">
-                    <Image
-                        src={image}
-                        alt={altText()}
-                        className="group-hover:scale-105 transition-transform duration-500"
-                        fill
-                        sizes="100vw"
-                        style={{
-                            objectFit: "cover",
-                            objectPosition: "top",
-                        }}
-                    />
-                    <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="p-4 w-full">
-                            <div className="flex justify-between items-center">
-                                {isGithubDisabled ? (
-                                    <div onClick={handleDisabledClick}>
-                                        <Button
-                                            variant="outline"
-                                            className={
-                                                buttonConfigs.github.className
-                                            }
-                                            disabled
-                                        >
-                                            <GitBranch className="md:mr-2" />
-                                            <span className="hidden md:inline">
-                                                {t(`${translationKey}.btncode`)}
-                                            </span>
-                                        </Button>
-                                    </div>
-                                ) : (
-                                    <Link href={github} target="_blank">
-                                        <Button
-                                            variant="outline"
-                                            className={
-                                                buttonConfigs.github.className
-                                            }
-                                        >
-                                            <GitBranch className="md:mr-2" />
-                                            <span className="hidden md:inline">
-                                                {t(`${translationKey}.btncode`)}
-                                            </span>
-                                        </Button>
-                                    </Link>
-                                )}
+            <div className="relative h-[240px] overflow-hidden">
+                <Image
+                    src={image}
+                    alt={altText()}
+                    className="group-hover:scale-105 transition-transform duration-500"
+                    fill
+                    sizes="100vw"
+                    style={{
+                        objectFit: "cover",
+                        objectPosition: "top",
+                    }}
+                />
+                <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="p-4 w-full">
+                        <div className="flex justify-between items-center">
+                            {isGithubDisabled ? (
+                                <div onClick={handleDisabledClick}>
+                                    <Button
+                                        variant="outline"
+                                        className={
+                                            buttonConfigs.github.className
+                                        }
+                                        disabled
+                                    >
+                                        <GitBranch className="md:mr-2" />
+                                        <span className="hidden md:inline">
+                                            {t(`${translationKey}.btncode`)}
+                                        </span>
+                                    </Button>
+                                </div>
+                            ) : (
+                                <Link href={github} target="_blank">
+                                    <Button
+                                        variant="outline"
+                                        className={
+                                            buttonConfigs.github.className
+                                        }
+                                    >
+                                        <GitBranch className="md:mr-2" />
+                                        <span className="hidden md:inline">
+                                            {t(`${translationKey}.btncode`)}
+                                        </span>
+                                    </Button>
+                                </Link>
+                            )}
 
-                                {isDemoDisabled ? (
-                                    <div onClick={handleDisabledClick}>
-                                        <Button
-                                            className={
-                                                buttonConfigs.demo.className
-                                            }
-                                            disabled
-                                        >
-                                            <ExternalLink className="md:mr-2" />
-                                            <span className="hidden md:inline">
-                                                {t(`${translationKey}.btnlink`)}
-                                            </span>
-                                        </Button>
-                                    </div>
-                                ) : (
-                                    <Link href={demo} target="_blank">
-                                        <Button
-                                            className={
-                                                buttonConfigs.demo.className
-                                            }
-                                        >
-                                            <ExternalLink className="md:mr-2" />
-                                            <span className="hidden md:inline">
-                                                {t(`${translationKey}.btnlink`)}
-                                            </span>
-                                        </Button>
-                                    </Link>
-                                )}
-                            </div>
+                            {isDemoDisabled ? (
+                                <div onClick={handleDisabledClick}>
+                                    <Button
+                                        className={buttonConfigs.demo.className}
+                                        disabled
+                                    >
+                                        <ExternalLink className="md:mr-2" />
+                                        <span className="hidden md:inline">
+                                            {t(`${translationKey}.btnlink`)}
+                                        </span>
+                                    </Button>
+                                </div>
+                            ) : (
+                                <Link href={demo} target="_blank">
+                                    <Button
+                                        className={buttonConfigs.demo.className}
+                                    >
+                                        <ExternalLink className="md:mr-2" />
+                                        <span className="hidden md:inline">
+                                            {t(`${translationKey}.btnlink`)}
+                                        </span>
+                                    </Button>
+                                </Link>
+                            )}
                         </div>
                     </div>
                 </div>
-                <CardHeader>
-                    <Link
-                        href={`/projects/${slug}`}
-                        className="decoration-blue-500 hover:underline underline-offset-4"
-                    >
-                        <CardTitle>{t(`${translationKey}.title`)}</CardTitle>
-                    </Link>
-                    <CardDescription className="text-gray-600">
-                        {t(`${translationKey}.description`)}
-                    </CardDescription>
-                </CardHeader>
-                <CardFooter>
-                    <div className="flex flex-wrap gap-2">
-                        {technologyBadges}
-                    </div>
-                    {statusIcon}
-                </CardFooter>
-            </Card>
-        </motion.div>
+            </div>
+            <CardHeader>
+                <Link
+                    href={`/projects/${slug}`}
+                    className="decoration-blue-500 hover:underline underline-offset-4"
+                >
+                    <CardTitle>{t(`${translationKey}.title`)}</CardTitle>
+                </Link>
+                <CardDescription className="text-gray-600">
+                    {t(`${translationKey}.description`)}
+                </CardDescription>
+            </CardHeader>
+            <CardFooter>
+                <div className="flex flex-wrap gap-2">{technologyBadges}</div>
+                {statusIcon}
+            </CardFooter>
+        </Card>
     );
 }
-
-export default Projects;

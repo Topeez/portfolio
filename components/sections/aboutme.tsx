@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import {
     FaReact,
     FaGraduationCap,
@@ -15,37 +15,42 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
-import { motion, useInView } from "framer-motion";
+import { m, LazyMotion, domAnimation } from "framer-motion";
 import { AmbientGlow } from "../utils/ambient-glow";
 
-// Removed 'memo' wrapper
-function AboutMe() {
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.25,
+        },
+    },
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, y: 40, filter: "blur(8px)" },
+    visible: {
+        opacity: 1,
+        y: 0,
+        filter: "blur(0px)",
+        transition: { duration: 0.5, ease: "easeOut" as const },
+    },
+};
+
+export default function AboutMe() {
     const t = useTranslations("HomePage");
     const [isExpanded, setIsExpanded] = useState(false);
 
-    // Static data defined directly inside render is fine with Compiler.
-    // It will hoist this automatically.
     const timelineData = [
         {
             icon: <FaGraduationCap />,
             year: "2022",
             text: t("AboutMe.Timeline.text1"),
         },
-        {
-            icon: <FaTrophy />,
-            year: "2023",
-            text: t("AboutMe.Timeline.text2"),
-        },
-        {
-            icon: <FaTrophy />,
-            year: "2024",
-            text: t("AboutMe.Timeline.text3"),
-        },
-        {
-            icon: <FaReact />,
-            year: "2025",
-            text: t("AboutMe.Timeline.text4"),
-        },
+        { icon: <FaTrophy />, year: "2023", text: t("AboutMe.Timeline.text2") },
+        { icon: <FaTrophy />, year: "2024", text: t("AboutMe.Timeline.text3") },
+        { icon: <FaReact />, year: "2025", text: t("AboutMe.Timeline.text4") },
         {
             icon: <FaCodeBranch />,
             year: "2025",
@@ -55,17 +60,6 @@ function AboutMe() {
 
     const handleAccordionChange = (value: string) =>
         setIsExpanded(value === "more-content");
-
-    // Mapping is fast; no useMemo needed.
-    const timelineItems = timelineData.map((item, index) => (
-        <TimelineItem
-            key={index}
-            icon={item.icon}
-            year={item.year}
-            text={item.text}
-            index={index}
-        />
-    ));
 
     return (
         <section
@@ -85,7 +79,6 @@ function AboutMe() {
                 </h2>
 
                 <div className="items-start gap-10 grid md:grid-cols-2">
-                    {/* Left: Text Summary with Accordion */}
                     <div className="space-y-4 text-muted-foreground text-xl">
                         <p className="text-foreground">
                             {t("AboutMe.text1-part1")}{" "}
@@ -98,7 +91,10 @@ function AboutMe() {
                             collapsible
                             onValueChange={handleAccordionChange}
                         >
-                            <AccordionItem value="more-content" className="">
+                            <AccordionItem
+                                value="more-content"
+                                className="text-base"
+                            >
                                 <AccordionContent className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
                                     <div className="space-y-4">
                                         <p>{t("AboutMe.text3")}</p>
@@ -123,48 +119,39 @@ function AboutMe() {
                         </Accordion>
                     </div>
 
-                    {/* Right: Timeline */}
-                    <div className="relative space-y-6 ml-8 pl-6 border-gray-600 border-l">
-                        {timelineItems}
-                    </div>
+                    <LazyMotion features={domAnimation}>
+                        <m.div
+                            className="relative space-y-6 ml-8 pl-6 border-gray-600 border-l"
+                            variants={containerVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, amount: 0.2 }}
+                        >
+                            {timelineData.map((item, index) => (
+                                <m.div
+                                    key={index}
+                                    variants={itemVariants}
+                                    style={{
+                                        willChange:
+                                            "transform, opacity, filter",
+                                    }}
+                                    className="relative pl-8"
+                                >
+                                    <div className="top-3 left-[-34px] absolute text-blue-600 text-xl">
+                                        {item.icon}
+                                    </div>
+                                    <p className="font-mono text-muted-foreground text-sm">
+                                        {item.year}
+                                    </p>
+                                    <p className="text-foreground text-base">
+                                        {item.text}
+                                    </p>
+                                </m.div>
+                            ))}
+                        </m.div>
+                    </LazyMotion>
                 </div>
             </div>
         </section>
     );
 }
-
-function TimelineItem({
-    icon,
-    year,
-    text,
-    index,
-}: {
-    icon: React.ReactNode;
-    year: string;
-    text: string;
-    index: number;
-}) {
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true });
-    const initial = { opacity: 0, y: 40, filter: "blur(8px)" };
-    const animate = isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {};
-    const transition = { duration: 0.5, delay: index * 0.25 };
-
-    return (
-        <motion.div
-            ref={ref}
-            initial={initial}
-            animate={animate}
-            transition={transition}
-            className="relative pl-8"
-        >
-            <div className="top-3 left-[-34px] absolute text-blue-600 text-xl">
-                {icon}
-            </div>
-            <p className="font-mono text-muted-foreground text-sm">{year}</p>
-            <p className="text-foreground text-base">{text}</p>
-        </motion.div>
-    );
-}
-
-export default AboutMe;

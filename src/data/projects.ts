@@ -75,7 +75,7 @@ export const projects: Project[] = [
         ],
         technologies: ["PHP", "WordPress", "template"],
         github: "#",
-        demo: "https://sos.mesosdev.cz/",
+        demo: "https://mesos.cz/",
         inProgress: true,
     },
     {
@@ -89,8 +89,8 @@ export const projects: Project[] = [
             "/assets/img/projects/majktravas/majktravas-aboutme.png",
             "/assets/img/projects/majktravas/majktravas-references.png",
         ],
-        technologies: ["React", "Next.js", "Tailwind CSS", "shadcn UI", "API"],
-        github: "https://github.com/Topeez/majktravasweb",
+        technologies: ["React", "Astro.js", "Tailwind CSS", "shadcn UI", "API"],
+        github: "https://github.com/Topeez/travas-astro",
         demo: "https://travasstineni.cz",
         inProgress: false,
     },
@@ -166,4 +166,17 @@ export const projects: Project[] = [
         demo: "https://side-by-side-nu.vercel.app",
         inProgress: true,
     },
+    {
+      id: "principia",
+      slug: "principia",
+      featured: false,
+      translationKey: "principia",
+      images: [
+        "/assets/img/projects/principia-hero.png"
+      ],
+      technologies: ["React", "Astro.js", "Tailwind CSS", "shadcn UI"],
+      github: "",
+      demo: "",
+      inProgress: true,
+    }
 ];

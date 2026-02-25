@@ -110,6 +110,12 @@
                 "description": "Tato aplikace je budoucí platformou pro sdílení a správu obsahu s vaším partnerem. Je stále ve vývoji.",
                 "btncode": "Zobrazit kód",
                 "btnlink": "Zobrazit ukázku"
+            },
+            "principia": {
+                "title": "Webová stránka Principia",
+                "description": "Tato statická stránka byla vytvořena pro Principia.",
+                "btncode": "Zobrazit kód",
+                "btnlink": "Zobrazit ukázku"
             }
         },
 

@@ -110,6 +110,12 @@
                 "description": "This web application is a platform for sharing and managing content with your partner. It is still in the development. ",
                 "btncode": "View code",
                 "btnlink": "View demo"
+            },
+            "principia": {
+                "title": "Principia website",
+                "description": "This static website is made for Principia.",
+                "btncode": "View code",
+                "btnlink": "View demo"
             }
         },
 

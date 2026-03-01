@@ -122,6 +122,7 @@
         "TechStack": {
             "title": "Tech stack",
             "text": "Here is my overview of technologies I've worked with and their experience levels.",
+            "text2": "Tip, karty můžete chytit a pohrát si s nimi.",
             "experience": {
                 "5plus": "5+ let",
                 "3plus": "3+ let",

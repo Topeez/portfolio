@@ -122,6 +122,7 @@
         "TechStack": {
             "title": "Tech stack",
             "text": "Here is my overview of technologies I've worked with and their experience levels.",
+            "text2": "Hint, you can grab the cards and play around with them.",
             "experience": {
                 "5plus": "5+ years",
                 "3plus": "3+ years",

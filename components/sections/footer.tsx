@@ -5,6 +5,7 @@ import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { socialMedia } from "@/components/sections/socialMedia";
+import { LighthouseBadge } from "../utils/lighthouse-badge";
 
 export function Footer() {
     const t = useTranslations("Footer");
@@ -49,6 +50,9 @@ export function Footer() {
                             );
                         })}
                     </div>
+                </div>
+                <div className="flex justify-center mt-12 mb-8">
+                    <LighthouseBadge />
                 </div>
 
                 {/* Right Column - CTA and Contact Info */}

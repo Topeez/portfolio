@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import {
     FaReact,
     FaGraduationCap,
@@ -15,7 +15,13 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
-import { m, LazyMotion, domAnimation } from "framer-motion";
+import {
+    m,
+    LazyMotion,
+    domAnimation,
+    useScroll,
+    useTransform,
+} from "framer-motion";
 import { AmbientGlow } from "../utils/ambient-glow";
 
 const containerVariants = {
@@ -41,6 +47,14 @@ const itemVariants = {
 export default function AboutMe() {
     const t = useTranslations("HomePage");
     const [isExpanded, setIsExpanded] = useState(false);
+    const timelineRef = useRef<HTMLDivElement>(null);
+
+    const { scrollYProgress } = useScroll({
+        target: timelineRef,
+        offset: ["start 60%", "end center"],
+    });
+
+    const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
     const timelineData = [
         {
@@ -121,12 +135,23 @@ export default function AboutMe() {
 
                     <LazyMotion features={domAnimation}>
                         <m.div
-                            className="relative space-y-6 ml-8 pl-6 border-gray-600 border-l"
+                            ref={timelineRef}
+                            className="relative space-y-6 ml-8 pl-6"
                             variants={containerVariants}
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true, amount: 0.2 }}
                         >
+                            <div className="top-3 bottom-0 left-0 absolute dark:bg-gray-600 bg-border w-[2px]" />
+
+                            <m.div
+                                className="top-3 left-0 z-0 absolute bg-gradient-to-b from-blue-600 to-sky-400 w-[2px]"
+                                style={{
+                                    height: lineHeight,
+                                    willChange: "height",
+                                }}
+                            />
+
                             {timelineData.map((item, index) => (
                                 <m.div
                                     key={index}
@@ -137,7 +162,7 @@ export default function AboutMe() {
                                     }}
                                     className="relative pl-8"
                                 >
-                                    <div className="top-3 left-[-34px] absolute text-blue-600 text-xl">
+                                    <div className="top-1 left-[-40px] z-10 absolute flex justify-center items-center bg-background p-1 rounded-full text-blue-600 text-xl transition-colors duration-300">
                                         {item.icon}
                                     </div>
                                     <p className="font-mono text-muted-foreground text-sm">

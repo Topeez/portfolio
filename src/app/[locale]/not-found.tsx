@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
+import { TicTacToeEasterEgg } from "@/components/utils/tic-tac-toe";
 
 export default function NotFound() {
     const router = useRouter();
@@ -16,6 +17,9 @@ export default function NotFound() {
                         {t("title")}
                     </h1>
                     <p className="text-foreground/50">{t("text")}</p>
+                </div>
+                <div className="mx-auto mt-12 mb-12 w-full max-w-sm">
+                    <TicTacToeEasterEgg />
                 </div>
                 <div className="flex justify-center items-center gap-6">
                     <Button

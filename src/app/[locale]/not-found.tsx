@@ -23,7 +23,7 @@ export default function NotFound() {
                 </div>
                 <div className="flex justify-center items-center gap-6">
                     <Button
-                        onClick={() => router.back()}
+                        onClick={() => router.push("/")}
                         className="inline-flex items-center bg-foreground px-10 py-3 rounded-lg h-10 text-background transition-colors cursor-pointer select-none"
                     >
                         {t("btnHome")}

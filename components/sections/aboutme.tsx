@@ -65,11 +65,8 @@ export default function AboutMe() {
         { icon: <FaTrophy />, year: "2023", text: t("AboutMe.Timeline.text2") },
         { icon: <FaTrophy />, year: "2024", text: t("AboutMe.Timeline.text3") },
         { icon: <FaReact />, year: "2025", text: t("AboutMe.Timeline.text4") },
-        {
-            icon: <FaCodeBranch />,
-            year: "2025",
-            text: t("AboutMe.Timeline.text5"),
-        },
+        { icon: <FaCodeBranch />, year: "2025", text: t("AboutMe.Timeline.text5")},
+        { icon: <FaTrophy/>, year: "2026", text: t("AboutMe.Timeline.text6")},
     ];
 
     const handleAccordionChange = (value: string) =>

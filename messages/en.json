@@ -15,10 +15,9 @@
         }
     },
     "404": {
-        "title": "404",
-        "text": "We couldn't find the page you're looking for.",
-        "btnHome": "Home",
-        "btnPrev": "Go back"
+        "title": "Ups! Lost in space",
+        "description": "We couldn't find the page you're looking for.",
+        "backText": "Go Back"
     },
     "HomePage": {
         "available": "Open to work",
@@ -28,6 +27,7 @@
         "subtitle": "Frontend developer",
         "description": "I build fast and clean web apps with React & Next.js.",
         "ctabutton": "More about me",
+        "ctabutton2": "Contact me",
 
         "AboutMe": {
             "title": "About me",
@@ -136,12 +136,12 @@
         "title": "Interested in collaboration?",
         "subtitle": "Feel free to contact me",
         "send": "Send message",
-        "name": "Name",
-        "name-placeholder": "Enter your name",
+        "name": "Full name",
+        "name-placeholder": "John Doe",
         "email": "Email",
-        "email-placeholder": "Enter your email",
+        "email-placeholder": "example@domain.com",
         "message": "Message",
-        "message-placeholder": "Enter your message",
+        "message-placeholder": "Ask me something...",
         "contact": "Or contact me here",
         "errors": {
             "name": {

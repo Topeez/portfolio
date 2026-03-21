@@ -29,7 +29,7 @@ export function Contact() {
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.25 }}
                     style={{ willChange: "transform, opacity, filter" }}
-                    className="flex flex-col justify-center items-center space-y-8 md:text-left text-center cs-container"
+                    className="flex flex-col justify-center items-center space-y-8 rounded-2xl md:text-left text-center cs-container"
                 >
                     <h2 className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 font-bold text-transparent text-5xl">
                         {t("title")}

@@ -115,11 +115,11 @@ export function ContactForm() {
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.3 }}
                     className="mx-auto w-full md:w-1/2 form-wrapper"
-                    style={{ willChange: "transform, opacity, filter" }}
+                    style={{ willChange: "transform, opacity, filter", transform: "translateZ(0)" }}
                 >
                     <form
                         onSubmit={form.handleSubmit(onSubmit)}
-                        className="space-y-8 bg-background p-6 lg:p-12 rounded-2xl form-content"
+                        className="space-y-8 bg-background p-6 lg:p-12 rounded-2xl overflow-hidden form-content"
                     >
                         <input
                             type="text"
@@ -127,6 +127,7 @@ export function ContactForm() {
                             style={{ display: "none" }}
                             tabIndex={-1}
                             autoComplete="off"
+                            
                         />
 
                         {formFields.map((fieldConfig) => (
@@ -141,7 +142,7 @@ export function ContactForm() {
                                         </FormLabel>
                                         <FormControl>
                                             <fieldConfig.component
-                                                className="focus-visible:border-blue-500 outline-none focus-visible:outline-none focus-visible:ring-0 active:ring-0 max-h-32 transition-colors"
+                                                className="p-4! focus-visible:border-blue-500 outline-none focus-visible:outline-none focus-visible:ring-0 active:ring-0 max-h-32 transition-colors"
                                                 placeholder={
                                                     fieldConfig.placeholder
                                                 }

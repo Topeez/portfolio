@@ -1,6 +1,6 @@
 "use client";
 
-import { Braces, CodeXml, UserRound } from "lucide-react";
+import { Braces, CodeXml, Phone, UserRound } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -44,7 +44,7 @@ export default function Hero() {
     );
 
     const ctaButton = (
-        <div className="flex justify-start items-center mx-auto lg:mx-0 mt-16 lg:mt-20 animate-slide-up">
+        
             <GlareHover
                 glareColor="#ffffff"
                 glareOpacity={0.5}
@@ -55,13 +55,21 @@ export default function Hero() {
                 className="rounded-2xl"
             >
                 <Link href="/#about">
-                    <Button className="bg-foreground hover:bg-gradient-to-r from-blue-600 to-sky-400 px-16 py-8 rounded-2xl hover:text-white text-2xl transition-all ease-in-out cursor-pointer">
+                    <Button className="bg-foreground hover:bg-gradient-to-r from-blue-600 to-sky-400 px-15 py-7 rounded-2xl hover:text-white text-2xl transition-all ease-in-out cursor-pointer">
                         <UserRound className="mr-1" />
                         {t("ctabutton")}
                     </Button>
                 </Link>
             </GlareHover>
-        </div>
+    );
+
+    const contactButton = (
+      <Link href="/#contact">
+          <Button className="group bg-foreground hover:bg-transparent px-15 py-7 border border-foreground hover:border-foreground rounded-2xl hover:text-white text-2xl transition-all ease-in-out cursor-pointer">
+              <Phone className="mr-1 group-hover:animate-tilt" />
+              {t("ctabutton2")}
+          </Button>
+      </Link>
     );
 
     const floatingIcons = (
@@ -90,7 +98,10 @@ export default function Hero() {
                 <div className="text-muted-foreground text-lg md:text-xl lg:text-left text-center slide-in">
                     {t("description")}
                 </div>
-                {ctaButton}
+                <div className="flex justify-startitems-center gap-8 mx-auto lg:mx-0 mt-16 lg:mt-20 animate-slide-up">
+                  {ctaButton}
+                  {contactButton}
+                </div>
             </div>
             <div className="relative flex justify-center lg:justify-end items-center col-span-6 fade-in">
                 <div className="z-auto absolute inset-0 bg-gradient-to-t from-10% dark:from-background to-30% to-transparent pointer-events-none" />
@@ -111,3 +122,4 @@ export default function Hero() {
         </section>
     );
 }
+

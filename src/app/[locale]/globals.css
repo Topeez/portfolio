@@ -60,6 +60,7 @@
         alternate;
     --animate-star-movement-top: star-movement-top linear infinite alternate;
     --animate-border-spin: border-spin 10s linear infinite;
+    --animate-tilt: tilt-shaking 0.3s ease-in-out;
 }
 
 @layer base {
@@ -143,23 +144,30 @@
         animation: fade-in 1s ease 300ms backwards;
     }
 
-    .form-wrapper {
-        @apply relative p-px border rounded-2xl overflow-hidden;
+    @keyframes border-spin {
+        to {
+            --border-angle: -360deg;
+        }
     }
 
-    .form-wrapper::before {
+    .form-wrapper {
+        @apply relative p-px border rounded-2xl;
         background: conic-gradient(
-            from 0deg,
+            from var(--border-angle),
             #2563eb,
             #38bdf8,
             transparent 80deg
         );
-
-        @apply top-[-50%] left-[-50%] absolute size-[200%] content-[''] animate-border-spin;
+        animation: border-spin 9s linear infinite;
+    }
+    @property --border-angle {
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
     }
 
     .form-content {
-        @apply relative bg-background rounded-2xl;
+        @apply relative bg-background rounded-[15px];
     }
 
     .card-gradient {
@@ -172,6 +180,24 @@
 
     .animate-bokeh {
         animation: bokeh var(--duration, 10s) ease-in-out infinite alternate;
+    }
+}
+
+@keyframes tilt-shaking {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(7deg);
+    }
+    50% {
+        transform: rotate(0eg);
+    }
+    75% {
+        transform: rotate(-7deg);
+    }
+    100% {
+        transform: rotate(0deg);
     }
 }
 
@@ -298,12 +324,6 @@
     50% {
         opacity: 0.2;
         transform: scale(1.2) translateY(-20px);
-    }
-}
-
-@keyframes border-spin {
-    100% {
-        transform: rotate(-360deg);
     }
 }
 

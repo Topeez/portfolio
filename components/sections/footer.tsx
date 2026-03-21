@@ -82,7 +82,7 @@ export function Footer() {
                 <Separator className="bg-gradient-to-r from-blue-600 to-sky-400 my-6" />
 
                 <div className="flex md:flex-row flex-col justify-between items-center gap-4 w-full text-center">
-                    <div className="mx-auto font-bold text-sm md:text-base">
+                    <div className="mx-auto text-muted-foreground text-sm">
                         {t("copyright1")}
                         {new Date().getFullYear()}
                         {t("copyright2")}

@@ -15,10 +15,9 @@
         }
     },
     "404": {
-        "title": "404",
-        "text": "Nemohli jsme najít stránku, kterou jsi hledal...",
-        "btnHome": "Domů",
-        "btnPrev": "Jít zpět"
+        "title": "Chyba! Ztracen v prostoru a čase",
+        "description": "Nemohli jsme najít stránku, kterou jste hledali.",
+        "backText": "Zpět"
     },
     "HomePage": {
         "available": "Hledám práci",
@@ -28,6 +27,7 @@
         "subtitle": "Frontend vývojář",
         "description": "Vytvářím rychlé a čisté webové aplikace pomocí Reactu & Next.js.",
         "ctabutton": "Více o mně",
+        "ctabutton2": "Kontaktovat",
 
         "AboutMe": {
             "title": "O mně",
@@ -136,12 +136,12 @@
         "title": "Máte zájem o spolupráci?",
         "subtitle": "Neváhejte mě kontaktovat",
         "send": "Odeslat zprávu",
-        "name": "Jméno",
-        "name-placeholder": "Zadejte své jméno",
+        "name": "Celé jméno",
+        "name-placeholder": "Jan Novák",
         "email": "Email",
-        "email-placeholder": "Zadejte svůj email",
+        "email-placeholder": "příklad@doména.cz",
         "message": "Zpráva",
-        "message-placeholder": "Zadejte svou zprávu",
+        "message-placeholder": "Zeptejte se mě na něco",
         "contact": "Nebo mě kontaktujte zde",
         "errors": {
             "name": {

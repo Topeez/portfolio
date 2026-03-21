@@ -117,6 +117,12 @@
                 "description": "This static website is made for Principia.",
                 "btncode": "View code",
                 "btnlink": "View demo"
+            },
+            "princster": {
+                "title": "Princster AI website",
+                "description": "This static website is made for Prinster AI.",
+                "btncode": "View code",
+                "btnlink": "View demo"
             }
         },
 

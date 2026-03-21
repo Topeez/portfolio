@@ -176,7 +176,25 @@ export const projects: Project[] = [
       ],
       technologies: ["React", "Astro.js", "Tailwind CSS", "shadcn UI"],
       github: "",
-      demo: "",
+      demo: "https://principia.cz",
+      inProgress: true,
+    },
+        {
+      id: "princster",
+      slug: "princster",
+      featured: false,
+      translationKey: "princster",
+      images: [
+        "/assets/img/projects/princster/princster-hero.png",
+        "/assets/img/projects/princster/princster-before-and-after.png",
+        "/assets/img/projects/princster/princster-how-it-works.png",
+        "/assets/img/projects/princster/princster-features.png",
+        "/assets/img/projects/princster/princster-trust.png",
+        "/assets/img/projects/princster/princster-form.png",
+      ],
+      technologies: ["Astro.js", "Tailwind CSS", "shadcn UI"],
+      github: "",
+      demo: "https://princster.com",
       inProgress: true,
     }
 ];

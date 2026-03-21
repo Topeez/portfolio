@@ -117,6 +117,12 @@
                 "description": "Tato statická stránka byla vytvořena pro Principia.",
                 "btncode": "Zobrazit kód",
                 "btnlink": "Zobrazit ukázku"
+            },
+            "princster": {
+                "title": "Webová stránka Princster AI",
+                "description": "Tato statická stránka byla vytvořena pro Princster AI.",
+                "btncode": "Zobrazit kód",
+                "btnlink": "Zobrazit ukázku"
             }
         },
 

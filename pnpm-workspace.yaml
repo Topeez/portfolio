@@ -1,0 +1,8 @@
+allowBuilds:
+  '@parcel/watcher': true
+  '@swc/core': true
+  '@tailwindcss/oxide': true
+  '@vercel/speed-insights': true
+  chromedriver: true
+  sharp: true
+  unrs-resolver: true

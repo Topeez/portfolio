@@ -44,32 +44,31 @@ export default function Hero() {
     );
 
     const ctaButton = (
-        
-            <GlareHover
-                glareColor="#ffffff"
-                glareOpacity={0.5}
-                glareAngle={-45}
-                glareSize={300}
-                transitionDuration={600}
-                playOnce={false}
-                className="rounded-2xl"
-            >
-                <Link href="/#about">
-                    <Button className="bg-foreground hover:bg-gradient-to-r from-blue-600 to-sky-400 px-15 py-7 rounded-2xl hover:text-white text-2xl transition-all ease-in-out cursor-pointer">
-                        <UserRound className="mr-1" />
-                        {t("ctabutton")}
-                    </Button>
-                </Link>
-            </GlareHover>
+        <GlareHover
+            glareColor="#ffffff"
+            glareOpacity={0.5}
+            glareAngle={-45}
+            glareSize={300}
+            transitionDuration={600}
+            playOnce={false}
+            className="rounded-2xl"
+        >
+            <Link href="/#about">
+                <Button className="bg-foreground hover:bg-gradient-to-r from-blue-600 to-sky-400 px-15 py-7 rounded-2xl hover:text-white text-2xl transition-all ease-in-out cursor-pointer">
+                    <UserRound className="mr-1" />
+                    {t("ctabutton")}
+                </Button>
+            </Link>
+        </GlareHover>
     );
 
     const contactButton = (
-      <Link href="/#contact">
-          <Button className="group bg-foreground hover:bg-transparent px-15 py-7 border border-foreground hover:border-foreground rounded-2xl hover:text-white text-2xl transition-all ease-in-out cursor-pointer">
-              <Phone className="mr-1 group-hover:animate-tilt" />
-              {t("ctabutton2")}
-          </Button>
-      </Link>
+        <Link href="/#contact">
+            <Button className="group bg-foreground hover:bg-transparent px-15 py-7 border border-foreground hover:border-foreground rounded-2xl hover:text-white text-2xl transition-all ease-in-out cursor-pointer">
+                <Phone className="mr-1 group-hover:animate-tilt" />
+                {t("ctabutton2")}
+            </Button>
+        </Link>
     );
 
     const floatingIcons = (
@@ -98,9 +97,9 @@ export default function Hero() {
                 <div className="text-muted-foreground text-lg md:text-xl lg:text-left text-center slide-in">
                     {t("description")}
                 </div>
-                <div className="flex justify-startitems-center gap-8 mx-auto lg:mx-0 mt-16 lg:mt-20 animate-slide-up">
-                  {ctaButton}
-                  {contactButton}
+                <div className="flex md:flex-row flex-col justify-start items-center gap-8 mx-auto lg:mx-0 mt-16 lg:mt-20 animate-slide-up">
+                    {ctaButton}
+                    {contactButton}
                 </div>
             </div>
             <div className="relative flex justify-center lg:justify-end items-center col-span-6 fade-in">
@@ -122,4 +121,3 @@ export default function Hero() {
         </section>
     );
 }
-

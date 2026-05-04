@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/tooltip";
 import { ArrowBigUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useEffect } from "react"; // Removed useCallback
+import { useEffect } from "react";
 
 interface LanguageToggleWithTooltipProps {
     currentLocale: string;
@@ -74,10 +74,10 @@ export function LanguageToggleWithTooltip({
                     />
                 </Button>
             </TooltipTrigger>
-            <TooltipContent>
+            <TooltipContent className="bg-background text-foreground">
                 <p className="flex items-center gap-1">
                     {t("Lang.change")}
-                    <span className="flex items-center font-semibold text-blue-600 dark:text-muted text-xs">
+                    <span className="flex items-center font-semibold text-sky-500 text-xs">
                         <ArrowBigUp className="size-4" />
                         <span>+C</span>
                     </span>

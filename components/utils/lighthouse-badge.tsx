@@ -21,15 +21,15 @@ export function LighthouseBadge() {
         <TooltipProvider delayDuration={200}>
             <Tooltip>
                 <TooltipTrigger asChild>
-                    <div className="inline-flex flex-wrap items-center gap-4 bg-muted/50 dark:bg-[#141414]/50 backdrop-blur-sm px-4 py-2 border border-border hover:border-blue-500/50 rounded-full w-max transition-colors cursor-help">
+                    <div className="flex md:flex-row flex-col flex-wrap items-center gap-4 bg-background/90 backdrop-blur-sm px-4 py-8 md:py-2 border border-border hover:border-blue-500/50 rounded-2xl w-max transition-colors cursor-help">
                         <div className="flex items-center gap-2 pr-2 border-border border-r">
-                            <span className="bg-sky-400 rounded-full w-2 h-2 animate-pulse" />
+                            <span className="bg-sky-400 rounded-full size-2 animate-pulse" />
                             <span className="font-mono text-muted-foreground text-xs uppercase tracking-wider">
                                 Lighthouse
                             </span>
                         </div>
 
-                        <div className="flex gap-4">
+                        <div className="flex flex-wrap gap-4 md:max-w-full max-w-sm">
                             {scores.map((score, idx) => {
                                 const Icon = score.icon;
                                 return (
@@ -40,7 +40,7 @@ export function LighthouseBadge() {
                                         <span className="font-bold text-sky-400 text-sm">
                                             {score.value}
                                         </span>
-                                        <Icon className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+                                        <Icon className="size-4 text-muted-foreground group-hover:text-foreground transition-colors" />
                                     </div>
                                 );
                             })}

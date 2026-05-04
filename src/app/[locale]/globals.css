@@ -333,7 +333,7 @@
     }
 
     body {
-        @apply bg-background text-foreground;
+        @apply bg-background text-foreground translate-z-0;
     }
 
     .footer-socials svg {
@@ -361,7 +361,7 @@
     }
 
     .shape-fill {
-        @apply fill-blue-600;
+        @apply fill-sky-500;
 
         @variant dark {
             @apply fill-foreground;

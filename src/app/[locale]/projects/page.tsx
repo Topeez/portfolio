@@ -56,7 +56,6 @@ export default async function ProjectsIndexPage({
                     </p>
                 </div>
 
-                {/* Nahradili jsme klasický <div className="grid..."> za náš Client Wrapper */}
                 <ProjectsGridAnimator>
                     {projects.map((project) => {
                         const translatedTechs = project.technologies.map(
@@ -70,8 +69,6 @@ export default async function ProjectsIndexPage({
                         const remainingTechs = translatedTechs.length - 4;
 
                         return (
-                            // Obalíme každou položku do Card Animátoru.
-                            // Key musí zůstat vždy na nejvyšším prvku v mapě.
                             <ProjectCardAnimator key={project.id}>
                                 <Link
                                     href={`/projects/${project.slug}`}
@@ -130,16 +127,16 @@ export default async function ProjectsIndexPage({
                                                         variant="secondary"
                                                         className="bg-yellow-500/10 backdrop-blur-md border-amber-400 text-yellow-600"
                                                     >
-                                                        <Construction className="mr-1 w-3 h-3" />
-                                                        In Progress
+                                                        <Construction className="mr-1 size-3" />
+                                                        {t("inProgress")}
                                                     </Badge>
                                                 ) : (
                                                     <Badge
                                                         variant="secondary"
                                                         className="bg-green-500/10 backdrop-blur-md border-green-400 text-green-600"
                                                     >
-                                                        <BadgeCheck className="mr-1 w-3 h-3" />
-                                                        Done
+                                                        <BadgeCheck className="mr-1 size-3" />
+                                                        {t("done")}
                                                     </Badge>
                                                 )}
                                             </div>
@@ -148,7 +145,7 @@ export default async function ProjectsIndexPage({
                                                 variant="ghost"
                                                 className="p-0 h-auto text-blue-600 transition-transform group-hover:translate-x-1"
                                             >
-                                                Read more &rarr;
+                                                {t("showMore")} &rarr;
                                             </Button>
                                         </CardFooter>
                                     </Card>

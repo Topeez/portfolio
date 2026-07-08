@@ -14,6 +14,9 @@ export const createContactSchema = (t: TranslationFunction) => {
         message: z.string().min(10, {
             message: t("errors.message.tooShort"),
         }),
+        consent: z.boolean().refine(val => val === true, {
+          message: t("errors.consent.required")
+        })
     });
 };
 

@@ -5,6 +5,7 @@ import { TechCard } from "@/components/sections/tech-card";
 import { LazyMotion, m, type Variants } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { Lightbulb } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const gridVariants: Variants = {
     hidden: { opacity: 0 },
@@ -24,6 +25,22 @@ const cardVariants: Variants = {
 export function TechStack() {
     const t = useTranslations("HomePage.TechStack");
     const logos = getLogos(t);
+
+    const [isDraggable, setIsDraggable] = useState(false);
+
+    useEffect(() => {
+        const mediaQuery = window.matchMedia("(min-width: 768px)");
+
+        setIsDraggable(mediaQuery.matches);
+
+        const handleResize = (e: MediaQueryListEvent) => {
+            setIsDraggable(e.matches);
+        };
+
+        mediaQuery.addEventListener("change", handleResize);
+
+        return () => mediaQuery.removeEventListener("change", handleResize);
+    }, []);
 
     return (
         <section
@@ -51,7 +68,7 @@ export function TechStack() {
 
                     <div className="flex flex-col items-start gap-2 text-xl text-left">
                         {t("text")}{" "}
-                        <span className="inline-flex items-center gap-2 font-light text-muted-foreground text-sm">
+                        <span className="hidden md:inline-flex items-center gap-2 font-light text-muted-foreground text-sm">
                             <Lightbulb size={20} className="text-sky-400" />
                             {t("text2")}
                         </span>
@@ -65,9 +82,17 @@ export function TechStack() {
                                 className="relative w-full max-w-80 h-[350px]"
                             >
                                 <m.div
-                                    className="z-10 absolute inset-0 cursor-grab active:cursor-grabbing"
-                                    style={{ touchAction: "none" }}
-                                    drag
+                                    className={`z-10 absolute inset-0 ${
+                                        isDraggable
+                                            ? "cursor-grab active:cursor-grabbing"
+                                            : ""
+                                    }`}
+                                    style={
+                                        isDraggable
+                                            ? { touchAction: "none" }
+                                            : undefined
+                                    }
+                                    drag={isDraggable}
                                     dragConstraints={{
                                         left: -50,
                                         right: 50,
@@ -75,7 +100,11 @@ export function TechStack() {
                                         bottom: 50,
                                     }}
                                     dragElastic={0.4}
-                                    whileDrag={{ scale: 1.1, zIndex: 50 }}
+                                    whileDrag={
+                                        isDraggable
+                                            ? { scale: 1.1, zIndex: 50 }
+                                            : undefined
+                                    }
                                     dragTransition={{
                                         bounceStiffness: 200,
                                         bounceDamping: 20,

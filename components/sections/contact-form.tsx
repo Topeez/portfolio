@@ -11,12 +11,13 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { socialMedia } from "@/components/sections/socialMedia";
 import { toast } from "sonner";
-import { Send } from "lucide-react";
+import { Send, CheckCircle, XCircle } from "lucide-react";
 import Link from "next/link";
 import { LazyMotion, domAnimation, m, type Variants } from "framer-motion";
 import {
@@ -41,7 +42,7 @@ export function ContactForm() {
 
     const form = useForm<ContactFormValues>({
         resolver: zodResolver(formSchema),
-        defaultValues: { name: "", email: "", message: "" },
+        defaultValues: { name: "", email: "", message: "", consent: false },
     });
 
     const toastConfig = {
@@ -57,7 +58,12 @@ export function ContactForm() {
                 ...toastConfig.style,
                 borderLeftColor: type === "success" ? "#5ca437" : "#c53030",
             },
-            icon: type === "success" ? "✅" : "❌",
+            icon:
+                type === "success" ? (
+                    <CheckCircle className="text-[#5ca437]" size={20} />
+                ) : (
+                    <XCircle className="text-[#c53030]" size={20} />
+                ),
         });
     };
 
@@ -115,7 +121,10 @@ export function ContactForm() {
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.3 }}
                     className="mx-auto w-full md:w-1/2 form-wrapper"
-                    style={{ willChange: "transform, opacity, filter", transform: "translateZ(0)" }}
+                    style={{
+                        willChange: "transform, opacity, filter",
+                        transform: "translateZ(0)",
+                    }}
                 >
                     <form
                         onSubmit={form.handleSubmit(onSubmit)}
@@ -127,7 +136,6 @@ export function ContactForm() {
                             style={{ display: "none" }}
                             tabIndex={-1}
                             autoComplete="off"
-                            
                         />
 
                         {formFields.map((fieldConfig) => (
@@ -154,6 +162,30 @@ export function ContactForm() {
                                 )}
                             />
                         ))}
+
+                        <FormField
+                            control={form.control}
+                            name="consent"
+                            render={({ field }) => (
+                                <FormItem className="flex flex-row items-start space-x-3 space-y-0 p-4">
+                                    <FormControl>
+                                        <Checkbox
+                                            checked={field.value}
+                                            onCheckedChange={field.onChange}
+                                        />
+                                    </FormControl>
+                                    <div className="space-y-1 leading-none">
+                                        <FormLabel className="font-bold text-sm cursor-pointer">
+                                            {t("consentText")}
+                                            <span className="ml-1 text-red-500">
+                                                *
+                                            </span>
+                                        </FormLabel>
+                                        <FormMessage />
+                                    </div>
+                                </FormItem>
+                            )}
+                        />
 
                         <Button
                             className="group bg-foreground hover:bg-gradient-to-br from-blue-500 to-sky-400 rounded-lg w-full hover:text-foreground hover:scale-[1.01] transition-all duration-300 cursor-pointer will-change-transform"

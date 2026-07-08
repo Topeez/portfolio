@@ -7,7 +7,6 @@ import { ThemeProvider } from "@/components/utils/theme-provider";
 import { Toaster } from "sonner";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { BackToTop } from "@/components/utils/back-to-top";
-import { SmoothScroll } from "@/components/utils/smooth-scroll";
 import { Metadata } from "next";
 
 export function generateStaticParams() {
@@ -134,12 +133,10 @@ export default async function RootLayout(props: {
                         defaultTheme="light"
                         enableSystem
                     >
-                        <SmoothScroll>
-                            {children}
-                            <BackToTop />
-                            <SpeedInsights />
-                            <Toaster />
-                        </SmoothScroll>
+                        {children}
+                        <Toaster />
+                        <BackToTop />
+                        <SpeedInsights />
                     </ThemeProvider>
                 </LocaleProvider>
             </body>

@@ -58,6 +58,8 @@
             "template": "Šablonování",
             "viewAllProjects": "Zobrazit všechny projekty",
             "showMore": "Zobrazit více",
+            "inProgress": "Ve vývoji",
+            "done": "Hotové",
             "tv-rozvrh": {
                 "title": "Víceúčelový rozvrh hodin pro mou školu",
                 "description": "Víceúčelový rozvrh hodin pro mou školu, umožňující studentům vidět, jaké dnes mají hodiny a v jaké učebně, kolik hodin mají a který učitel je učí. Zahrnuje také odjezdy autobusů a oznámení různých akcí školy.",
@@ -106,21 +108,21 @@
                 "btncode": "Zobrazit kód",
                 "btnlink": "Zobrazit ukázku"
             },
-            "sidebyside": {
-                "title": "Webová aplikace SideBySide",
+            "lovesync": {
+                "title": "Webová aplikace LoveSync",
                 "description": "Tato aplikace je budoucí platformou pro sdílení a správu obsahu s vaším partnerem. Je stále ve vývoji.",
                 "btncode": "Zobrazit kód",
                 "btnlink": "Zobrazit ukázku"
             },
             "principia": {
                 "title": "Webová stránka Principia",
-                "description": "Tato statická stránka byla vytvořena pro Principia.",
+                "description": "Statická stránka pro společnost Principia.",
                 "btncode": "Zobrazit kód",
                 "btnlink": "Zobrazit ukázku"
             },
             "princster": {
-                "title": "Webová stránka Princster AI",
-                "description": "Tato statická stránka byla vytvořena pro Princster AI.",
+                "title": "Webová stránka PRINCSTER AI",
+                "description": "Tato statická stránka byla vytvořena pro společnost Principia a její produkt PRINCSTER AI.",
                 "btncode": "Zobrazit kód",
                 "btnlink": "Zobrazit ukázku"
             }
@@ -149,6 +151,7 @@
         "message": "Zpráva",
         "message-placeholder": "Zeptejte se mě na něco",
         "contact": "Nebo mě kontaktujte zde",
+        "consentText": "Souhlasím se zpracováním osobních údajů za účelem vyřízení tohoto dotazu.",
         "errors": {
             "name": {
                 "tooShort": "Jméno musí mít alespoň 2 znaky"
@@ -158,6 +161,9 @@
             },
             "message": {
                 "tooShort": "Zpráva musí mít alespoň 10 znaků"
+            },
+            "consent": {
+                "required": "Pro odeslání zprávy musíte souhlasit se zpracováním osobních údajů."
             }
         },
         "submitSuccess": "Vyčkejte na odpověď ve Vaší emailové schránce.",

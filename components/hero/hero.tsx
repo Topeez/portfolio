@@ -10,30 +10,6 @@ import GlareHover from "@/src/blocks/Animations/GlareHover/GlareHover";
 export default function Hero() {
     const t = useTranslations("HomePage");
 
-    const availabilityPill = (
-        <div className="flex items-center gap-2 p-1 border border-muted rounded-4xl max-w-fit">
-            <Button
-                variant="ghost"
-                className="flex items-center gap-4 bg-gradient-to-r from-blue-600 to-sky-400 p-2 rounded-4xl text-white hover:text-white text-xs"
-            >
-                <div className="relative flex justify-center items-center rounded-full w-3 h-3">
-                    <span className="bg-green-400 rounded-full w-3 h-3"></span>
-                    <span className="absolute bg-green-400 rounded-full w-4 h-4 animate-ping"></span>
-                    <span className="absolute bg-green-400 rounded-full w-full h-full animate-ping"></span>
-                </div>
-                <p>{t("available")}</p>
-            </Button>
-            <Link href={"/#contact"}>
-                <Button
-                    variant="ghost"
-                    className="p-1.5 rounded-4xl text-muted-foreground text-xs cursor-pointer"
-                >
-                    {t("getintouch")}
-                </Button>
-            </Link>
-        </div>
-    );
-
     const mainTitle = (
         <h1 className="font-bold md:text-[65px] text-6xl lg:text-left text-center slide-in">
             {t("title")}{" "}
@@ -91,7 +67,6 @@ export default function Hero() {
             className="relative flex flex-col content-center lg:grid grid-cols-12 pt-32 h-full cs-container"
         >
             <div className="flex flex-col justify-center items-center lg:items-start space-y-6 lg:space-y-4 col-span-6 h-full">
-                {availabilityPill}
                 {mainTitle}
                 <h2 className="text-3xl slide-in">{t("subtitle")}</h2>
                 <div className="text-muted-foreground text-lg md:text-xl lg:text-left text-center slide-in">

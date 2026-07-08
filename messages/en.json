@@ -58,6 +58,9 @@
             "template": "Template blocks",
             "viewAllProjects": "View all projects",
             "showMore": "Show more",
+            "inProgress": "In progress",
+            "done": "Done",
+
             "tv-rozvrh": {
                 "title": "Multi-use hours scheduler for my school",
                 "description": "A multi-use hours scheduler for my school, allowing students to see what classes they have today, how many hours and which teacher is teaching them. Also include bus departures and announcements.",
@@ -106,8 +109,8 @@
                 "btncode": "View code",
                 "btnlink": "View demo"
             },
-            "sidebyside": {
-                "title": "SideBySide web application",
+            "lovesync": {
+                "title": "LoveSync web application",
                 "description": "This web application is a platform for sharing and managing content with your partner. It is still in the development. ",
                 "btncode": "View code",
                 "btnlink": "View demo"
@@ -149,6 +152,7 @@
         "message": "Message",
         "message-placeholder": "Ask me something...",
         "contact": "Or contact me here",
+        "consentText": "I agree to the processing of my personal data for the purpose of handling this enquiry.",
         "errors": {
             "name": {
                 "tooShort": "Name must be at least 2 characters"
@@ -158,6 +162,9 @@
             },
             "message": {
                 "tooShort": "Message must be at least 10 characters"
+            },
+            "consent": {
+                "required": "You must agree to the processing of personal data to send a message."
             }
         },
         "submitSuccess": "Wait for a reply in your email inbox.",

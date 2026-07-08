@@ -11,12 +11,12 @@ export function Footer() {
     const t = useTranslations("Footer");
 
     return (
-        <footer className="bg-gradient-to-b from-neutral-200 dark:from-neutral-900 to-neutral-100 dark:to-neutral-800 p-6 md:p-12 w-full">
-            <div className="flex md:flex-row flex-col justify-between items-center gap-10 cs-container">
+        <footer className="bg-gradient-to-b from-neutral-200 dark:from-neutral-900 to-neutral-100 dark:to-neutral-800 p-6 lg:p-12 w-full">
+            <div className="flex lg:flex-row flex-col justify-between items-center gap-10 cs-container">
                 {/* Left Column - Brand Info */}
-                <div className="flex flex-col items-center md:items-start gap-6 md:gap-10">
-                    <div className="flex sm:flex-row flex-col items-center gap-4 sm:text-left text-center">
-                        <div className="rounded-full w-16 md:w-20 h-16 md:h-20 overflow-hidden">
+                <div className="flex flex-col justify-center lg:justify-start items-center lg:items-start gap-6 md:gap-10">
+                    <div className="flex lg:flex-row flex-col items-center gap-4 lg:text-left text-center">
+                        <div className="rounded-full w-16 lg:w-20 h-16 lg:h-20 overflow-hidden">
                             <Image
                                 src="/assets/img/me_transparent.png"
                                 width={80}

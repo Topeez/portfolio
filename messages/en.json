@@ -25,7 +25,7 @@
         "title": "Hello, I'm ",
         "name": "Andrew",
         "subtitle": "Frontend developer",
-        "description": "I build fast and clean web apps with React & Next.js.",
+        "description": "I build fast and clean web apps with React & Next.js. I also develop modern mobile apps using React Native.",
         "ctabutton": "More about me",
         "ctabutton2": "Contact me",
 
@@ -126,6 +126,12 @@
                 "description": "This static website is made for Prinster AI.",
                 "btncode": "View code",
                 "btnlink": "View demo"
+            },
+            "ph-osobnosti": {
+                "title": "PodHostýnské osobnosti website",
+                "description": "This static website is made by Principia for PodHostýnské osobnosti.",
+                "btncode": "View code",
+                "btnlink": "View demo"
             }
         },
 
@@ -135,6 +141,7 @@
             "text2": "Hint, you can grab the cards and play around with them.",
             "experience": {
                 "5plus": "5+ years",
+                "4plus": "4+ years",
                 "3plus": "3+ years",
                 "2plus": "2+ years",
                 "1plus": "1+ year"

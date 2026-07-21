@@ -5,31 +5,31 @@ export const getLogos = (t: TranslationFunction) => [
             id: 1,
             text: "HTML5",
             image: "/assets/icons/html-5.svg",
-            experience: t("experience.3plus"),
+            experience: t("experience.4plus"),
         },
         {
             id: 2,
             text: "CSS3",
             image: "/assets/icons/css3.svg",
-            experience: t("experience.3plus"),
+            experience: t("experience.4plus"),
         },
         {
             id: 3,
             text: "Tailwind CSS",
             image: "/assets/icons/tailwind.svg",
-            experience: t("experience.2plus"),
+            experience: t("experience.3plus"),
         },
         {
             id: 4,
             text: "JavaScript",
             image: "/assets/icons/javascript.svg",
-            experience: t("experience.3plus"),
+            experience: t("experience.4plus"),
         },
         {
             id: 5,
             text: "React",
             image: "/assets/icons/react.svg",
-            experience: t("experience.1plus"),
+            experience: t("experience.2plus"),
         },
         {
             id: 6,
@@ -41,7 +41,7 @@ export const getLogos = (t: TranslationFunction) => [
             id: 7,
             text: "TypeScript",
             image: "/assets/icons/typescript.svg",
-            experience: t("experience.1plus"),
+            experience: t("experience.2plus"),
         },
         {
             id: 8,
@@ -55,4 +55,22 @@ export const getLogos = (t: TranslationFunction) => [
             image: "/assets/icons/docker.svg",
             experience: t("experience.2plus"),
         },
+        {
+            id: 10,
+            text: "Git",
+            image: "/assets/icons/git.svg",
+            experience: t("experience.4plus"),
+        },
+        {
+            id: 11,
+            text: "Astro.js",
+            image: "/assets/icons/astro.svg",
+            experience: t("experience.1plus"),
+        },
+        {
+            id: 12,
+            text: "React Native",
+            image: "/assets/icons/react-native.svg",
+            experience: t("experience.1plus"),
+        }
     ];

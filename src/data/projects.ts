@@ -183,12 +183,12 @@ export const projects: Project[] = [
       images: [
         "/assets/img/projects/principia-hero.png"
       ],
-      technologies: ["React", "Astro.js", "Tailwind CSS", "shadcn UI"],
+      technologies: ["Astro.js", "TypeScript",  "Tailwind CSS"],
       github: "",
       demo: "https://principia.cz",
       inProgress: true,
     },
-        {
+    {
       id: "princster",
       slug: "princster",
       featured: false,
@@ -201,9 +201,28 @@ export const projects: Project[] = [
         "/assets/img/projects/princster/princster-trust.png",
         "/assets/img/projects/princster/princster-form.png",
       ],
-      technologies: ["Astro.js", "Tailwind CSS", "shadcn UI"],
+      technologies: ["Astro.js", "TypeScript", "API", "Tailwind CSS"],
       github: "",
       demo: "https://princster.com",
       inProgress: false,
+    },
+    {
+      id: "ph-osobnosti",
+      slug: "ph-osobnosti",
+      featured: false,
+      translationKey: "ph-osobnosti",
+      images: [
+        "/assets/img/projects/ph-osobnosti/ph-hero.png",
+        "/assets/img/projects/ph-osobnosti/ph-hero-video.png",
+        "/assets/img/projects/ph-osobnosti/ph-vize.png",
+        "/assets/img/projects/ph-osobnosti/ph-kandidati.png",
+        "/assets/img/projects/ph-osobnosti/ph-kandidat-detail.png",
+        "/assets/img/projects/ph-osobnosti/ph-kalendar.png",
+        "/assets/img/projects/ph-osobnosti/ph-footer.png",
+      ],
+      technologies: ["Astro.js", "TypeScript", "Tailwind CSS"],
+      github: "",
+      demo: "https://ph-osobnosti.cz",
+      inProgress: true,
     }
 ];

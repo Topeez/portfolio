@@ -25,7 +25,7 @@
         "title": "Ahoj, já jsem ",
         "name": "Ondřej",
         "subtitle": "Frontend vývojář",
-        "description": "Vytvářím rychlé a čisté webové aplikace pomocí Reactu & Next.js.",
+        "description": "Vytvářím rychlé a čisté webové aplikace pomocí Reactu & Next.js. Také tvořím moderní mobilní aplikace pomocí React Native.",
         "ctabutton": "Více o mně",
         "ctabutton2": "Kontaktovat",
 
@@ -125,6 +125,12 @@
                 "description": "Tato statická stránka byla vytvořena pro společnost Principia a její produkt PRINCSTER AI.",
                 "btncode": "Zobrazit kód",
                 "btnlink": "Zobrazit ukázku"
+            },
+            "ph-osobnosti": {
+                "title": "Webová stránka PodHostýnské osobnosti",
+                "description": "Tato statická stránka byla vytvořena společností Principia pro PodHostýnské osobnosti.",
+                "btncode": "Zobrazit kód",
+                "btnlink": "Zobrazit ukázku"
             }
         },
 
@@ -134,6 +140,7 @@
             "text2": "Tip, karty můžete chytit a pohrát si s nimi.",
             "experience": {
                 "5plus": "5+ let",
+                "4plus": "4+ let",
                 "3plus": "3+ let",
                 "2plus": "2+ let",
                 "1plus": "1+ let"

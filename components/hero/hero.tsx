@@ -13,7 +13,7 @@ export default function Hero() {
     const mainTitle = (
         <h1 className="font-bold md:text-[65px] text-6xl lg:text-left text-center slide-in">
             {t("title")}{" "}
-            <span className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 font-bold text-transparent">
+            <span className="bg-clip-text bg-linear-to-r from-blue-600 to-sky-400 font-bold text-transparent">
                 {t("name")}
             </span>
         </h1>
@@ -30,7 +30,7 @@ export default function Hero() {
             className="rounded-2xl"
         >
             <Link href="/#about">
-                <Button className="bg-foreground hover:bg-gradient-to-r from-blue-600 to-sky-400 px-15 py-7 rounded-2xl hover:text-white text-2xl transition-all ease-in-out cursor-pointer">
+                <Button className="bg-foreground hover:bg-linear-to-r from-blue-600 to-sky-400 px-15 py-7 rounded-2xl hover:text-white text-2xl transition-all ease-in-out cursor-pointer">
                     <UserRound className="mr-1" />
                     {t("ctabutton")}
                 </Button>
@@ -78,7 +78,7 @@ export default function Hero() {
                 </div>
             </div>
             <div className="relative flex justify-center lg:justify-end items-center col-span-6 fade-in">
-                <div className="z-auto absolute inset-0 bg-gradient-to-t from-10% dark:from-background to-30% to-transparent pointer-events-none" />
+                <div className="z-auto absolute inset-0 bg-linear-to-t from-10% dark:from-background to-30% to-transparent pointer-events-none" />
 
                 <Image
                     src="/assets/img/me_transparent.png"

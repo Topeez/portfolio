@@ -132,6 +132,18 @@
                 "description": "This static website is made by Principia for PodHostýnské osobnosti.",
                 "btncode": "View code",
                 "btnlink": "View demo"
+            },
+            "rd-kobyli": {
+                "title": "Website presentation of a family home for sale without an estate agent",
+                "description": "This website presents a family home for sale in Kobylí. The property is being sold directly by the owner, without an estate agent.",
+                "btncode": "View code",
+                "btnlink": "View demo"
+            },
+            "byt-brno-lesna": {
+                "title": "Website presentation of an apartment for sale before renovation, without an estate agent",
+                "description": "This website presents an apartment for sale in Brno-Lesná that requires renovation. The property is being sold directly by the owner, without an estate agent.",
+                "btncode": "View code",
+                "btnlink": "View demo"
             }
         },
 

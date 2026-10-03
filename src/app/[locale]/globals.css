@@ -171,9 +171,9 @@
     }
 
     .card-gradient {
-        @apply dark:bg-gradient-to-b from-background dark:from-neutral-900 dark:to-background;
+        @apply bg-linear-to-b from-neutral-100 to-background dark:from-neutral-900 dark:to-background;
     }
-
+    
     .animate-twinkle {
         animation: twinkle var(--duration, 2s) ease-in-out infinite alternate;
     }

@@ -60,6 +60,8 @@
             "showMore": "Zobrazit více",
             "inProgress": "Ve vývoji",
             "done": "Hotové",
+            "projectLinks": "Odkazy projektu",
+            "state": "Stav",
             "tv-rozvrh": {
                 "title": "Víceúčelový rozvrh hodin pro mou školu",
                 "description": "Víceúčelový rozvrh hodin pro mou školu, umožňující studentům vidět, jaké dnes mají hodiny a v jaké učebně, kolik hodin mají a který učitel je učí. Zahrnuje také odjezdy autobusů a oznámení různých akcí školy.",
@@ -85,7 +87,7 @@
                 "btnlink": "Zobrazit ukázku"
             },
             "travasstineni": {
-                "title": "Webová stránka pro mého prvního klienta",
+                "title": "Webová stránka pro mého prvního klienta - Travas Stínění",
                 "description": "Klient se specializuje na montáž a servis stínící techniky",
                 "btncode": "Zobrazit kód",
                 "btnlink": "Zobrazit ukázku"
@@ -141,6 +143,12 @@
             "byt-brno-lesna": {
                 "title": "Webová prezentace bytu před rekonstrukcí na prodej bez realitky",
                 "description": "Tato webová stránka slouží jako představení bytu v Brně-Lesné, který je před rekonstrukcí a je na prodej. Prodej je bez realitní kanceláře.",
+                "btncode": "Zobrazit kód",
+                "btnlink": "Zobrazit ukázku"
+            },
+            "elektro-sabo": {
+                "title": "Webová prezentace řemeslníka v oblasti elektrotechniky a revizí",
+                "description": "Tato webová stránka slouží jako prezentační web pro řemeslníka, obsahuje recenze z googlu, kontaktní formulář propis článků na web.",
                 "btncode": "Zobrazit kód",
                 "btnlink": "Zobrazit ukázku"
             }

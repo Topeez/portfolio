@@ -81,7 +81,7 @@ export const projects: Project[] = [
     {
         id: "travasstineni",
         slug: "travasstineni",
-        featured: true,
+        featured: false,
         translationKey: "travasstineni",
         images: [
             "/assets/img/projects/majktravas/majktravas.png",
@@ -138,7 +138,7 @@ export const projects: Project[] = [
     {
         id: "flock",
         slug: "flock",
-        featured: true,
+        featured: false,
         translationKey: "flock",
         images: [
           "/assets/img/projects/flock/flock.png",
@@ -266,5 +266,26 @@ export const projects: Project[] = [
       github: "",
       demo: "https://byt-brno-lesna.cz",
       inProgress: false,
+    },
+    {
+      id: "elektro-sabo",
+      slug: "elektro-sabo",
+      featured: true,
+      translationKey: "elektro-sabo",
+      images: [
+        "/assets/img/projects/elektro-sabo/elektro-sabo-1.png",
+        "/assets/img/projects/elektro-sabo/elektro-sabo-2.png",
+        "/assets/img/projects/elektro-sabo/elektro-sabo-3.png",
+        "/assets/img/projects/elektro-sabo/elektro-sabo-4.png",
+        "/assets/img/projects/elektro-sabo/elektro-sabo-5.png",
+        "/assets/img/projects/elektro-sabo/elektro-sabo-6.png",
+        "/assets/img/projects/elektro-sabo/elektro-sabo-7.png",
+        "/assets/img/projects/elektro-sabo/elektro-sabo-8.png",
+        // "/assets/img/projects/elektro-sabo/elektro-sabo-9.png",
+      ],
+      technologies: ["Astro.js", "TypeScript", "Tailwind CSS", "CloudFlare", "API"],
+      github: "",
+      demo: "https://elektro-sabo.cz",
+      inProgress: true,
     }
 ];

@@ -57,7 +57,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 <div className="flex flex-col gap-10">
                     {/* Header Section */}
                     <div className="space-y-4 md:text-left text-center">
-                        <h1 className="bg-clip-text bg-gradient-to-r from-blue-600 to-sky-400 py-2 w-fit font-bold text-transparent text-4xl md:text-6xl">
+                        <h1 className="bg-clip-text bg-linear-to-r from-blue-600 to-sky-400 py-2 w-fit font-bold text-transparent text-4xl md:text-6xl">
                             {t(`${project.translationKey}.title`)}
                         </h1>
                         <p className="max-w-2xl text-muted-foreground text-xl">
@@ -110,7 +110,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                         {/* Links & Info Section */}
                         <div className="flex flex-col gap-6 bg-card shadow-sm p-6 border rounded-xl">
                             <h2 className="font-semibold text-2xl">
-                                Project Links
+                                {t("projectLinks")}
                             </h2>
 
                             <div className="flex sm:flex-row flex-col gap-4">
@@ -151,16 +151,16 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                             {/* Status Section */}
                             <div className="bg-muted/50 mt-4 p-4 rounded-lg">
                                 <p className="flex items-center gap-2 text-muted-foreground text-sm italic">
-                                    Status:
+                                    {t("state")}:
                                     {project.inProgress ? (
                                         <span className="flex items-center gap-1">
-                                            In Progress{" "}
-                                            <Construction className="w-4 h-4 text-yellow-500" />
+                                            {t("inProgress")}{" "}
+                                            <Construction className="size-4 text-yellow-500" />
                                         </span>
                                     ) : (
                                         <span className="flex items-center gap-1">
-                                            Completed{" "}
-                                            <BadgeCheck className="w-4 h-4 text-green-500" />
+                                            {t("done")}{" "}
+                                            <BadgeCheck className="size-4 text-green-500" />
                                         </span>
                                     )}
                                 </p>

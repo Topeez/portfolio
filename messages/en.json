@@ -60,6 +60,8 @@
             "showMore": "Show more",
             "inProgress": "In progress",
             "done": "Done",
+            "projectLinks": "Project Links",
+            "state": "Status",
 
             "tv-rozvrh": {
                 "title": "Multi-use hours scheduler for my school",
@@ -142,6 +144,12 @@
             "byt-brno-lesna": {
                 "title": "Website presentation of an apartment for sale before renovation, without an estate agent",
                 "description": "This website presents an apartment for sale in Brno-Lesná that requires renovation. The property is being sold directly by the owner, without an estate agent.",
+                "btncode": "View code",
+                "btnlink": "View demo"
+            },
+            "elektro-sabo": {
+                "title": "Website for an electrical and inspection tradesman",
+                "description": "This website serves as a presentation site for a tradesman. It features Google reviews, a contact form, and a blog section where articles are published to the site.",
                 "btncode": "View code",
                 "btnlink": "View demo"
             }

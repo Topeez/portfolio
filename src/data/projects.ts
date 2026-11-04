@@ -287,5 +287,24 @@ export const projects: Project[] = [
       github: "",
       demo: "https://elektro-sabo.cz",
       inProgress: true,
+    },
+      {
+      id: "ms-radost",
+      slug: "ms-radost",
+      featured: true,
+      translationKey: "ms-radost",
+      images: [
+        "/assets/img/projects/ms-radost/ms-radost-1.png",
+        "/assets/img/projects/ms-radost/ms-radost-2.png",
+        "/assets/img/projects/ms-radost/ms-radost-3.png",
+        "/assets/img/projects/ms-radost/ms-radost-4.png",
+        "/assets/img/projects/ms-radost/ms-radost-5.png",
+        "/assets/img/projects/ms-radost/ms-radost-6.png",
+        "/assets/img/projects/ms-radost/ms-radost-7.png",
+      ],
+      technologies: ["Astro.js", "TypeScript", "Tailwind CSS", "VPS", "API", "Strapi", "Backend", "React"],
+      github: "",
+      demo: "https://msradost.principia.cz",
+      inProgress: false,
     }
 ];

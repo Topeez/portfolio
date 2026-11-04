@@ -57,6 +57,8 @@
             "db": "Database",
             "template": "Template blocks",
             "viewAllProjects": "View all projects",
+            "btnCode": "Source code",
+            "btnLink": "Visit website",
             "showMore": "Show more",
             "inProgress": "In progress",
             "done": "Done",
@@ -65,93 +67,68 @@
 
             "tv-rozvrh": {
                 "title": "Multi-use hours scheduler for my school",
-                "description": "A multi-use hours scheduler for my school, allowing students to see what classes they have today, how many hours and which teacher is teaching them. Also include bus departures and announcements.",
-                "btncode": "View code",
-                "btnlink": "View demo"
+                "description": "A multi-use hours scheduler for my school, allowing students to see what classes they have today, how many hours and which teacher is teaching them. Also include bus departures and announcements."
             },
             "tda25": {
                 "title": "Tic tac toe platform",
-                "description": "Tic tac toe platform for web developing contest Tour de App, where I learnt a lot about web development.",
-                "btncode": "View code",
-                "btnlink": "View demo"
+                "description": "Tic tac toe platform for web developing contest Tour de App, where I learnt a lot about web development."
             },
             "zenith": {
                 "title": "Music platform for starting artists",
-                "description": "Music platform for starting artists",
-                "btncode": "View code",
-                "btnlink": "View demo"
+                "description": "Music platform for starting artists"
+              
             },
             "mesosweb": {
                 "title": "A school website - MěSOŠ Klobouky u Brna",
-                "description": "Created using template blocks in WordPress",
-                "btncode": "View code",
-                "btnlink": "View demo"
+                "description": "Created using template blocks in WordPress"
             },
             "travasstineni": {
                 "title": "A website for my first client",
-                "description": "The client specializes in the installation and service of shading equipment",
-                "btncode": "View code",
-                "btnlink": "View demo"
+                "description": "The client specializes in the installation and service of shading equipment"
             },
             "urvtek": {
                 "title": "A website for UrvTek",
-                "description": "This website is a platform for upcoming music competition made by UrvTek. Collaborating with Galfar.",
-                "btncode": "View code",
-                "btnlink": "View demo"
+                "description": "This website is a platform for upcoming music competition made by UrvTek. Collaborating with Galfar."
             },
             "gamedex": {
                 "title": "A website for Rook Rules",
-                "description": "This website is a PokeDex of games Rook has played on stream so far. It features simple info about the game and brief description of the game. Also includes admin dashboard for actually importing these cards to display them in Game Dex. Collaborating with Galfar.",
-                "btncode": "View code",
-                "btnlink": "View demo"
+                "description": "This website is a PokeDex of games Rook has played on stream so far. It features simple info about the game and brief description of the game. Also includes admin dashboard for actually importing these cards to display them in Game Dex. Collaborating with Galfar."
             },
             "flock": {
                 "title": "Flock™ web application",
-                "description": "This web application is a platform for messaging with friends. It is still in the beginning of its development. Collaborating with Galfar.",
-                "btncode": "View code",
-                "btnlink": "View demo"
+                "description": "This web application is a platform for messaging with friends. It is still in the beginning of its development. Collaborating with Galfar."
             },
             "lovesync": {
                 "title": "LoveSync web application",
-                "description": "This web application is a platform for sharing and managing content with your partner. It is still in the development. ",
-                "btncode": "View code",
-                "btnlink": "View demo"
+                "description": "This web application is a platform for sharing and managing content with your partner. It is still in the development. "
             },
             "principia": {
                 "title": "Principia website",
-                "description": "This static website is made for Principia.",
-                "btncode": "View code",
-                "btnlink": "View demo"
+                "description": "This static website is made for Principia."
             },
             "princster": {
                 "title": "Princster AI website",
-                "description": "This static website is made for Prinster AI.",
-                "btncode": "View code",
-                "btnlink": "View demo"
+                "description": "This static website is made for Prinster AI."
             },
             "ph-osobnosti": {
                 "title": "PodHostýnské osobnosti website",
-                "description": "This static website is made by Principia for PodHostýnské osobnosti.",
-                "btncode": "View code",
-                "btnlink": "View demo"
+                "description": "This static website is made by Principia for PodHostýnské osobnosti."
             },
             "rd-kobyli": {
                 "title": "Website presentation of a family home for sale without an estate agent",
-                "description": "This website presents a family home for sale in Kobylí. The property is being sold directly by the owner, without an estate agent.",
-                "btncode": "View code",
-                "btnlink": "View demo"
+                "description": "This website presents a family home for sale in Kobylí. The property is being sold directly by the owner, without an estate agent."
             },
             "byt-brno-lesna": {
                 "title": "Website presentation of an apartment for sale before renovation, without an estate agent",
-                "description": "This website presents an apartment for sale in Brno-Lesná that requires renovation. The property is being sold directly by the owner, without an estate agent.",
-                "btncode": "View code",
-                "btnlink": "View demo"
+                "description": "This website presents an apartment for sale in Brno-Lesná that requires renovation. The property is being sold directly by the owner, without an estate agent."
             },
             "elektro-sabo": {
                 "title": "Website for an electrical and inspection tradesman",
-                "description": "This website serves as a presentation site for a tradesman. It features Google reviews, a contact form, and a blog section where articles are published to the site.",
-                "btncode": "View code",
-                "btnlink": "View demo"
+                "description": "This website serves as a presentation site for a tradesman. It features Google reviews, a contact form, and a blog section where articles are published to the site."
+            },
+            "ms-radost": {
+                "title": "MŠ Radost Kindergarten Website – Bystřice pod Hostýnem",
+                "description": "A modern kindergarten website presenting its classes, opening hours, school canteen information and practical details for parents."
             }
         },
 

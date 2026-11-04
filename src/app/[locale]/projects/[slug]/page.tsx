@@ -45,6 +45,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
     const { getTranslations } = await import("next-intl/server");
     const t = await getTranslations("HomePage.Projects");
+    const label = (key: "btnCode" | "btnLink") =>
+    t.has(`${project.translationKey}.${key}`)
+        ? t(`${project.translationKey}.${key}`)
+        : t(key);
+
 
     const translatedTechs = project.technologies.map((tech) =>
         ["api", "db", "template"].includes(tech) ? t(tech) : tech,
@@ -121,9 +126,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                                             target="_blank"
                                         >
                                             <ExternalLink className="size-4" />
-                                            {t(
-                                                `${project.translationKey}.btnlink`,
-                                            )}
+                                            {label("btnLink")}
                                         </Link>
                                     </Button>
                                 )}
@@ -140,9 +143,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                                             target="_blank"
                                         >
                                             <GitBranch className="size-4" />
-                                            {t(
-                                                `${project.translationKey}.btncode`,
-                                            )}
+                                            {label("btnCode")}
                                         </Link>
                                     </Button>
                                 )}

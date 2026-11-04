@@ -58,99 +58,75 @@
             "template": "Šablonování",
             "viewAllProjects": "Zobrazit všechny projekty",
             "showMore": "Zobrazit více",
+            "btnCode": "Zdrojový kód",
+            "btnLink": "Zobrazit web",
             "inProgress": "Ve vývoji",
-            "done": "Hotové",
+            "done": "Hotovo",
             "projectLinks": "Odkazy projektu",
             "state": "Stav",
             "tv-rozvrh": {
                 "title": "Víceúčelový rozvrh hodin pro mou školu",
-                "description": "Víceúčelový rozvrh hodin pro mou školu, umožňující studentům vidět, jaké dnes mají hodiny a v jaké učebně, kolik hodin mají a který učitel je učí. Zahrnuje také odjezdy autobusů a oznámení různých akcí školy.",
-                "btncode": "Zobrazit kód",
-                "btnlink": "Zobrazit ukázku"
+                "description": "Víceúčelový rozvrh hodin pro mou školu, umožňující studentům vidět, jaké dnes mají hodiny a v jaké učebně, kolik hodin mají a který učitel je učí. Zahrnuje také odjezdy autobusů a oznámení různých akcí školy."
             },
             "tda25": {
                 "title": "Platforma pro piškvorky",
-                "description": "Platforma pro piškvorky",
-                "btncode": "Zobrazit kód",
-                "btnlink": "Zobrazit ukázku"
+                "description": "Platforma pro piškvorky"
             },
             "zenith": {
                 "title": "Hudební platforma pro začínající umělce",
-                "description": "Hudební platforma pro začínající umělce",
-                "btncode": "Zobrazit kód",
-                "btnlink": "Zobrazit ukázku"
+                "description": "Hudební platforma pro začínající umělce"
             },
             "mesosweb": {
                 "title": "Webová stránka školy - MěSOŠ Klobouky u Brna",
-                "description": "Stránka vytvořena pomocí bloků ve WordPress",
-                "btncode": "Zobrazit kód",
-                "btnlink": "Zobrazit ukázku"
+                "description": "Stránka vytvořena pomocí bloků ve WordPress"
             },
             "travasstineni": {
                 "title": "Webová stránka pro mého prvního klienta - Travas Stínění",
-                "description": "Klient se specializuje na montáž a servis stínící techniky",
-                "btncode": "Zobrazit kód",
-                "btnlink": "Zobrazit ukázku"
+                "description": "Klient se specializuje na montáž a servis stínící techniky"
             },
             "urvtek": {
                 "title": "Webová stránka pro UrvTeka",
-                "description": "Tato stránka je platformou pro nadcházející hudební soutěž vytvořenou UrvTekem. Spolupracuji na tom s Galfarem.",
-                "btncode": "Zobrazit kód",
-                "btnlink": "Zobrazit ukázku"
+                "description": "Tato stránka je platformou pro nadcházející hudební soutěž vytvořenou UrvTekem. Spolupracuji na tom s Galfarem."
             },
             "gamedex": {
                 "title": "Webová stránka pro Rook Rules",
-                "description": "Tato stránka je PokeDexem her, které Rook hrál na streamu. Obsahuje základní informace o hře a krátký popis hry. Také obsahuje správce pro import těchto karet a zobrazení v Game Dex. Spolupracuji s Galfarem.",
-                "btncode": "Zobrazit kód",
-                "btnlink": "Zobrazit ukázku"
+                "description": "Tato stránka je PokeDexem her, které Rook hrál na streamu. Obsahuje základní informace o hře a krátký popis hry. Také obsahuje správce pro import těchto karet a zobrazení v Game Dex. Spolupracuji s Galfarem."
             },
             "flock": {
                 "title": "Webová aplikace Flock™",
-                "description": "Tato aplikace je budoucí platformou pro komunikaci s přáteli. Je stále v úplném začátku vývoje. Spolupracuji s Galfarem.",
-                "btncode": "Zobrazit kód",
-                "btnlink": "Zobrazit ukázku"
+                "description": "Tato aplikace je budoucí platformou pro komunikaci s přáteli. Je stále v úplném začátku vývoje. Spolupracuji s Galfarem."
             },
             "lovesync": {
                 "title": "Webová aplikace LoveSync",
-                "description": "Tato aplikace je budoucí platformou pro sdílení a správu obsahu s vaším partnerem. Je stále ve vývoji.",
-                "btncode": "Zobrazit kód",
-                "btnlink": "Zobrazit ukázku"
+                "description": "Tato aplikace je budoucí platformou pro sdílení a správu obsahu s vaším partnerem. Je stále ve vývoji."
             },
             "principia": {
                 "title": "Webová stránka Principia",
-                "description": "Statická stránka pro společnost Principia.",
-                "btncode": "Zobrazit kód",
-                "btnlink": "Zobrazit ukázku"
+                "description": "Statická stránka pro společnost Principia."
             },
             "princster": {
                 "title": "Webová stránka PRINCSTER AI",
-                "description": "Tato statická stránka byla vytvořena pro společnost Principia a její produkt PRINCSTER AI.",
-                "btncode": "Zobrazit kód",
-                "btnlink": "Zobrazit ukázku"
+                "description": "Tato statická stránka byla vytvořena pro společnost Principia a její produkt PRINCSTER AI."
             },
             "ph-osobnosti": {
                 "title": "Webová stránka PodHostýnské osobnosti",
-                "description": "Tato statická stránka byla vytvořena společností Principia pro PodHostýnské osobnosti.",
-                "btncode": "Zobrazit kód",
-                "btnlink": "Zobrazit ukázku"
+                "description": "Tato statická stránka byla vytvořena společností Principia pro PodHostýnské osobnosti."
             },
             "rd-kobyli": {
                 "title": "Webová prezentace rodinného domu na prodej bez realitky",
-                "description": "Tato webová stránka slouží jako představení rodinného domu v Kobylí, který je na prodej. Prodej je bez realitní kanceláře.",
-                "btncode": "Zobrazit kód",
-                "btnlink": "Zobrazit ukázku"
+                "description": "Tato webová stránka slouží jako představení rodinného domu v Kobylí, který je na prodej. Prodej je bez realitní kanceláře."
             },
             "byt-brno-lesna": {
                 "title": "Webová prezentace bytu před rekonstrukcí na prodej bez realitky",
-                "description": "Tato webová stránka slouží jako představení bytu v Brně-Lesné, který je před rekonstrukcí a je na prodej. Prodej je bez realitní kanceláře.",
-                "btncode": "Zobrazit kód",
-                "btnlink": "Zobrazit ukázku"
+                "description": "Tato webová stránka slouží jako představení bytu v Brně-Lesné, který je před rekonstrukcí a je na prodej. Prodej je bez realitní kanceláře."
             },
             "elektro-sabo": {
                 "title": "Webová prezentace řemeslníka v oblasti elektrotechniky a revizí",
-                "description": "Tato webová stránka slouží jako prezentační web pro řemeslníka, obsahuje recenze z googlu, kontaktní formulář propis článků na web.",
-                "btncode": "Zobrazit kód",
-                "btnlink": "Zobrazit ukázku"
+                "description": "Tato webová stránka slouží jako prezentační web pro řemeslníka, obsahuje recenze z googlu, kontaktní formulář propis článků na web."
+            },
+            "ms-radost": {
+                "title": "Nový web s administrací pro mateřskou školku Radost v Bystřici pod Hostýnem podle brandmanuálu.",
+                "description": "Moderní web mateřské školy s představením tříd, provozní dobou, informacemi o školní jídelně a praktickými informacemi pro rodiče."
             }
         },
 

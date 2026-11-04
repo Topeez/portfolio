@@ -297,7 +297,7 @@ function ProjectCard({
                                     >
                                         <GitBranch className="md:mr-2" />
                                         <span className="hidden md:inline">
-                                            {t(`${translationKey}.btncode`)}
+                                            {t("btnCode")}
                                         </span>
                                     </Button>
                                 </div>
@@ -311,7 +311,7 @@ function ProjectCard({
                                     >
                                         <GitBranch className="md:mr-2" />
                                         <span className="hidden md:inline">
-                                            {t(`${translationKey}.btncode`)}
+                                            {t("btnCode")}
                                         </span>
                                     </Button>
                                 </Link>
@@ -325,7 +325,7 @@ function ProjectCard({
                                     >
                                         <ExternalLink className="md:mr-2" />
                                         <span className="hidden md:inline">
-                                            {t(`${translationKey}.btnlink`)}
+                                            {t("btnLink")}
                                         </span>
                                     </Button>
                                 </div>
@@ -336,7 +336,7 @@ function ProjectCard({
                                     >
                                         <ExternalLink className="md:mr-2" />
                                         <span className="hidden md:inline">
-                                            {t(`${translationKey}.btnlink`)}
+                                            {t("btnLink")}
                                         </span>
                                     </Button>
                                 </Link>
